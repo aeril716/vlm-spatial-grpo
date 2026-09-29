@@ -1,0 +1,37 @@
+# datasets / images — never commit
+data/
+datasets/
+images/
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.bmp
+*.arrow
+*.parquet
+*.tar
+*.tar.gz
+*.zip
+hf_cache/
+.cache/
+
+# model weights / checkpoints
+*.safetensors
+*.bin
+*.pt
+*.pth
+checkpoints/
+outputs/
+runs/
+wandb/
+
+# env
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# raw per-run json (reports/*.md IS committed)
+reports/raw/
