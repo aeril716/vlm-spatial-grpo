@@ -1,5 +1,6 @@
 # datasets / images — never commit
-data/
+data/*
+!data/passk_f_ids.json
 datasets/
 images/
 *.jpg
@@ -34,4 +35,8 @@ __pycache__/
 .ipynb_checkpoints/
 
 # raw per-run json (reports/*.md IS committed)
-reports/raw/
+reports/raw/*
+!reports/raw/part_f/
+
+# Claude Code local settings
+.claude/settings.local.json
