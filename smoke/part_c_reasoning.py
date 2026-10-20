@@ -30,7 +30,28 @@ import common as C
 import part_b_grpo as B
 
 RAW = C.RAW_DIR
-MAX_COMPLETION = {"baseline": B.MAX_COMPLETION, "reasoning": 1024}
+MAX_COMPLETION = {"baseline": B.MAX_COMPLETION, "reasoning": 1024, "e1": 1024, "e2": 1024}
+
+# Part E: format instruction at the end of the user message (no system prompt),
+# with one worked example about a different question.
+E_INSTRUCTION = (
+    "First describe what in the image is relevant, then reason step by step, then give the final answer. "
+    "Use exactly this format:\n"
+    "<description>...</description>\n"
+    "<reasoning>...</reasoning>\n"
+    "<answer>one of the choices, copied exactly</answer>\n\n"
+    "Example of the format, for a different question (\"Is the lamp to the left of the sofa?\" "
+    "with choices yes / no):\n"
+    "<description>A grey sofa stands against the back wall. A floor lamp is next to its right arm.</description>\n"
+    "<reasoning>The lamp is beside the sofa's right arm, which is on the right side of the image from the "
+    "camera's view. So the lamp is to the right of the sofa, not the left.</reasoning>\n"
+    "<answer>no</answer>"
+)
+
+# Part E2: every completion is forced to start with this. It is part of the prompt, not
+# generated, so it is prepended to the completion text before scoring / counting tags.
+PREFILL = {"e2": "<description>"}
+GEN_PROMPT = "{% if add_generation_prompt %}<|im_start|>assistant\n{% endif %}"
 
 SYSTEM_PROMPT = (
     "You are a careful visual spatial reasoner. Always respond in exactly this format:\n"
@@ -64,7 +85,31 @@ def load_rows(mode, n):
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": build_prompt_reasoning({"question": q, "answers": r["answers"]})},
             ]
+    elif mode in ("e1", "e2"):
+        for r in rows:
+            q = r["prompt"][0]["content"].split("\n\nChoices:\n")[0]
+            choices = "\n".join(f"- {c}" for c in r["answers"])
+            r["prompt"] = [{"role": "user", "content": f"{q}\n\nChoices:\n{choices}\n\n{E_INSTRUCTION}"}]
     return rows
+
+
+def apply_prefill(processor, prefill):
+    """Make the generation prompt end with `prefill`.
+
+    GRPOTrainer renders conversational prompts with add_generation_prompt=True and, without
+    tools, uses the processor's own chat_template. Appending the prefill to the generation
+    prompt in that template puts it into prompt_ids, so the model continues after it and the
+    prefill tokens are never part of the completion (no loss on them).
+    """
+    t = processor.chat_template
+    assert t.count(GEN_PROMPT) == 1, "unexpected chat template"
+    patched = t.replace(GEN_PROMPT, GEN_PROMPT.replace("\n{% endif %}", "\n" + prefill + "{% endif %}"))
+    processor.chat_template = patched
+    processor.tokenizer.chat_template = patched
+    rendered = processor.apply_chat_template([{"role": "user", "content": "x"}],
+                                             tokenize=False, add_generation_prompt=True)
+    assert rendered.endswith("<|im_start|>assistant\n" + prefill), rendered[-80:]
+    return rendered
 
 
 def norm(s):
@@ -84,8 +129,10 @@ class Probe:
         lens = [len(ids) for ids in completion_ids]
         trunc = [len(ids) >= MAX_COMPLETION[self.mode] and (not ids or ids[-1] not in self.eos_ids)
                  for ids in completion_ids]
-        rewards, all_tags, answers = [], [], []
+        prefix = PREFILL.get(self.mode, "")
+        rewards, all_tags, answers, has_answer = [], [], [], []
         for t, gold in zip(texts, correct_answer):
+            t = prefix + t
             if self.mode == "baseline":
                 ans = t
                 all_tags.append(None)
@@ -93,11 +140,13 @@ class Probe:
                 found = {k: TAG_RE[k].search(t) for k in TAGS}
                 all_tags.append(all(found.values()))
                 ans = found["answer"].group(1) if found["answer"] else None
+                has_answer.append("<answer>" in t)
             answers.append(ans)
             rewards.append(1.0 if ans is not None and norm(ans) == norm(gold) else 0.0)
         self.batches.append({
             "texts": texts, "lens": lens, "truncated": trunc, "all_tags": all_tags,
             "answers": answers, "rewards": rewards, "gold": list(correct_answer),
+            "has_answer": has_answer, "prefix": prefix,
         })
         return rewards
 
@@ -192,6 +241,8 @@ def run(mode, steps, n_train):
     ))
     assert not any(p.requires_grad for n, p in model.named_parameters() if "visual" in n)
 
+    rendered = apply_prefill(processor, PREFILL[mode]) if mode in PREFILL else None
+
     tok = processor.tokenizer
     eos = {tok.eos_token_id, tok.pad_token_id, tok.convert_tokens_to_ids("<|im_end|>")} - {None}
     probe = Probe(mode, eos)
@@ -247,7 +298,7 @@ def run(mode, steps, n_train):
     out = {"mode": mode, "status": status, "error": err, "wall_s": wall,
            "max_completion_length": MAX_COMPLETION[mode],
            "steps": rec.steps, "nonfinite": rec.nonfinite, "batches": probe.batches,
-           "prompt_example": rows[0]["prompt"]}
+           "prompt_example": rows[0]["prompt"], "rendered_tail": rendered and rendered[-60:]}
     with open(f"{RAW}/part_c_{mode}.json", "w") as f:
         json.dump(out, f, indent=2, default=str)
     print(f"[{mode}] status={status} wall={wall:.1f}s -> {RAW}/part_c_{mode}.json")
@@ -410,7 +461,7 @@ scanning steps and generations in order (falls back to the next completions if o
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", choices=["baseline", "reasoning"])
+    ap.add_argument("--mode", choices=list(MAX_COMPLETION))
     ap.add_argument("--steps", type=int, default=B.MAX_STEPS)
     ap.add_argument("--n-train", type=int, default=16)
     ap.add_argument("--write-report", action="store_true")

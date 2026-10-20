@@ -383,3 +383,255 @@ the next completion in order. They are representative: every 7B Step 2 completio
   so it was not skipped. On these 20 samples 7B matched `correct_answer` 11/20 vs 3B's 14/20. With n=20 this
   is noise-level and not a capability comparison.
 - The baseline 7B run trained normally: 4/5 steps had non-zero gradient, and no NaN/inf or OOM.
+
+---
+
+# Part E: getting the model to use the reasoning format
+
+Part C (3B) and Part D (7B) showed that a system prompt alone barely changes the output: 3B used all three
+tags in 2/40 completions and 7B in 0/40. Part E changes only the prompt and repeats the Part C Step 2 run
+for both models. The samples, seed, LoRA, GRPO settings, `max_completion_length=1024`, reward (exact match
+inside `<answer>` only, 0 if it doesn't parse, format not rewarded) and measurements are unchanged.
+GPU: Quadro RTX 8000 (sm_75), 47.3 GiB. Each run is a fresh process.
+
+**E1: instruction in the user message, no system prompt.** The format instruction plus one worked example
+about a different question go at the end of the user message, after the question and choices. With no system
+message, the Qwen2.5-VL chat template inserts its default `You are a helpful assistant.`, the same as in
+Parts B/C baseline. The full user message for the first training prompt:
+
+```text
+I need to go to blue colour armchair (near the mark 0 in the image). Which direction should I turn to face the object?
+
+Choices:
+- left by 62 degrees
+- right by 62 degrees
+
+First describe what in the image is relevant, then reason step by step, then give the final answer. Use exactly this format:
+<description>...</description>
+<reasoning>...</reasoning>
+<answer>one of the choices, copied exactly</answer>
+
+Example of the format, for a different question ("Is the lamp to the left of the sofa?" with choices yes / no):
+<description>A grey sofa stands against the back wall. A floor lamp is next to its right arm.</description>
+<reasoning>The lamp is beside the sofa's right arm, which is on the right side of the image from the camera's view. So the lamp is to the right of the sofa, not the left.</reasoning>
+<answer>no</answer>
+```
+
+**E2: E1 + `<description>` prefill.** The prompt is the same as E1, but every completion is forced to begin
+with `<description>`. How this is implemented in TRL 1.13:
+
+- `GRPOTrainer` always renders conversational prompts with `apply_chat_template(..., add_generation_prompt=True)`.
+  A trailing assistant message therefore can't act as a prefill: it would be closed with `<|im_end|>`, and a
+  new assistant turn would start after it.
+- Without `tools`, the trainer passes `chat_template=None`, so it uses the processor's own template.
+- Before building the trainer, the generation-prompt clause of `processor.chat_template` (and
+  `processor.tokenizer.chat_template`) is changed from
+  `{% if add_generation_prompt %}<|im_start|>assistant\n{% endif %}` to
+  `{% if add_generation_prompt %}<|im_start|>assistant\n<description>{% endif %}`.
+  The script asserts that the rendered prompt ends with `<|im_start|>assistant\n<description>`. Tokenized, the
+  prompt ends `<|im_start|> assistant \n < description >`.
+- The prefill tokens are therefore part of `prompt_ids`: the model generates from after them, they aren't in
+  `completion_ids`, they don't count toward completion length or the 1024 limit, and they get no loss.
+- Because the completion text TRL passes to the reward does not include the prefill, the reward function
+  prepends `<description>` before parsing tags and `<answer>`. The tag counts below do the same.
+
+## Summary: Part E next to the Part C / Part D reasoning runs
+
+Counts are over all 40 completions per run (5 steps × 8 generations). Timings and VRAM are means over steps,
+except peak VRAM, which is the maximum.
+
+| | 3B Part C | 3B-E1 | 3B-E2 | 7B Part D | 7B-E1 | 7B-E2 |
+|---|---|---|---|---|---|---|
+| prompt | system prompt | user msg + example | E1 + `<description>` prefill | system prompt | user msg + example | E1 + `<description>` prefill |
+| seconds / step | 11.5 | 25.6 | 23.1 | 11.1 | 33.2 | 33.7 |
+| generation s / step | 5.3 | 18.3 | 15.8 | 2.9 | 22.6 | 23.1 |
+| train fwd+bwd s / step | 6.0 | 7.3 | 7.2 | 8.1 | 10.4 | 10.5 |
+| peak VRAM (GiB, max over steps) | 12.39 | 16.87 | 14.29 | 22.84 | 24.33 | 23.93 |
+| completion tokens: mean | 16.3 | 170.9 | 149.3 | 3.8 | 195.8 | 195.9 |
+| completion tokens: max | 191 | 438 | 354 | 7 | 315 | 374 |
+| all three tags | 2/40 | 39/40 | 39/40 | 0/40 | 40/40 | 38/40 |
+| contains `<answer>` | 2/40 | 39/40 | 40/40 | 0/40 | 40/40 | 40/40 |
+| cut off at 1024 | 0/40 | 0/40 | 0/40 | 0/40 | 0/40 | 0/40 |
+| reward 1 | 2/40 | 20/40 | 22/40 | 0/40 | 21/40 | 26/40 |
+| zero-gradient steps (reward std = 0) | 3/5 | 0/5 | 0/5 | 5/5 | 0/5 | 0/5 |
+
+## Per run
+
+### 3B-E1
+
+Status: completed 5/5 steps, no NaN/inf, no OOM
+
+- Out of 40 completions: **39** have all three tags, **39** contain `<answer>`,
+  **0** were cut off at 1024 tokens, 20 got reward 1.
+- Completion length: mean **170.9**, max **438** tokens.
+
+| step | s/step | gen s | score s | train (fwd+bwd) s | peak VRAM GiB | gen peak GiB | len mean | len max | cut off @max | all tags | reward mean | reward std | loss | grad_norm |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 24.7 | 18.8 | 0.06 | 5.7 | 13.06 | 8.08 | 140.0 | 286 | 0.000 | 1.000 | 0.500 | 0.535 | -0.2238 | 0.3200 |
+| 2 | 39.4 | 28.8 | 0.09 | 10.5 | 16.87 | 9.04 | 212.1 | 438 | 0.000 | 1.000 | 0.625 | 0.518 | 0.0918 | 0.2767 |
+| 3 | 20.3 | 14.7 | 0.05 | 5.5 | 12.45 | 8.39 | 179.9 | 230 | 0.000 | 1.000 | 0.625 | 0.518 | 0.1656 | 0.3139 |
+| 4 | 24.2 | 14.9 | 0.10 | 9.2 | 13.54 | 9.04 | 153.2 | 213 | 0.000 | 0.875 | 0.500 | 0.535 | -0.0580 | 0.3259 |
+| 5 | 19.7 | 14.1 | 0.06 | 5.5 | 12.28 | 8.39 | 169.1 | 219 | 0.000 | 1.000 | 0.250 | 0.463 | 0.0371 | 0.3061 |
+
+**Two full completions (unedited).** Same selection rule as Part C: the first completion with reward 1 and
+the first with reward 0, scanning steps and generations in order (falls back to the next completions if one
+kind doesn't exist).
+
+**Step 1, generation 0** — reward 1, 141 tokens, cut off: no, all three tags parsed: yes, correct_answer: `right by 15 degrees`
+
+```text
+<description>There is a brown square dining table in the center of the image, and three chairs are positioned around it, with red numbers marking their positions: 13, 8, 5, and 3.</description>
+<reasoning>Since the dining table is in the center of the image, my objective is to find its location by rotating my perspective. Looking at the table and the surrounding chairs, I can see that they are in a clockwise direction from my initial viewpoint. Therefore, to face the table, I need to turn left. I can turn 15 degrees towards the right side.</reasoning>
+<answer>right by 15 degrees</answer>
+```
+
+**Step 1, generation 1** — reward 0, 106 tokens, cut off: no, all three tags parsed: yes, correct_answer: `right by 15 degrees`
+
+```text
+<description>The image shows a virtual room with a square dining table, chairs, and a window. Mark 5 is labeled on the table's surface.</description>
+<reasoning>The dining table is the primary object of interest. It is centered in the image. The label "5" is directly attached to the table, making it easy to identify. Clicking on the table should likely lead to the actual investigation related to the given marks.</reasoning>
+<answer>one of the choices, copied exactly</answer>
+```
+
+
+### 3B-E2
+
+Status: completed 5/5 steps, no NaN/inf, no OOM
+
+- Out of 40 completions: **39** have all three tags, **40** contain `<answer>`,
+  **0** were cut off at 1024 tokens, 22 got reward 1.
+- Completion length: mean **149.3**, max **354** tokens.
+
+| step | s/step | gen s | score s | train (fwd+bwd) s | peak VRAM GiB | gen peak GiB | len mean | len max | cut off @max | all tags | reward mean | reward std | loss | grad_norm |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 23.1 | 17.3 | 0.06 | 5.7 | 12.87 | 8.08 | 157.1 | 273 | 0.000 | 1.000 | 0.500 | 0.535 | -0.1763 | 0.3018 |
+| 2 | 21.4 | 12.0 | 0.09 | 9.2 | 12.86 | 9.04 | 122.6 | 163 | 0.000 | 0.875 | 0.375 | 0.518 | 0.1691 | 0.3279 |
+| 3 | 23.2 | 17.4 | 0.06 | 5.8 | 13.07 | 8.39 | 186.0 | 272 | 0.000 | 1.000 | 0.500 | 0.535 | 0.0415 | 0.2894 |
+| 4 | 19.8 | 10.7 | 0.10 | 9.0 | 12.78 | 9.05 | 114.5 | 138 | 0.000 | 1.000 | 0.625 | 0.518 | 0.0221 | 0.3953 |
+| 5 | 28.1 | 21.8 | 0.06 | 6.2 | 14.29 | 8.39 | 166.1 | 354 | 0.000 | 1.000 | 0.750 | 0.463 | -0.2068 | 0.2637 |
+
+**Two full completions (unedited).** Same selection rule as Part C: the first completion with reward 1 and
+the first with reward 0, scanning steps and generations in order (falls back to the next completions if one
+kind doesn't exist). Shown exactly as generated. The prefilled `<description>` is part of the prompt, so it is not repeated here. Every completion below is preceded by it.
+
+**Step 1, generation 0** — reward 1, 208 tokens, cut off: no, all three tags parsed: yes, correct_answer: `right by 15 degrees`
+
+```text
+On a tiled wall are three wood-framed windows. A long grey side table and a shorter one are next to a table beneath the windows. A square painting hangs over the side table, facing the viewer. The table is on a large floor and has four chairs. Spheres are placed on the table with numbers indicating their position above them.</description>
+<reasoning>The brown square dining table is near the marker 5 in the image. The table is positioned in the middle of the scene, highlighted by the number 5. To face the dining table, one must move toward where the table is located, which is the center of the scene. However, the furniture arrangement around the table includes three chairs. To face the table squarely, it would be necessary to turn by an appropriate angle to align with the table's center. The space between the table, the chairs, and the walls indicates that we are to turn right to face the table directly.</reasoning>
+<answer>right by 15 degrees</answer>
+```
+
+**Step 1, generation 1** — reward 0, 159 tokens, cut off: no, all three tags parsed: yes, correct_answer: `right by 15 degrees`
+
+```text
+Three red spots are placed on the table and its nearby chairs. Number 8 is behind chairs B and C, and there are two blue items on the wineadero.</description>
+<reasoning>The dining table with red spots marked gives a clearer instruction. If the red spots are placed on different chairs, one of them marks the dining table or the chair. Number five (5) is beside the table, showing that it is facing or near the dining table. Considering the chair placements, and the fact that number five is close to the dining table,椅子 B and C must be part of the dining table setup, making number five a good candidate that's near an area that could potentially be the dining area.</reasoning>
+<answer>left by 15 degrees</answer>
+```
+
+
+### 7B-E1
+
+Status: completed 5/5 steps, no NaN/inf, no OOM
+
+- Out of 40 completions: **40** have all three tags, **40** contain `<answer>`,
+  **0** were cut off at 1024 tokens, 21 got reward 1.
+- Completion length: mean **195.8**, max **315** tokens.
+
+| step | s/step | gen s | score s | train (fwd+bwd) s | peak VRAM GiB | gen peak GiB | len mean | len max | cut off @max | all tags | reward mean | reward std | loss | grad_norm |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 30.2 | 21.6 | 0.06 | 8.4 | 21.80 | 17.08 | 218.0 | 280 | 0.000 | 1.000 | 0.625 | 0.518 | -0.0942 | 0.2173 |
+| 2 | 43.7 | 29.7 | 0.09 | 13.9 | 24.33 | 18.55 | 197.8 | 315 | 0.000 | 1.000 | 0.750 | 0.463 | 0.1631 | 0.2549 |
+| 3 | 27.0 | 18.7 | 0.05 | 8.2 | 21.56 | 17.45 | 191.5 | 245 | 0.000 | 1.000 | 0.125 | 0.354 | -0.0175 | 0.2367 |
+| 4 | 33.0 | 20.0 | 0.09 | 12.8 | 23.72 | 18.56 | 154.1 | 201 | 0.000 | 1.000 | 0.500 | 0.535 | -0.0205 | 0.2707 |
+| 5 | 32.0 | 23.2 | 0.06 | 8.7 | 22.50 | 17.46 | 217.6 | 306 | 0.000 | 1.000 | 0.625 | 0.518 | -0.0542 | 0.2332 |
+
+**Two full completions (unedited).** Same selection rule as Part C: the first completion with reward 1 and
+the first with reward 0, scanning steps and generations in order (falls back to the next completions if one
+kind doesn't exist).
+
+**Step 1, generation 1** — reward 1, 276 tokens, cut off: no, all three tags parsed: yes, correct_answer: `right by 15 degrees`
+
+```text
+<description>The image shows a room with a tiled wall and a room divider. On the far left, there is a small table with a red marker labeled "13". In the center and right of the image, there is a wooden square dining table with a light blue and red object on it, surrounded by four wooden chairs. Red markers are placed on each chair, with the chair at the center of the table marked "5", and the chairs to its right marked "3" and "8". Another red marker labeled "13" is on the small table to the left. The dining table is in the center-right part of the image.</description>
+<reasoning>To face the brown square dining table (near the mark 5), you should rotate towards the right. Since the chair marked "5" is at the center of the table and the landmark is labeled "5", you would need to turn right to face it directly. Given the choices, the correct direction to turn is "right by 15 degrees" because it matches the right turn required to face the correct landmark (5).
+
+Choosing the other direction (left by 15 degrees) would mean you are moving away from the center point of the dining table, which is the goal to face it.
+</reasoning>
+<answer>right by 15 degrees</answer>
+```
+
+**Step 1, generation 0** — reward 0, 160 tokens, cut off: no, all three tags parsed: yes, correct_answer: `right by 15 degrees`
+
+```text
+<description>A room is depicted with a dining area in the center. There is a wooden dining table with four chairs arranged around it. The table has several objects on it, including a bottle, a bowl, and two red markers labeled 5 and 3. There is a wall with a window on the left and a partial view of another table and wall on the right side. A painting hangs on the left wall.</description>
+<reasoning>Directly positioned in front of the table with the display of markers 5 and 3, is to the left convex part of the orientation of the dinette.  Hence, you'll need to make a small turn to align perfectly in front of the table.</reasoning>
+<answer>left by 15 degrees</answer>
+```
+
+
+### 7B-E2
+
+Status: completed 5/5 steps, no NaN/inf, no OOM
+
+- Out of 40 completions: **38** have all three tags, **40** contain `<answer>`,
+  **0** were cut off at 1024 tokens, 26 got reward 1.
+- Completion length: mean **195.9**, max **374** tokens.
+
+| step | s/step | gen s | score s | train (fwd+bwd) s | peak VRAM GiB | gen peak GiB | len mean | len max | cut off @max | all tags | reward mean | reward std | loss | grad_norm |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 26.5 | 18.3 | 0.06 | 8.1 | 21.09 | 17.08 | 184.5 | 233 | 0.000 | 1.000 | 0.375 | 0.518 | -0.0007 | 0.2377 |
+| 2 | 34.4 | 21.2 | 0.10 | 13.1 | 23.81 | 18.57 | 194.1 | 216 | 0.000 | 1.000 | 0.750 | 0.463 | 0.0177 | 0.3027 |
+| 3 | 33.3 | 24.4 | 0.06 | 8.9 | 22.74 | 17.46 | 220.5 | 322 | 0.000 | 0.875 | 0.625 | 0.518 | -0.0060 | 0.2185 |
+| 4 | 36.3 | 23.0 | 0.09 | 13.1 | 23.93 | 18.58 | 168.6 | 236 | 0.000 | 1.000 | 0.875 | 0.354 | 0.1412 | 0.2670 |
+| 5 | 37.9 | 28.4 | 0.06 | 9.4 | 23.54 | 17.46 | 211.8 | 374 | 0.000 | 0.875 | 0.625 | 0.518 | -0.0744 | 0.2378 |
+
+**Two full completions (unedited).** Same selection rule as Part C: the first completion with reward 1 and
+the first with reward 0, scanning steps and generations in order (falls back to the next completions if one
+kind doesn't exist). Shown exactly as generated. The prefilled `<description>` is part of the prompt, so it is not repeated here. Every completion below is preceded by it.
+
+**Step 1, generation 2** — reward 1, 154 tokens, cut off: no, all three tags parsed: yes, correct_answer: `right by 15 degrees`
+
+```text
+There is a brown square dining table with a number 5 on it. Several chairs are arranged around the table, and one of the chairs has a number 3 on it. There is another table next to it with a number 13 on it, and a window and a barbecue grill can be seen in the background.</description>
+<reasoning>To move from your position towards the table marked with the number 5, you should turn right. You are currently facing the walls, and the table is to your right. To face the brown square dining table (marked with the number 5), you need to turn right by 15 degrees to align yourself with the table.</reasoning>
+<answer>right by 15 degrees</answer>
+```
+
+**Step 1, generation 0** — reward 0, 189 tokens, cut off: no, all three tags parsed: yes, correct_answer: `right by 15 degrees`
+
+```text
+There is a dining table near the center of the image, marked with the number "5". The table is rectangular and surrounded by four wooden chairs. The floor is plain and light-colored, and there is a small table with a red object on it in the upper left corner, marked with the number "13". The wall is tiled with beige tiles, and there is a painting hanging on the wall next to the window.</description>
+<reasoning>From your position facing away from the table, you need to turn to face the table, which is to your left from this perspective. Since you need to face the table, you should turn your body to the left by approximately 90 degrees. To achieve this, you would turn left by a smaller angle around 15 degrees, as you are already in a position to be facing the table.</reasoning>
+<answer>left by 15 degrees</answer>
+```
+
+### Notes
+
+- **The format now works for both models.** Moving the instruction plus one example into the user message (E1)
+  took tag use from 2/40 to 39/40 (3B) and from 0/40 to 40/40 (7B). The `<description>` prefill (E2) added
+  little on top: 39/40 and 38/40 have all three tags, and 40/40 contain `<answer>` in both. Every step in all
+  four runs had reward variance, so there were no zero-gradient steps (Part C: 3/5, Part D: 5/5). Reward 1
+  counts (20–26/40) are about the same as the bare-answer accuracy, which is expected after 5 steps. The
+  E1 vs E2 differences are within noise at n=40.
+- **Completions are longer but still nowhere near 1024 tokens.** Means are 149–196 tokens and the maximum is 438,
+  with 0/160 cut off. So these numbers measure cost at about 150–450 tokens, not at the 1024 limit:
+  - s/step is 23–26 for 3B (vs. 7.9 baseline, ~3×) and 33–34 for 7B (vs. 10.6, ~3×).
+  - Generation is now most of the step: 16–18 s (3B) and 23 s (7B).
+  - Train fwd+bwd rose only ~25–30% (3B 5.8 → 7.2–7.3 s, 7B 7.6 → 10.4–10.5 s).
+  - Peak VRAM rose by 2.1–4.7 GiB for 3B (max 16.87 GiB) and 1.5–1.9 GiB for 7B (max 24.33 GiB), still under
+    about half of the 47.3 GiB GPU. Generation peak stayed ≤ 9.1 GiB (3B) and ≤ 18.6 GiB (7B), so the
+    training pass still sets the peak.
+- **Generation time tracks the longest completion in the group.** Measured `gen s / longest completion
+  tokens` per step is 62–78 ms/token for 3B and 76–100 ms/token for 7B. *Extrapolation, not measured:* a
+  group where one completion runs to 1024 tokens would spend roughly 65–80 s (3B) and 80–100 s (7B) per step
+  just on generation. Memory at that length remains unmeasured.
+- **3B sometimes copies the template's placeholder as its answer.** `<answer>one of the choices, copied
+  exactly</answer>` appears verbatim in 6/40 (E1) and 4/40 (E2) of the 3B completions (see the 3B-E1 reward 0
+  example above). 7B never does this. Replacing the placeholder with something that can't be copied (e.g.
+  `<answer>[the exact text of one choice]</answer>`) or dropping it in favour of the worked example would
+  likely remove these failures.
+- The remaining untagged completions: 1 from 3B-E1 used `description:` / `reasoning:` / `answer:` instead of tags.
+  1 from 3B-E2 had `<answer>` but never closed `</reasoning>`, and so did 2 from 7B-E2. No E2 completion
+  repeated `<description>`, which confirms that the prefill was in the prompt and the model continued from it.
