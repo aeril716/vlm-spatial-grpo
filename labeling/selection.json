@@ -1,0 +1,29 @@
+{
+  "description": "Labeling bundle: 60 Part G 7B sampled answers for a human rubric check",
+  "source": "reports/raw/part_g/Qwen2.5-VL-7B-Instruct.jsonl",
+  "source_sha256": "9d45ba9d7048116429d442b6c9db07b4a7b2c7a4edca0b2f0c89b1c61b522f66",
+  "choice_order": "data/passk_g_choice_order.json",
+  "script": "smoke/make_labeling_bundle.py",
+  "seed": 0,
+  "rule": "Source: every sampled answer (not greedy) in reports/raw/part_g/Qwen2.5-VL-7B-Instruct.jsonl. Eligible: all three tags parse (<description>, <reasoning>, <answer>) and the <answer> text equals one of the question's choices after the scoring normalisation (lowercase, collapsed whitespace, stripped punctuation at the ends). Per question_type (sorted by name) take 15 answers; types alternate between 8 correct + 7 incorrect and 7 correct + 8 incorrect, starting with 8 correct for the first type. At most one answer per row_id. With random.Random(0), separately for each type in sorted order: of the two buckets (correct, incorrect), fill the one with fewer candidate questions first; questions are drawn by rng.sample from the sorted candidate row_ids not already used, and within a question one eligible sample of that bucket is drawn with rng.choice from its sample indices in order. Items are then numbered 1..60 by (question_type, row_id).",
+  "images": "SAT train split (array/SAT, SAT_train.parquet), row index = row_id; saved as images/<row_id>_<image_index>.jpg, image_index 0-based in the dataset's order; longer side at most 768 px (never upscaled), RGB JPEG quality 85",
+  "counts": {
+    "action_consequence": {
+      "correct": 8,
+      "incorrect": 7
+    },
+    "action_sequence": {
+      "correct": 7,
+      "incorrect": 8
+    },
+    "goal_aim": {
+      "correct": 8,
+      "incorrect": 7
+    },
+    "obj_movement": {
+      "correct": 7,
+      "incorrect": 8
+    }
+  },
+  "n": 60
+}

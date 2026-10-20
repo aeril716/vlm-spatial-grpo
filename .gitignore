@@ -9,6 +9,8 @@ images/
 *.png
 *.webp
 *.bmp
+!labeling/images/
+!labeling/images/*.jpg
 *.arrow
 *.parquet
 *.tar

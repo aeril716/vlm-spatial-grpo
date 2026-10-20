@@ -1,0 +1,1232 @@
+[
+  {
+    "id": 1,
+    "row_id": 127417,
+    "sample_index": 5,
+    "question_type": "action_consequence",
+    "question": "If I turn right by 53 degrees, will I be facing away from sleek white platform bed (near the mark 1 in the image)?",
+    "choices": [
+      "yes",
+      "no"
+    ],
+    "correct_answer": "no",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127417_0.jpg"
+    ],
+    "description": "The image shows a room with two main elements: a wooden door on the left and a sleek white platform bed on the right. The bed has a red marker labeled \"1\" near the headboard, and the bed itself has a light blue grid pattern. The wall behind the bed is a neutral gray color.",
+    "reasoning": "By rotating 53 degrees to the right, you would be moving further away from the bed, which is the element marked with \"1\". The bed is already to the right of the room, and a 53-degree turn to the right will push you even further away from it, towards the edge of the room where the wall and door are located.",
+    "answer": "yes",
+    "full_text": "<description>The image shows a room with two main elements: a wooden door on the left and a sleek white platform bed on the right. The bed has a red marker labeled \"1\" near the headboard, and the bed itself has a light blue grid pattern. The wall behind the bed is a neutral gray color.</description>\n<reasoning>By rotating 53 degrees to the right, you would be moving further away from the bed, which is the element marked with \"1\". The bed is already to the right of the room, and a 53-degree turn to the right will push you even further away from it, towards the edge of the room where the wall and door are located.</reasoning>\n<answer>yes</answer>"
+  },
+  {
+    "id": 2,
+    "row_id": 127437,
+    "sample_index": 5,
+    "question_type": "action_consequence",
+    "question": "If I turn right by 56 degrees, will I be facing away from blue colour sofa (near the mark 6 in the image)?",
+    "choices": [
+      "no",
+      "yes"
+    ],
+    "correct_answer": "no",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127437_0.jpg"
+    ],
+    "description": "The image shows a room with a blue sofa located near the mark 6 and a black shelving unit near the mark 0. The room has a light blue floor and grey walls, with various other objects like a ladder, a backpack, and some paintings on the wall.",
+    "reasoning": "Before determining if turning right by 56 degrees would face away from the blue sofa, we need to consider the orientation of the room. The sofa is positioned to the right of the wooden floor extension. Assuming the viewer starts facing the black shelving unit (mark 0) and turns right, the perspective would shift to the right side of the room. The mark 6 indicates the area where the blue sofa is located. If we turn right by 56 degrees, it means we are turning to the right relative to the orientation the camera is initially facing. However, the image's right side is still towards the blue sofa, meaning that 56 degrees of rotation is not enough to face away from the blue sofa. The gym mat near the blue sofa is also facing a similar orientation to the side the viewer will be turning right towards.",
+    "answer": "no",
+    "full_text": "<description>The image shows a room with a blue sofa located near the mark 6 and a black shelving unit near the mark 0. The room has a light blue floor and grey walls, with various other objects like a ladder, a backpack, and some paintings on the wall.</description>\n<reasoning>Before determining if turning right by 56 degrees would face away from the blue sofa, we need to consider the orientation of the room. The sofa is positioned to the right of the wooden floor extension. Assuming the viewer starts facing the black shelving unit (mark 0) and turns right, the perspective would shift to the right side of the room. The mark 6 indicates the area where the blue sofa is located. If we turn right by 56 degrees, it means we are turning to the right relative to the orientation the camera is initially facing. However, the image's right side is still towards the blue sofa, meaning that 56 degrees of rotation is not enough to face away from the blue sofa. The gym mat near the blue sofa is also facing a similar orientation to the side the viewer will be turning right towards.</reasoning>\n<answer>no</answer>"
+  },
+  {
+    "id": 3,
+    "row_id": 127445,
+    "sample_index": 0,
+    "question_type": "action_consequence",
+    "question": "If I rotated left and moved forward, would brown wooden chair (marked 8 in the image) move further from the camera?",
+    "choices": [
+      "yes",
+      "no"
+    ],
+    "correct_answer": "no",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127445_0.jpg"
+    ],
+    "description": "The image shows a room with a wooden table and four wooden chairs. Each chair is marked with a number: 3, 5, 7, and 8. The chair marked 8 is positioned to the right of the table. There is also a windowsill on the left side of the room.",
+    "reasoning": "Rotating left and moving forward would essentially be moving closer to the wall on the left side of the room, where the windowsill is located. This movement would bring the camera closer to the windowsill and further away from the seating area in the room, including the chair marked 8. Since the chair 8 is currently closer to the camera than the windowsill, moving further away from the camera in this direction would place it even further from the camera.",
+    "answer": "no",
+    "full_text": "<description>The image shows a room with a wooden table and four wooden chairs. Each chair is marked with a number: 3, 5, 7, and 8. The chair marked 8 is positioned to the right of the table. There is also a windowsill on the left side of the room.</description>\n<reasoning>Rotating left and moving forward would essentially be moving closer to the wall on the left side of the room, where the windowsill is located. This movement would bring the camera closer to the windowsill and further away from the seating area in the room, including the chair marked 8. Since the chair 8 is currently closer to the camera than the windowsill, moving further away from the camera in this direction would place it even further from the camera.</reasoning>\n<answer>no</answer>"
+  },
+  {
+    "id": 4,
+    "row_id": 127446,
+    "sample_index": 1,
+    "question_type": "action_consequence",
+    "question": "If I rotated left and moved forward, did brown wooden chair (near the mark 3 in the image) move closer to the camera?",
+    "choices": [
+      "no",
+      "yes"
+    ],
+    "correct_answer": "yes",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127446_0.jpg"
+    ],
+    "description": "In the image, there is a wooden table with four chairs around it. The chair marked with the number 3 is located near the table and appears to be closer to the camera than the other chairs. The chair marked with the number 3 is positioned in the foreground, relatively close to the camera perspective. The chair is not directly in the center of the image but is angled slightly towards the viewer.",
+    "reasoning": "When the user rotates left and moves forward, the perspective shifts, making the brown wooden chair (marked 3) appear to be more in front of the camera. This is because the camera is assumed to move closer to the chair, and the chair's position relative to the other chairs changes to appear as if it has moved closer towards the viewer.",
+    "answer": "yes",
+    "full_text": "<description>In the image, there is a wooden table with four chairs around it. The chair marked with the number 3 is located near the table and appears to be closer to the camera than the other chairs. The chair marked with the number 3 is positioned in the foreground, relatively close to the camera perspective. The chair is not directly in the center of the image but is angled slightly towards the viewer.</description>\n<reasoning>When the user rotates left and moves forward, the perspective shifts, making the brown wooden chair (marked 3) appear to be more in front of the camera. This is because the camera is assumed to move closer to the chair, and the chair's position relative to the other chairs changes to appear as if it has moved closer towards the viewer.</reasoning>\n<answer>yes</answer>"
+  },
+  {
+    "id": 5,
+    "row_id": 127484,
+    "sample_index": 2,
+    "question_type": "action_consequence",
+    "question": "If I turn left by 44 degrees, will I be facing away from blue translucent garbage bag (near the mark 7 in the image)?",
+    "choices": [
+      "yes",
+      "no"
+    ],
+    "correct_answer": "no",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127484_0.jpg"
+    ],
+    "description": "There is a room depicted with various objects. On the left, there is a blue translucent garbage bag on the floor with a red circle and the number 7. To the right and slightly ahead, there is a countertop with items on it, and a lamp with a similar red circle and number 16. The floor is angled, implying a raised perspective looking down. The perspective of the camera is along a corridor that curves to the left.",
+    "reasoning": "The question is about turning left by 44 degrees from a current perspective. If the perspective is at the openness of the corridor to the left, it is expected that turning left will head towards the far left of the scene where the blue translucent garbage bag is located. The described turning would align expectations of facing towards the left part of the room, including the area near the blue translucent garbage bag. Since the bag is on the floor and we're likely moving along the corridor extending from our current cross area, we can infer and focus, with the adherence to the 44-degree turning instruction, leading to facing the direction of the garbage bag immediately to the left.",
+    "answer": "yes",
+    "full_text": "<description>There is a room depicted with various objects. On the left, there is a blue translucent garbage bag on the floor with a red circle and the number 7. To the right and slightly ahead, there is a countertop with items on it, and a lamp with a similar red circle and number 16. The floor is angled, implying a raised perspective looking down. The perspective of the camera is along a corridor that curves to the left.</description>\n<reasoning>The question is about turning left by 44 degrees from a current perspective. If the perspective is at the openness of the corridor to the left, it is expected that turning left will head towards the far left of the scene where the blue translucent garbage bag is located. The described turning would align expectations of facing towards the left part of the room, including the area near the blue translucent garbage bag. Since the bag is on the floor and we're likely moving along the corridor extending from our current cross area, we can infer and focus, with the adherence to the 44-degree turning instruction, leading to facing the direction of the garbage bag immediately to the left.</reasoning>\n<answer>yes</answer>"
+  },
+  {
+    "id": 6,
+    "row_id": 127496,
+    "sample_index": 6,
+    "question_type": "action_consequence",
+    "question": "If I turn left by 38 degrees, will I be facing away from Toaster (near the mark 6 in the image)?",
+    "choices": [
+      "yes",
+      "no"
+    ],
+    "correct_answer": "no",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127496_0.jpg"
+    ],
+    "description": "The image shows a small kitchen area with a countertop running along the left side. On the countertop, there is a blue toaster near the edge, marked with a red number 6. There is a canvas on the wall featuring an outdoor scene above the toaster. The floor is a flat, light white surface extending into the room.",
+    "reasoning": "To determine if turning left by 38 degrees would face you away from the toaster, let's analyze the current orientation. The toaster is positioned on the bottom left of the image. If you were to turn 38 degrees left from the current orientation, you would still be facing towards the toaster on the bottom left. Hence, you would not be facing away from the toaster.\n\nThis conclusion is based on the understanding that turning 38 degrees would still keep the toaster visible and within the range of your view, not away from it.\n",
+    "answer": "no",
+    "full_text": "<description>The image shows a small kitchen area with a countertop running along the left side. On the countertop, there is a blue toaster near the edge, marked with a red number 6. There is a canvas on the wall featuring an outdoor scene above the toaster. The floor is a flat, light white surface extending into the room.</description>\n<reasoning>To determine if turning left by 38 degrees would face you away from the toaster, let's analyze the current orientation. The toaster is positioned on the bottom left of the image. If you were to turn 38 degrees left from the current orientation, you would still be facing towards the toaster on the bottom left. Hence, you would not be facing away from the toaster.\n\nThis conclusion is based on the understanding that turning 38 degrees would still keep the toaster visible and within the range of your view, not away from it.\n</reasoning>\n<answer>no</answer>"
+  },
+  {
+    "id": 7,
+    "row_id": 127516,
+    "sample_index": 3,
+    "question_type": "action_consequence",
+    "question": "If I turn left by 48 degrees, will I be facing away from Doorway (near the mark 4 in the image)?",
+    "choices": [
+      "no",
+      "yes"
+    ],
+    "correct_answer": "yes",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127516_0.jpg"
+    ],
+    "description": "The image shows a room with a blue dresser in the center, two paintings hanging on the wall, a bed with a green pillow on the left, and a blue blanket on the floor with a brown ball. The door on the right has two labels, \"4\" and \"8,\" suggesting markers for turning left or right. The floor is wooden, and the room has a textured white wall.",
+    "reasoning": "To determine if turning left by 48 degrees would face the Doorway (near the mark 4), we need to consider the position of the door and the angle needed to face it. The door is on the right side of the image, with the label \"4\" pointing to the left, and \"8\" pointing to the right. If we turn left from the current position, we need to look at the angle required to reach the mark \"4\" on the door. However, the image does not clearly show that turning left by 48 degrees would specifically face the \"4\" mark on the door. It's more about turning in a general direction to face the door, given the labels are for turning, and the angle is not explicitly aligned with the labels for a precise direction.",
+    "answer": "yes",
+    "full_text": "<description>The image shows a room with a blue dresser in the center, two paintings hanging on the wall, a bed with a green pillow on the left, and a blue blanket on the floor with a brown ball. The door on the right has two labels, \"4\" and \"8,\" suggesting markers for turning left or right. The floor is wooden, and the room has a textured white wall.</description>\n<reasoning>To determine if turning left by 48 degrees would face the Doorway (near the mark 4), we need to consider the position of the door and the angle needed to face it. The door is on the right side of the image, with the label \"4\" pointing to the left, and \"8\" pointing to the right. If we turn left from the current position, we need to look at the angle required to reach the mark \"4\" on the door. However, the image does not clearly show that turning left by 48 degrees would specifically face the \"4\" mark on the door. It's more about turning in a general direction to face the door, given the labels are for turning, and the angle is not explicitly aligned with the labels for a precise direction.</reasoning>\n<answer>yes</answer>"
+  },
+  {
+    "id": 8,
+    "row_id": 127530,
+    "sample_index": 7,
+    "question_type": "action_consequence",
+    "question": "If I turn left by 13 degrees, will I be facing away from black colored wooden chair (near the mark 7 in the image)?",
+    "choices": [
+      "no",
+      "yes"
+    ],
+    "correct_answer": "yes",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127530_0.jpg"
+    ],
+    "description": "The image shows a room with a stone wall on the left and a door partially open. Inside the room, there is a table with a desk chair and a black chair near the mark \"7\". Tables and chairs are also visible against the far wall. There is a sofa with red cushions against the wall near the door.",
+    "reasoning": "To determine if turning left by 13 degrees will result in facing away from the black chair, we need to assess the direction of the black chair. The black chair is on the far right side of the image and facing the door. If we turn left, we would be moving towards the door or away from the chair. Since the claim is that turning left by 13 degrees would result in facing away from the black chair, and the black chair is on the far right, any left turn would not face away from it but rather towards it.",
+    "answer": "no",
+    "full_text": "<description>The image shows a room with a stone wall on the left and a door partially open. Inside the room, there is a table with a desk chair and a black chair near the mark \"7\". Tables and chairs are also visible against the far wall. There is a sofa with red cushions against the wall near the door.</description>\n<reasoning>To determine if turning left by 13 degrees will result in facing away from the black chair, we need to assess the direction of the black chair. The black chair is on the far right side of the image and facing the door. If we turn left, we would be moving towards the door or away from the chair. Since the claim is that turning left by 13 degrees would result in facing away from the black chair, and the black chair is on the far right, any left turn would not face away from it but rather towards it.</reasoning>\n<answer>no</answer>"
+  },
+  {
+    "id": 9,
+    "row_id": 127533,
+    "sample_index": 7,
+    "question_type": "action_consequence",
+    "question": "If I turn right by 14 degrees, will I be facing away from Doorway (near the mark 0 in the image)?",
+    "choices": [
+      "no",
+      "yes"
+    ],
+    "correct_answer": "yes",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127533_0.jpg"
+    ],
+    "description": "The image shows a room with a wooden-framed door marked with the number \"0\" on it. There is another red circle marked with the number \"7\" inside the room, next to a table and chairs. The room appears to be in a 3D environment, suggesting a computer-generated scene.",
+    "reasoning": "To determine if turning right by 14 degrees would make the viewer face away from the door marked \"0,\" we need to consider the orientation of the door and its position relative to the viewer's perspective. Initially, the door \"0\" is on the left side of the viewer's line of sight. Turning right by 14 degrees would not place the door directly in front of the viewer, but rather, slightly to the right side. Therefore, the viewer would still face the door \"0\" rather than turning away from it.",
+    "answer": "no",
+    "full_text": "<description>The image shows a room with a wooden-framed door marked with the number \"0\" on it. There is another red circle marked with the number \"7\" inside the room, next to a table and chairs. The room appears to be in a 3D environment, suggesting a computer-generated scene.</description>\n<reasoning>To determine if turning right by 14 degrees would make the viewer face away from the door marked \"0,\" we need to consider the orientation of the door and its position relative to the viewer's perspective. Initially, the door \"0\" is on the left side of the viewer's line of sight. Turning right by 14 degrees would not place the door directly in front of the viewer, but rather, slightly to the right side. Therefore, the viewer would still face the door \"0\" rather than turning away from it.</reasoning>\n<answer>no</answer>"
+  },
+  {
+    "id": 10,
+    "row_id": 127556,
+    "sample_index": 5,
+    "question_type": "action_consequence",
+    "question": "If I turn right by 27 degrees, will I be facing away from Television (near the mark 1 in the image)?",
+    "choices": [
+      "yes",
+      "no"
+    ],
+    "correct_answer": "yes",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127556_0.jpg"
+    ],
+    "description": "A bathroom is shown with a sink and a television mounted above it. The television is marked with a red circle labeled \"1\". There is a wooden door to the right of the television. The floor has a dark wood appearance, and the walls are tiled with a diamond pattern.",
+    "reasoning": "To determine whether turning right by 27 degrees would face you away from the television, we need to consider the orientation of the television and the direction of the turn. The television is directly in front of the doorway and appears to be placed on the wall. A right turn by 27 degrees would likely take you towards the door or even out of the bathroom, but not towards the wall where the television is placed. Therefore, you would not be facing away from the television; instead, you would likely continue to face the television or move closer to it after the turn.",
+    "answer": "no",
+    "full_text": "<description>A bathroom is shown with a sink and a television mounted above it. The television is marked with a red circle labeled \"1\". There is a wooden door to the right of the television. The floor has a dark wood appearance, and the walls are tiled with a diamond pattern.</description>\n<reasoning>To determine whether turning right by 27 degrees would face you away from the television, we need to consider the orientation of the television and the direction of the turn. The television is directly in front of the doorway and appears to be placed on the wall. A right turn by 27 degrees would likely take you towards the door or even out of the bathroom, but not towards the wall where the television is placed. Therefore, you would not be facing away from the television; instead, you would likely continue to face the television or move closer to it after the turn.</reasoning>\n<answer>no</answer>"
+  },
+  {
+    "id": 11,
+    "row_id": 127565,
+    "sample_index": 5,
+    "question_type": "action_consequence",
+    "question": "If I look straight, will I be facing away from Television (near the mark 12 in the image)?",
+    "choices": [
+      "no",
+      "yes"
+    ],
+    "correct_answer": "yes",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127565_0.jpg"
+    ],
+    "description": "The image shows a room with various furniture and objects. There is a desk with a laptop, chairs, a sofa set, and a television mounted on the wall. The television is labeled with a red circle and the number 12. There are also labels in red circles near other objects, numbered 17 and 9. The floor appears to have a reflective surface, as indicated by the bright floor area.",
+    "reasoning": "When looking straight in the direction the television is facing, the television (numbered 12) will be directly in front of you. Since you are instructed to look straight, you would be facing the television head-on, not away from it.",
+    "answer": "no",
+    "full_text": "<description>The image shows a room with various furniture and objects. There is a desk with a laptop, chairs, a sofa set, and a television mounted on the wall. The television is labeled with a red circle and the number 12. There are also labels in red circles near other objects, numbered 17 and 9. The floor appears to have a reflective surface, as indicated by the bright floor area.</description>\n<reasoning>When looking straight in the direction the television is facing, the television (numbered 12) will be directly in front of you. Since you are instructed to look straight, you would be facing the television head-on, not away from it.</reasoning>\n<answer>no</answer>"
+  },
+  {
+    "id": 12,
+    "row_id": 127588,
+    "sample_index": 4,
+    "question_type": "action_consequence",
+    "question": "If I rotated right and moved forward, would glossy abstract painting with bold brushstrokes (marked 11 in the image) move further from the camera?",
+    "choices": [
+      "no",
+      "yes"
+    ],
+    "correct_answer": "no",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127588_0.jpg"
+    ],
+    "description": "In the image, there is a glossy abstract painting with bold brushstrokes marked 11. The painting is leaning on the wall at an angle, creating the illusion of being forward-facing from this perspective.",
+    "reasoning": "Rotating right and moving forward would not change the position or tilt of the painting, nor would it cause it to move further from the camera based on the static position it appears to have in the image.",
+    "answer": "no",
+    "full_text": "<description>In the image, there is a glossy abstract painting with bold brushstrokes marked 11. The painting is leaning on the wall at an angle, creating the illusion of being forward-facing from this perspective.</description>\n<reasoning>Rotating right and moving forward would not change the position or tilt of the painting, nor would it cause it to move further from the camera based on the static position it appears to have in the image.</reasoning>\n<answer>no</answer>"
+  },
+  {
+    "id": 13,
+    "row_id": 127620,
+    "sample_index": 4,
+    "question_type": "action_consequence",
+    "question": "If I turn left by 30 degrees, will I be facing away from Television (near the mark 1 in the image)?",
+    "choices": [
+      "yes",
+      "no"
+    ],
+    "correct_answer": "yes",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127620_0.jpg"
+    ],
+    "description": "The image shows a room corner with a television on a stand. There is a mark (number 1) on the television to indicate it. The room has a mirror on the wall on the left side with a mark (number 6) on it. The floor has a red marker (number 5) on a low part of the infrustructure, which might be a cable box or similar object.",
+    "reasoning": "To determine if turning left by 30 degrees from facing the television (number 1), we need to imagine the position of the person who would be facing the television. We need to rotate the entire image 90 degrees counterclockwise to find out what part of the room we would be facing. If we then \"look\" from the new position, we can see that turning left by 30 degrees would point us away from the television.",
+    "answer": "yes",
+    "full_text": "<description>The image shows a room corner with a television on a stand. There is a mark (number 1) on the television to indicate it. The room has a mirror on the wall on the left side with a mark (number 6) on it. The floor has a red marker (number 5) on a low part of the infrustructure, which might be a cable box or similar object.</description>\n<reasoning>To determine if turning left by 30 degrees from facing the television (number 1), we need to imagine the position of the person who would be facing the television. We need to rotate the entire image 90 degrees counterclockwise to find out what part of the room we would be facing. If we then \"look\" from the new position, we can see that turning left by 30 degrees would point us away from the television.</reasoning>\n<answer>yes</answer>"
+  },
+  {
+    "id": 14,
+    "row_id": 127629,
+    "sample_index": 6,
+    "question_type": "action_consequence",
+    "question": "If I rotated right and moved forward, did black modern sofa (near the mark 6 in the image) move closer to the camera?",
+    "choices": [
+      "no",
+      "yes"
+    ],
+    "correct_answer": "yes",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127629_0.jpg"
+    ],
+    "description": "In the image, there is a black modern sofa near the middle of the room, marked with the number 6. Directly in front of the sofa is a brown tabletop with a small object on it, which is marked with the number 7. The sofa appears to be stationary.",
+    "reasoning": "Rotating right and moving forward means moving the viewpoint to a position where the sofa is more directly in front of the camera. Since the brown tabletop and the object on it are closer to the camera than the sofa, rotating right and moving forward would likely bring the sofa closer to the camera's viewpoint. Therefore, the sofa should appear to be closer to the camera.",
+    "answer": "yes",
+    "full_text": "<description>In the image, there is a black modern sofa near the middle of the room, marked with the number 6. Directly in front of the sofa is a brown tabletop with a small object on it, which is marked with the number 7. The sofa appears to be stationary.</description>\n<reasoning>Rotating right and moving forward means moving the viewpoint to a position where the sofa is more directly in front of the camera. Since the brown tabletop and the object on it are closer to the camera than the sofa, rotating right and moving forward would likely bring the sofa closer to the camera's viewpoint. Therefore, the sofa should appear to be closer to the camera.</reasoning>\n<answer>yes</answer>"
+  },
+  {
+    "id": 15,
+    "row_id": 127648,
+    "sample_index": 6,
+    "question_type": "action_consequence",
+    "question": "If I turn left by 35 degrees, will I be facing away from Pillow (near the mark 2 in the image)?",
+    "choices": [
+      "no",
+      "yes"
+    ],
+    "correct_answer": "no",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127648_0.jpg"
+    ],
+    "description": "A bed with a striped mattress is centrally placed in a room with a wooden floor. There is a numbered marker \"2\" on the bed. A wall-mounted picture is visible on the wall to the right of the bed. In the bottom left corner, there is a partial view of what appears to be a person wearing a red shirt.",
+    "reasoning": "To determine if turning left by 35 degrees will face away from the Pillow (marked with \"2\"), we need to mentally position the sensor at the current location facing the bed. Since the bed is directly ahead, a left turn by 35 degrees would face more towards the wall, away from the bed and marker \"2\".\n\nThe key point is, turning left from the direction facing the bed would result in a turning away from the bed and the marker \"2\" toward the wall.\n",
+    "answer": "yes",
+    "full_text": "<description>A bed with a striped mattress is centrally placed in a room with a wooden floor. There is a numbered marker \"2\" on the bed. A wall-mounted picture is visible on the wall to the right of the bed. In the bottom left corner, there is a partial view of what appears to be a person wearing a red shirt.</description>\n<reasoning>To determine if turning left by 35 degrees will face away from the Pillow (marked with \"2\"), we need to mentally position the sensor at the current location facing the bed. Since the bed is directly ahead, a left turn by 35 degrees would face more towards the wall, away from the bed and marker \"2\".\n\nThe key point is, turning left from the direction facing the bed would result in a turning away from the bed and the marker \"2\" toward the wall.\n</reasoning>\n<answer>yes</answer>"
+  },
+  {
+    "id": 16,
+    "row_id": 127442,
+    "sample_index": 3,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated right",
+      "did not move"
+    ],
+    "correct_answer": "rotated right",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127442_0.jpg",
+      "labeling/images/127442_1.jpg"
+    ],
+    "description": "Both images show a room with a table and some objects on it, including a box, a ruler, a bowl, a small statue, and other items. In the first image, the camera is positioned to show a slightly wider view, including a corner of a cushion, while the second image is taken from a closer angle focusing more on the table and the objects on it, with a partial view of the wall and the floor beside the table.",
+    "reasoning": "Comparing the two images, the table and its immediate surroundings are more prominent in the second image. A notable difference is the absence of the cushion in the second image, indicating the camera may have zoomed in or turned slightly to focus more closely on the table. There is also a slight shift in the angle of the camera that frames the space more on one side, suggesting the camera might have rotated slightly to the right to emphasize the objects on the table.",
+    "answer": "rotated right",
+    "full_text": "<description>Both images show a room with a table and some objects on it, including a box, a ruler, a bowl, a small statue, and other items. In the first image, the camera is positioned to show a slightly wider view, including a corner of a cushion, while the second image is taken from a closer angle focusing more on the table and the objects on it, with a partial view of the wall and the floor beside the table.</description>\n\n<reasoning>Comparing the two images, the table and its immediate surroundings are more prominent in the second image. A notable difference is the absence of the cushion in the second image, indicating the camera may have zoomed in or turned slightly to focus more closely on the table. There is also a slight shift in the angle of the camera that frames the space more on one side, suggesting the camera might have rotated slightly to the right to emphasize the objects on the table.</reasoning>\n\n<answer>rotated right</answer>"
+  },
+  {
+    "id": 17,
+    "row_id": 127475,
+    "sample_index": 2,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated left",
+      "rotated right"
+    ],
+    "correct_answer": "rotated left",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127475_0.jpg",
+      "labeling/images/127475_1.jpg"
+    ],
+    "description": "The first image shows a view of a kitchen area with a calm landscape visible through the door behind the dining table. The second image reveals more of the kitchen and an open door on the left side, showing the outside area more clearly in the background.",
+    "reasoning": "To understand the camera rotation, look at the changes in the visible parts of the room and the door. The first image shows the door closed, and the kitchen area focused more on the island and the dining table. In the second image, the door is opened, and the view of the outside landscape becomes more prominent. This indicates the camera must have moved to the left to show more of the open door and the clearer view of what's outside.",
+    "answer": "rotated left",
+    "full_text": "<description>The first image shows a view of a kitchen area with a calm landscape visible through the door behind the dining table. The second image reveals more of the kitchen and an open door on the left side, showing the outside area more clearly in the background.</description>\n<reasoning>To understand the camera rotation, look at the changes in the visible parts of the room and the door. The first image shows the door closed, and the kitchen area focused more on the island and the dining table. In the second image, the door is opened, and the view of the outside landscape becomes more prominent. This indicates the camera must have moved to the left to show more of the open door and the clearer view of what's outside.</reasoning>\n<answer>rotated left</answer>"
+  },
+  {
+    "id": 18,
+    "row_id": 127486,
+    "sample_index": 7,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated right",
+      "rotated left"
+    ],
+    "correct_answer": "rotated left",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127486_0.jpg",
+      "labeling/images/127486_1.jpg"
+    ],
+    "description": "In the first image, the camera is focused on the corner of the bathroom, showing a toilet, a trash can, and parts of the walls and floor. In the second image, the camera is in a different room, facing a toilet at a different angle, and it also shows a door, a wooden floor, and parts of the walls. The movement hints that the camera is moving interactively within a virtual environment.",
+    "reasoning": "The camera moves from a close-up view of the corner of the bathroom in the first image to a view of a different room with a toilet, a door, and the surrounding walls and floor in the second image. The shift in view suggests that the camera has rotated and moved to a new location. The orientation change and the new view indicate a rotation to the left, as the door is now visible and the perspective has changed.",
+    "answer": "rotated left",
+    "full_text": "<description>In the first image, the camera is focused on the corner of the bathroom, showing a toilet, a trash can, and parts of the walls and floor. In the second image, the camera is in a different room, facing a toilet at a different angle, and it also shows a door, a wooden floor, and parts of the walls. The movement hints that the camera is moving interactively within a virtual environment.</description>\n<reasoning>The camera moves from a close-up view of the corner of the bathroom in the first image to a view of a different room with a toilet, a door, and the surrounding walls and floor in the second image. The shift in view suggests that the camera has rotated and moved to a new location. The orientation change and the new view indicate a rotation to the left, as the door is now visible and the perspective has changed.</reasoning>\n<answer>rotated left</answer>"
+  },
+  {
+    "id": 19,
+    "row_id": 127488,
+    "sample_index": 7,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "did not move",
+      "rotated left and moved forward"
+    ],
+    "correct_answer": "rotated left and moved forward",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127488_0.jpg",
+      "labeling/images/127488_1.jpg"
+    ],
+    "description": "The first image shows a living room with a table on the floor, a TV on a stand in the back, and a dining area with a table and chairs. The second image shows the same living room, but the camera appears to be rotated and moved forward, providing a more direct view of the area, with the dining area slightly more in the foreground. The table and chairs are now positioned more towards the middle of the frame.",
+    "reasoning": "The camera likely rotated slightly to the left or right, then moved forward, changing the angle and perspective of the entire room. This rotation and movement would enhance the directness and focus on the dining area.",
+    "answer": "rotated left and moved forward",
+    "full_text": "<description>The first image shows a living room with a table on the floor, a TV on a stand in the back, and a dining area with a table and chairs. The second image shows the same living room, but the camera appears to be rotated and moved forward, providing a more direct view of the area, with the dining area slightly more in the foreground. The table and chairs are now positioned more towards the middle of the frame.</description>\n<reasoning>The camera likely rotated slightly to the left or right, then moved forward, changing the angle and perspective of the entire room. This rotation and movement would enhance the directness and focus on the dining area.</reasoning>\n<answer>rotated left and moved forward</answer>"
+  },
+  {
+    "id": 20,
+    "row_id": 127502,
+    "sample_index": 3,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated left",
+      "rotated right"
+    ],
+    "correct_answer": "rotated right",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127502_0.jpg",
+      "labeling/images/127502_1.jpg"
+    ],
+    "description": "The first image shows a small table with a pedestal holding a water feature in the center, and a tiled piece of art on the left wall. The second image shows the same table but with a cylindrical pot added on the right side. The positioning and shadows suggest the lighting hasn’t changed, and the main difference is the addition of the pot.",
+    "reasoning": "To determine the camera rotation, compare the positioning of the table and the art piece relative to the second image after the rotation from the first image. In the first image, the art piece is clearly shown on the left, and the table is centered. In the second image, the same table is still in view, but the art piece is now partially obscured and the pot is on the right side, indicating the camera has cooled horizontally to the left.",
+    "answer": "rotated left",
+    "full_text": "<description>The first image shows a small table with a pedestal holding a water feature in the center, and a tiled piece of art on the left wall. The second image shows the same table but with a cylindrical pot added on the right side. The positioning and shadows suggest the lighting hasn’t changed, and the main difference is the addition of the pot.</description>\n<reasoning>To determine the camera rotation, compare the positioning of the table and the art piece relative to the second image after the rotation from the first image. In the first image, the art piece is clearly shown on the left, and the table is centered. In the second image, the same table is still in view, but the art piece is now partially obscured and the pot is on the right side, indicating the camera has cooled horizontally to the left.</reasoning>\n<answer>rotated left</answer>"
+  },
+  {
+    "id": 21,
+    "row_id": 127504,
+    "sample_index": 5,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated right and moved forward",
+      "rotated left and rotated left"
+    ],
+    "correct_answer": "rotated right and moved forward",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127504_0.jpg",
+      "labeling/images/127504_1.jpg"
+    ],
+    "description": "In the first image, the camera is facing the bathroom sink, toilet, and a trash bin. In the second image, the bathroom is tilted to the left, and the camera focuses more on the wall with a mountain painting next to the toilet, while the paint can on the wall that was visible in the first image is no longer visible.",
+    "reasoning": "The camera has moved to the left, causing the left side of the bathroom to come into view, which aligns with the second image. Since the rest of the room remains in a similar position, it suggests a pan rather than a zoom, and the rotation is primarily a left tilt rather than a right or forward movement.",
+    "answer": "rotated left and rotated left",
+    "full_text": "<description>In the first image, the camera is facing the bathroom sink, toilet, and a trash bin. In the second image, the bathroom is tilted to the left, and the camera focuses more on the wall with a mountain painting next to the toilet, while the paint can on the wall that was visible in the first image is no longer visible.</description>\n<reasoning>The camera has moved to the left, causing the left side of the bathroom to come into view, which aligns with the second image. Since the rest of the room remains in a similar position, it suggests a pan rather than a zoom, and the rotation is primarily a left tilt rather than a right or forward movement.</reasoning>\n<answer>rotated left and rotated left</answer>"
+  },
+  {
+    "id": 22,
+    "row_id": 127514,
+    "sample_index": 7,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated right and moved forward",
+      "rotated left and moved forward"
+    ],
+    "correct_answer": "rotated right and moved forward",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127514_0.jpg",
+      "labeling/images/127514_1.jpg"
+    ],
+    "description": "In the first image, the focus is on a black piece of furniture with door handles and a golden vase on top. The room appears to be a bedroom with a few items like a bed, a dresser, and some paintings on the wall. In the second image, the door is open, revealing another room with a wooden dresser visible. The camera angle shows a plant on the floor to the right before the door, which is not present initially.",
+    "reasoning": "When comparing the two images, the door becomes viewable in the second image, suggesting a camera rotation where the door was previously out of view. This rotation involves a leftward movement because the door is now fully open and facing the camera, which was not the case in the first image. Additionally, the presence of a plant on the floor to the right side also suggests that the camera has moved slightly forward to include the plant in the frame.",
+    "answer": "rotated left and moved forward",
+    "full_text": "<description>In the first image, the focus is on a black piece of furniture with door handles and a golden vase on top. The room appears to be a bedroom with a few items like a bed, a dresser, and some paintings on the wall. In the second image, the door is open, revealing another room with a wooden dresser visible. The camera angle shows a plant on the floor to the right before the door, which is not present initially.</description>\n\n<reasoning>When comparing the two images, the door becomes viewable in the second image, suggesting a camera rotation where the door was previously out of view. This rotation involves a leftward movement because the door is now fully open and facing the camera, which was not the case in the first image. Additionally, the presence of a plant on the floor to the right side also suggests that the camera has moved slightly forward to include the plant in the frame.</reasoning>\n\n<answer>rotated left and moved forward</answer>"
+  },
+  {
+    "id": 23,
+    "row_id": 127522,
+    "sample_index": 1,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "did not move",
+      "rotated right and moved forward"
+    ],
+    "correct_answer": "rotated right and moved forward",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127522_0.jpg",
+      "labeling/images/127522_1.jpg"
+    ],
+    "description": "The first image shows a smaller scene with a chair, a table with a lamp and a computer, and some wall decorations. The second image shows the same room, but now the camera is rotated to the right, revealing a red sofa and part of a large window with a view. The lamp, chair, and table are visible in both images, indicating the camera moved from the first position to a new viewpoint.",
+    "reasoning": "When comparing the two images, we observe that the large window and the red sofa, which were not prominently visible in the first image, are now in full view in the second image. This suggests the camera rotated towards the right. Additionally, the position of the furniture and the room's layout remains consistent, confirming the camera moved laterally rather than vertically or in another direction.",
+    "answer": "rotated right and moved forward",
+    "full_text": "<description>The first image shows a smaller scene with a chair, a table with a lamp and a computer, and some wall decorations. The second image shows the same room, but now the camera is rotated to the right, revealing a red sofa and part of a large window with a view. The lamp, chair, and table are visible in both images, indicating the camera moved from the first position to a new viewpoint.</description>\n\n<reasoning>When comparing the two images, we observe that the large window and the red sofa, which were not prominently visible in the first image, are now in full view in the second image. This suggests the camera rotated towards the right. Additionally, the position of the furniture and the room's layout remains consistent, confirming the camera moved laterally rather than vertically or in another direction.</reasoning>\n\n<answer>rotated right and moved forward</answer>"
+  },
+  {
+    "id": 24,
+    "row_id": 127524,
+    "sample_index": 2,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated right and moved forward",
+      "did not move"
+    ],
+    "correct_answer": "rotated right and moved forward",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127524_0.jpg",
+      "labeling/images/127524_1.jpg"
+    ],
+    "description": "In the first image, the camera is facing a door with the room's interior slightly to the left. The second image shows a stretched or rotated virtual space where the walls appear distorted, suggesting possible rotation and scaling rather than a true horizontal or vertical move.",
+    "reasoning": "The first image shows a clear and straightforward view of the room's right wall and the door. The second image has a angular distortion, with walls and door shifted and seemingly twisted, which is not indicative of simple forward or lateral camera movement. This likely indicates that the camera underwent a transformation, including possibly a rotation, to create this perspective distortion.",
+    "answer": "rotated right and moved forward",
+    "full_text": "<description>In the first image, the camera is facing a door with the room's interior slightly to the left. The second image shows a stretched or rotated virtual space where the walls appear distorted, suggesting possible rotation and scaling rather than a true horizontal or vertical move.</description>\n<reasoning>The first image shows a clear and straightforward view of the room's right wall and the door. The second image has a angular distortion, with walls and door shifted and seemingly twisted, which is not indicative of simple forward or lateral camera movement. This likely indicates that the camera underwent a transformation, including possibly a rotation, to create this perspective distortion.</reasoning>\n<answer>rotated right and moved forward</answer>"
+  },
+  {
+    "id": 25,
+    "row_id": 127538,
+    "sample_index": 6,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated left and moved forward",
+      "did not move"
+    ],
+    "correct_answer": "did not move",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127538_0.jpg",
+      "labeling/images/127538_1.jpg"
+    ],
+    "description": "In the first image, the chair appears to be upright, and the wall has a framed picture on it. In the second image, the chair appears to be in a different position, leaning back, and the framed picture is still visible but seems to have shifted slightly, as if the camera has moved or the chair has moved. There is also a change in the light and shadow indicating a slight movement in the camera's angle or position.",
+    "reasoning": "The chair's position has changed, and the picture on the wall seems to have shifted, suggesting a slight rotation or movement of the camera around the chair. The change in lighting and shadow also supports this observation.",
+    "answer": "rotated left and moved forward",
+    "full_text": "<description>In the first image, the chair appears to be upright, and the wall has a framed picture on it. In the second image, the chair appears to be in a different position, leaning back, and the framed picture is still visible but seems to have shifted slightly, as if the camera has moved or the chair has moved. There is also a change in the light and shadow indicating a slight movement in the camera's angle or position.</description>\n<reasoning>The chair's position has changed, and the picture on the wall seems to have shifted, suggesting a slight rotation or movement of the camera around the chair. The change in lighting and shadow also supports this observation.</reasoning>\n<answer>rotated left and moved forward</answer>"
+  },
+  {
+    "id": 26,
+    "row_id": 127554,
+    "sample_index": 3,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated left and rotated left",
+      "rotated right and moved forward"
+    ],
+    "correct_answer": "rotated right and moved forward",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127554_0.jpg",
+      "labeling/images/127554_1.jpg"
+    ],
+    "description": "The first image shows a room with a hexagonal tile pattern on the wall, a flat-screen television on a simple stand, a trash bin, and a wooden structure that appears to be a ladder. The second image focuses more on the wall and the ceiling area, with a glimpse of a wooden ladder and a box item on the floor.",
+    "reasoning": "Comparing the two images, the camera seems to have moved from the TV and surrounding area towards a墙壁 view, panning downwards while slightly rotating to the left, as the television is no longer in view but the general wall and floor items are. This grazing of a new wall section with focus is consistent with the described option 'rotated left and rotated left'. There's a significant shift from horizontal view to a vertical, angling wall view with no notable forward shift while rotating to the left.",
+    "answer": "rotated left and rotated left",
+    "full_text": "<description>The first image shows a room with a hexagonal tile pattern on the wall, a flat-screen television on a simple stand, a trash bin, and a wooden structure that appears to be a ladder. The second image focuses more on the wall and the ceiling area, with a glimpse of a wooden ladder and a box item on the floor.</description>\n<reasoning>Comparing the two images, the camera seems to have moved from the TV and surrounding area towards a墙壁 view, panning downwards while slightly rotating to the left, as the television is no longer in view but the general wall and floor items are. This grazing of a new wall section with focus is consistent with the described option 'rotated left and rotated left'. There's a significant shift from horizontal view to a vertical, angling wall view with no notable forward shift while rotating to the left.</reasoning>\n<answer>rotated left and rotated left</answer>"
+  },
+  {
+    "id": 27,
+    "row_id": 127587,
+    "sample_index": 1,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated left and moved forward",
+      "rotated right and moved forward"
+    ],
+    "correct_answer": "rotated right and moved forward",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127587_0.jpg",
+      "labeling/images/127587_1.jpg"
+    ],
+    "description": "The first image shows a living room setup with a small table, a potted plant, a couch, a cushion, and two remote controls on the couch. The second image shows a door that is partially open, revealing a checkered floor outside. There is no view of the couch and other furniture in the second image, but the overall layout appears to be similar, suggesting a continuation of the room without major new elements introduced.",
+    "reasoning": "The transition from the first image to the second image suggests a change in the camera's position or orientation. Since the door and checkered floor are visible in the second image, but the furniture is not, the camera likely moved in a direction that caused the furniture to move out of the frame. The door's position and the continuity of the wall paint and colors align with a leftward and forward movement to create the preview of the external environment, without additional significant panning or rotation.",
+    "answer": "rotated left and moved forward",
+    "full_text": "<description>The first image shows a living room setup with a small table, a potted plant, a couch, a cushion, and two remote controls on the couch. The second image shows a door that is partially open, revealing a checkered floor outside. There is no view of the couch and other furniture in the second image, but the overall layout appears to be similar, suggesting a continuation of the room without major new elements introduced.</description>\n<reasoning>The transition from the first image to the second image suggests a change in the camera's position or orientation. Since the door and checkered floor are visible in the second image, but the furniture is not, the camera likely moved in a direction that caused the furniture to move out of the frame. The door's position and the continuity of the wall paint and colors align with a leftward and forward movement to create the preview of the external environment, without additional significant panning or rotation.</reasoning>\n<answer>rotated left and moved forward</answer>"
+  },
+  {
+    "id": 28,
+    "row_id": 127626,
+    "sample_index": 5,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated right",
+      "rotated left"
+    ],
+    "correct_answer": "rotated right",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127626_0.jpg",
+      "labeling/images/127626_1.jpg"
+    ],
+    "description": "In the first image, the camera view is focused on a small table with a bowl on it and a simple purple ottoman next to a white TV stand. The television is turned off. In the second image, the angle has been changed to show an additional section of the room, revealing a desk with a computer, a lamp, and the previously seen TV stand positioned slightly differently in the frame. The viewpoint appears to have rotated counterclockwise (to the left) to encompass a wider area of the room.",
+    "reasoning": "The transition between the first image and the second image suggests that the camera angle has shifted to include the newly visible desk area, implying a leftward rotation of the camera to capture more of the room's layout. The arrangement of some items, like the TV stand and the ottoman, shows this subtle repositioning of the camera.\n\nIn the first image, the television is the main focus, and the rest of the room's details are minimal. In the second image, the camera rotates to include the desk and lamp, suggesting that the camera is turning left to accommodate this change in focus and room layout.",
+    "answer": "rotated left",
+    "full_text": "<description>In the first image, the camera view is focused on a small table with a bowl on it and a simple purple ottoman next to a white TV stand. The television is turned off. In the second image, the angle has been changed to show an additional section of the room, revealing a desk with a computer, a lamp, and the previously seen TV stand positioned slightly differently in the frame. The viewpoint appears to have rotated counterclockwise (to the left) to encompass a wider area of the room.</description>\n\n<reasoning>The transition between the first image and the second image suggests that the camera angle has shifted to include the newly visible desk area, implying a leftward rotation of the camera to capture more of the room's layout. The arrangement of some items, like the TV stand and the ottoman, shows this subtle repositioning of the camera.\n\nIn the first image, the television is the main focus, and the rest of the room's details are minimal. In the second image, the camera rotates to include the desk and lamp, suggesting that the camera is turning left to accommodate this change in focus and room layout.</reasoning>\n\n<answer>rotated left</answer>"
+  },
+  {
+    "id": 29,
+    "row_id": 127652,
+    "sample_index": 0,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated left and moved forward",
+      "rotated right and moved forward"
+    ],
+    "correct_answer": "rotated left and moved forward",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127652_0.jpg",
+      "labeling/images/127652_1.jpg"
+    ],
+    "description": "Both images show a bathroom. The first image shows a single item which appears to be a sink or pedestal toothbrush holder, placed near a wall. In the second image, the door is open, and more of the bathroom is revealed including a toilet. The only notable change between the images is the inclusion of additional elements like the door and toilet.",
+    "reasoning": "From the first image to the second image, the camera has moved to a position that shows more of the room, revealing the door and toilet. There is no indication of the camera having moved significantly forward or backward, but it has rotated to include these additional elements. Since the door is now open, the rotation could be described as a 90-degree turn to the right, which aligns with the choice 'rotated right and moved forward.' However, since the movement forward is not significantly stated, the primary focus on the change in view hints towards a right rotation.",
+    "answer": "rotated right and moved forward",
+    "full_text": "<description>Both images show a bathroom. The first image shows a single item which appears to be a sink or pedestal toothbrush holder, placed near a wall. In the second image, the door is open, and more of the bathroom is revealed including a toilet. The only notable change between the images is the inclusion of additional elements like the door and toilet.</description>\n<reasoning>From the first image to the second image, the camera has moved to a position that shows more of the room, revealing the door and toilet. There is no indication of the camera having moved significantly forward or backward, but it has rotated to include these additional elements. Since the door is now open, the rotation could be described as a 90-degree turn to the right, which aligns with the choice 'rotated right and moved forward.' However, since the movement forward is not significantly stated, the primary focus on the change in view hints towards a right rotation.</reasoning>\n<answer>rotated right and moved forward</answer>"
+  },
+  {
+    "id": 30,
+    "row_id": 127654,
+    "sample_index": 3,
+    "question_type": "action_sequence",
+    "question": "The first image is from the beginning of the video and the second image is from the end. How did the camera rotate from the first image to the second image?",
+    "choices": [
+      "rotated right and moved forward",
+      "did not move"
+    ],
+    "correct_answer": "did not move",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127654_0.jpg",
+      "labeling/images/127654_1.jpg"
+    ],
+    "description": "The image appears to show a frontal view of a room with a bed on the right, a small wooden table with a green object, and a white door with a small statue on top of it. The walls are a muted greenish-gray color. There are no noticeable changes in the objects' positions or the environment in the two images provided.",
+    "reasoning": "Comparing the two images, there is no discernible change in the positions of the objects such as the bed, the table, or the door. The camera angle has not shifted in a way that would suggest a rotation or a panning move that would change the objects' relative positions. Since the perspective remains constant, the camera did not move.",
+    "answer": "did not move",
+    "full_text": "<description>The image appears to show a frontal view of a room with a bed on the right, a small wooden table with a green object, and a white door with a small statue on top of it. The walls are a muted greenish-gray color. There are no noticeable changes in the objects' positions or the environment in the two images provided.</description>\n\n<reasoning>Comparing the two images, there is no discernible change in the positions of the objects such as the bed, the table, or the door. The camera angle has not shifted in a way that would suggest a rotation or a panning move that would change the objects' relative positions. Since the perspective remains constant, the camera did not move.</reasoning>\n\n<answer>did not move</answer>"
+  },
+  {
+    "id": 31,
+    "row_id": 127415,
+    "sample_index": 0,
+    "question_type": "goal_aim",
+    "question": "I need to go to sleek white platform bed (near the mark 1 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "right by 53 degrees",
+      "left by 53 degrees"
+    ],
+    "correct_answer": "right by 53 degrees",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127415_0.jpg"
+    ],
+    "description": "In the image, there is a sleek white platform bed on the right side, marked by the number 1. The bed has a green mattress and is positioned against a wall. To the left, there is a wooden bed frame with two drawers, marked by the number 2. The floor is a light gray color, and the walls are a darker gray.",
+    "reasoning": "Initially, the bed with the number 1 is visible but not fully in view. To face the bed at the number 1 mark, you should face the bed directly, which means turning to the right from your current position. The wooden bed with the number 2 is further to the left, which would obstruct your view of the bed with the number 1 if you faced it directly from your current position. Turning right will bring you closer to the bed with the number 1, aligning you with it directly.",
+    "answer": "right by 53 degrees",
+    "full_text": "<description>In the image, there is a sleek white platform bed on the right side, marked by the number 1. The bed has a green mattress and is positioned against a wall. To the left, there is a wooden bed frame with two drawers, marked by the number 2. The floor is a light gray color, and the walls are a darker gray.</description>\n<reasoning>Initially, the bed with the number 1 is visible but not fully in view. To face the bed at the number 1 mark, you should face the bed directly, which means turning to the right from your current position. The wooden bed with the number 2 is further to the left, which would obstruct your view of the bed with the number 1 if you faced it directly from your current position. Turning right will bring you closer to the bed with the number 1, aligning you with it directly.</reasoning>\n<answer>right by 53 degrees</answer>"
+  },
+  {
+    "id": 32,
+    "row_id": 127432,
+    "sample_index": 7,
+    "question_type": "goal_aim",
+    "question": "I need to go to modern stainless steel refrigerator (near the mark 0 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "left by 87 degrees",
+      "look straight"
+    ],
+    "correct_answer": "left by 87 degrees",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127432_0.jpg"
+    ],
+    "description": "The image shows a room with a light blue floor and gray walls. There is a modern stainless steel refrigerator on the left side of the image, labeled with the number 0. The viewer is positioned at the bottom left of the image, facing the refrigerator. There is a staircase on the right side of the image, with a red circle labeled 6, and a door with a red circle labeled 8 at the back of the room.",
+    "reasoning": "To go to the modern stainless steel refrigerator, the viewer needs to turn and face the refrigerator directly. Since the refrigerator is on the left side of the image, the viewer should turn to the left to face it. The options provided are \"left by 87 degrees\" or \"look straight.\" Since the refrigerator is directly to the left, turning \"left by 87 degrees\" is more precise but unnecessary as \"look straight\" is also correct, assuming a straight 180-degree turn is allowed and the refrigerator is within the observable area directly to the left.",
+    "answer": "left by 87 degrees",
+    "full_text": "<description>The image shows a room with a light blue floor and gray walls. There is a modern stainless steel refrigerator on the left side of the image, labeled with the number 0. The viewer is positioned at the bottom left of the image, facing the refrigerator. There is a staircase on the right side of the image, with a red circle labeled 6, and a door with a red circle labeled 8 at the back of the room.</description>\n<reasoning>To go to the modern stainless steel refrigerator, the viewer needs to turn and face the refrigerator directly. Since the refrigerator is on the left side of the image, the viewer should turn to the left to face it. The options provided are \"left by 87 degrees\" or \"look straight.\" Since the refrigerator is directly to the left, turning \"left by 87 degrees\" is more precise but unnecessary as \"look straight\" is also correct, assuming a straight 180-degree turn is allowed and the refrigerator is within the observable area directly to the left.</reasoning>\n<answer>left by 87 degrees</answer>"
+  },
+  {
+    "id": 33,
+    "row_id": 127435,
+    "sample_index": 0,
+    "question_type": "goal_aim",
+    "question": "I need to go to blue colour sofa (near the mark 6 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "right by 56 degrees",
+      "look straight"
+    ],
+    "correct_answer": "right by 56 degrees",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127435_0.jpg"
+    ],
+    "description": "The image shows a room with a refrigerator on the left, a kitchen counter in the middle, and a blue sofa on the right. The room has a noticeable perspective distortion, with the floor and other objects appearing to converge towards the center of the image. There are labels (0, 6, 8) in the image, but their context is unclear.",
+    "reasoning": "Since the goal is to face the blue sofa labeled (6), one should look straight ahead, as the sofa is straight in front of the starting point. The labels do not provide actual directions but are likely placeholders for different parts of the image.",
+    "answer": "look straight",
+    "full_text": "<description>The image shows a room with a refrigerator on the left, a kitchen counter in the middle, and a blue sofa on the right. The room has a noticeable perspective distortion, with the floor and other objects appearing to converge towards the center of the image. There are labels (0, 6, 8) in the image, but their context is unclear.</description>\n<reasoning>Since the goal is to face the blue sofa labeled (6), one should look straight ahead, as the sofa is straight in front of the starting point. The labels do not provide actual directions but are likely placeholders for different parts of the image.</reasoning>\n<answer>look straight</answer>"
+  },
+  {
+    "id": 34,
+    "row_id": 127438,
+    "sample_index": 0,
+    "question_type": "goal_aim",
+    "question": "I need to go to twotiered metal cart (near the mark 8 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "right by 35 degrees",
+      "look straight"
+    ],
+    "correct_answer": "right by 35 degrees",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127438_0.jpg"
+    ],
+    "description": "In the image, there is a room with various objects. On the right side, there is a twotiered metal cart labeled with the number 8. The cart is near a doorway and a ladder is visible next to it. The room has different furniture like a cabinet, a bed, and some framed pictures on the walls.",
+    "reasoning": "To find the twotiered metal cart, I need to look towards the number 8 on the image. The twotiered metal cart is directly ahead, so I should face it as it is in front of me. There are no specific directions to turn to face the cart in the given choices.",
+    "answer": "look straight",
+    "full_text": "<description>In the image, there is a room with various objects. On the right side, there is a twotiered metal cart labeled with the number 8. The cart is near a doorway and a ladder is visible next to it. The room has different furniture like a cabinet, a bed, and some framed pictures on the walls.</description>\n<reasoning>To find the twotiered metal cart, I need to look towards the number 8 on the image. The twotiered metal cart is directly ahead, so I should face it as it is in front of me. There are no specific directions to turn to face the cart in the given choices.</reasoning>\n<answer>look straight</answer>"
+  },
+  {
+    "id": 35,
+    "row_id": 127482,
+    "sample_index": 2,
+    "question_type": "goal_aim",
+    "question": "I need to go to blue translucent garbage bag (near the mark 7 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "left by 44 degrees",
+      "look straight"
+    ],
+    "correct_answer": "left by 44 degrees",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127482_0.jpg"
+    ],
+    "description": "The image shows a room with a dining area in the background and a kitchen area in the foreground. There is a table with chairs, a dining set, and a trash bin near the dining table. In the foreground, there is a large, translucent, blue object labeled with a red circle and the number 7. There is also a countertop with various items on it, including a plant, fruit, and other small objects. The floor appears to be light-colored, and there is an open door leading outside.",
+    "reasoning": "To go to the blue translucent garbage bag near the mark 7, you need to turn from your current position. The blue object labeled with the mark 7 is on the left side of the image, relative to the viewer's perspective. This suggests that you need to turn left to face it.",
+    "answer": "left by 44 degrees",
+    "full_text": "<description>The image shows a room with a dining area in the background and a kitchen area in the foreground. There is a table with chairs, a dining set, and a trash bin near the dining table. In the foreground, there is a large, translucent, blue object labeled with a red circle and the number 7. There is also a countertop with various items on it, including a plant, fruit, and other small objects. The floor appears to be light-colored, and there is an open door leading outside.</description>\n<reasoning>To go to the blue translucent garbage bag near the mark 7, you need to turn from your current position. The blue object labeled with the mark 7 is on the left side of the image, relative to the viewer's perspective. This suggests that you need to turn left to face it.</reasoning>\n<answer>left by 44 degrees</answer>"
+  },
+  {
+    "id": 36,
+    "row_id": 127489,
+    "sample_index": 3,
+    "question_type": "goal_aim",
+    "question": "I need to go to extendable honeybrown wooden dining table (near the mark 8 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "right by 29 degrees",
+      "left by 29 degrees"
+    ],
+    "correct_answer": "left by 29 degrees",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127489_0.jpg"
+    ],
+    "description": "In the image, there is a room with various pieces of furniture. On the left side, there is a wooden dining table with a mark \"8\" on it. In the background, there is a sofa and a TV on a table. To the right and in the foreground, there is a dining area with a table and chairs.",
+    "reasoning": "To reach the extendable honeybrown wooden dining table near the mark 8, you need to turn to face it. The mark \"8\" is on a table to the left. To face this table, you should turn to the left. Since the room is relatively square and wide, a direct left turn would likely face the dining table near the mark 8.",
+    "answer": "left by 29 degrees",
+    "full_text": "<description>In the image, there is a room with various pieces of furniture. On the left side, there is a wooden dining table with a mark \"8\" on it. In the background, there is a sofa and a TV on a table. To the right and in the foreground, there is a dining area with a table and chairs.</description>\n<reasoning>To reach the extendable honeybrown wooden dining table near the mark 8, you need to turn to face it. The mark \"8\" is on a table to the left. To face this table, you should turn to the left. Since the room is relatively square and wide, a direct left turn would likely face the dining table near the mark 8.</reasoning>\n<answer>left by 29 degrees</answer>"
+  },
+  {
+    "id": 37,
+    "row_id": 127515,
+    "sample_index": 7,
+    "question_type": "goal_aim",
+    "question": "I need to go to Doorway (near the mark 4 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "right by 48 degrees",
+      "left by 48 degrees"
+    ],
+    "correct_answer": "right by 48 degrees",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127515_0.jpg"
+    ],
+    "description": "The image shows a room with a piece of furniture that resembles a dresser, a blue couch with a ball on the floor, and a doorway with red numbers '4' and '8' on it. The dresser is to the left of the doorway, and the couch is in the foreground to the left.",
+    "reasoning": "To go to the doorway, you need to move from the area near the couch towards the left side of the dresser. The couch is positioned to your left, and the dresser is in front and slightly to your right. To get to the doorway, you would need to move left from the couch to the position of the dresser and then turn to face the doorway. Given the options, moving left aligns with the requirement to face the doorway, as you are effectively turning left from your current orientation towards the front of the dresser to face the doorway.",
+    "answer": "right by 48 degrees",
+    "full_text": "<description>The image shows a room with a piece of furniture that resembles a dresser, a blue couch with a ball on the floor, and a doorway with red numbers '4' and '8' on it. The dresser is to the left of the doorway, and the couch is in the foreground to the left.</description>\n<reasoning>To go to the doorway, you need to move from the area near the couch towards the left side of the dresser. The couch is positioned to your left, and the dresser is in front and slightly to your right. To get to the doorway, you would need to move left from the couch to the position of the dresser and then turn to face the doorway. Given the options, moving left aligns with the requirement to face the doorway, as you are effectively turning left from your current orientation towards the front of the dresser to face the doorway.</reasoning>\n<answer>right by 48 degrees</answer>"
+  },
+  {
+    "id": 38,
+    "row_id": 127529,
+    "sample_index": 3,
+    "question_type": "goal_aim",
+    "question": "I need to go to black colored wooden chair (near the mark 7 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "left by 13 degrees",
+      "right by 13 degrees"
+    ],
+    "correct_answer": "right by 13 degrees",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127529_0.jpg"
+    ],
+    "description": "The image shows a room with white brick walls and a dark floor. There is a doorway on the left leading to another part of the room. Inside the room, there is a table with a chair near it, labeled with a red number \"7\". Another red number \"0\" is seen in the doorway. There are other dining chairs around the table and a couch against the wall.",
+    "reasoning": "\nTo go to the black colored wooden chair near the mark \"7\", I need to first determine the reference points. The mirrored perspective of the room can be confusing, but physically, the chair near the mark \"7\" is the one to the right of the marked point if you face the room directly. Given the overlap and mirrored perspective, the chair is on the right side when you're at the doorway (position \"0\"). Therefore, to face the chair near the mark \"7\", you should turn left slightly.\n\nHowever, since the question asks about the turn to face the object in a 13-degree angle, based on the given choices, the correct answer would be to turn left by 13 degrees.\n\nAlternative reasoning could misinterpret the perspective but the question specifies a 13-degree turn, suggesting the correct answer aligns with the provided choices.\n",
+    "answer": "left by 13 degrees",
+    "full_text": "<description>The image shows a room with white brick walls and a dark floor. There is a doorway on the left leading to another part of the room. Inside the room, there is a table with a chair near it, labeled with a red number \"7\". Another red number \"0\" is seen in the doorway. There are other dining chairs around the table and a couch against the wall.</description>\n<reasoning>\nTo go to the black colored wooden chair near the mark \"7\", I need to first determine the reference points. The mirrored perspective of the room can be confusing, but physically, the chair near the mark \"7\" is the one to the right of the marked point if you face the room directly. Given the overlap and mirrored perspective, the chair is on the right side when you're at the doorway (position \"0\"). Therefore, to face the chair near the mark \"7\", you should turn left slightly.\n\nHowever, since the question asks about the turn to face the object in a 13-degree angle, based on the given choices, the correct answer would be to turn left by 13 degrees.\n\nAlternative reasoning could misinterpret the perspective but the question specifies a 13-degree turn, suggesting the correct answer aligns with the provided choices.\n</reasoning>\n<answer>left by 13 degrees</answer>"
+  },
+  {
+    "id": 39,
+    "row_id": 127532,
+    "sample_index": 7,
+    "question_type": "goal_aim",
+    "question": "I need to go to Doorway (near the mark 0 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "right by 14 degrees",
+      "left by 14 degrees"
+    ],
+    "correct_answer": "left by 14 degrees",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127532_0.jpg"
+    ],
+    "description": "The image shows a room with a wall on the left and a doorway leading into another room. The doorway is marked with the number \"0\" and the room beyond has a door with the number \"7\" on it. The task is to determine the direction to turn to face the doorway (near the mark 0) from a current perspective.",
+    "reasoning": "\n1. Assume you are facing the room wall on the left from your current perspective.\n2. To reach the doorway (marked with \"0\"), you would need to move in a way that allows your line of sight to be directed towards the doorway.\n3. Observing the current perspective, the doorway is on the diagonal line moving upwards to the right from the side wall.\n4. You would need to turn your body in a direction that aligns with the diagonal towards the doorway.\n\nGiven that the room is two-dimensional and the question implies a simple turn rather than a specific angle, the direction to face is towards the doorway which would involve moving right, aligning with the image's perspective.\n\nThe relevant choices provided are \"right by 14 degrees\" or \"left by 14 degrees\". Since the question asks which direction you should turn to face the doorway, the correct choice aligning with the image's dynamics would be to move to the right. \n\nGiven the options provided, the closest match for turning towards the doorway is:\n- \"right by 14 degrees\"\n",
+    "answer": "right by 14 degrees",
+    "full_text": "<description>The image shows a room with a wall on the left and a doorway leading into another room. The doorway is marked with the number \"0\" and the room beyond has a door with the number \"7\" on it. The task is to determine the direction to turn to face the doorway (near the mark 0) from a current perspective.</description>\n\n<reasoning>\n1. Assume you are facing the room wall on the left from your current perspective.\n2. To reach the doorway (marked with \"0\"), you would need to move in a way that allows your line of sight to be directed towards the doorway.\n3. Observing the current perspective, the doorway is on the diagonal line moving upwards to the right from the side wall.\n4. You would need to turn your body in a direction that aligns with the diagonal towards the doorway.\n\nGiven that the room is two-dimensional and the question implies a simple turn rather than a specific angle, the direction to face is towards the doorway which would involve moving right, aligning with the image's perspective.\n\nThe relevant choices provided are \"right by 14 degrees\" or \"left by 14 degrees\". Since the question asks which direction you should turn to face the doorway, the correct choice aligning with the image's dynamics would be to move to the right. \n\nGiven the options provided, the closest match for turning towards the doorway is:\n- \"right by 14 degrees\"\n</reasoning>\n<answer>right by 14 degrees</answer>"
+  },
+  {
+    "id": 40,
+    "row_id": 127539,
+    "sample_index": 0,
+    "question_type": "goal_aim",
+    "question": "I need to go to Statue (near the mark 5 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "look straight",
+      "right by 36 degrees"
+    ],
+    "correct_answer": "right by 36 degrees",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127539_0.jpg"
+    ],
+    "description": "The image shows a room with a wooden floor and a wall with a painting. There is a small delivery box marked with the number 5 attached to a black shelving unit on the right side. A cylindrical object, possibly a trash can, is on the floor near the box. There is a lamp partially visible on the left side of the image.",
+    "reasoning": "To face the statue that is near the marked box, you need to turn towards the right. The statue is positioned on top of the black shelving unit to the right of the image. To get a clear view, you should turn from facing straight ahead (which is west if we consider the bottom of the image as north) to the right. You should rotate in an angle slightly less than 90 degrees to face the object, which approximately corresponds to turning right by 36 degrees if you are not facing perfectly straight ahead.",
+    "answer": "right by 36 degrees",
+    "full_text": "<description>The image shows a room with a wooden floor and a wall with a painting. There is a small delivery box marked with the number 5 attached to a black shelving unit on the right side. A cylindrical object, possibly a trash can, is on the floor near the box. There is a lamp partially visible on the left side of the image.</description>\n<reasoning>To face the statue that is near the marked box, you need to turn towards the right. The statue is positioned on top of the black shelving unit to the right of the image. To get a clear view, you should turn from facing straight ahead (which is west if we consider the bottom of the image as north) to the right. You should rotate in an angle slightly less than 90 degrees to face the object, which approximately corresponds to turning right by 36 degrees if you are not facing perfectly straight ahead.</reasoning>\n<answer>right by 36 degrees</answer>"
+  },
+  {
+    "id": 41,
+    "row_id": 127544,
+    "sample_index": 7,
+    "question_type": "goal_aim",
+    "question": "I need to go to stainless steel kitchen sink (near the mark 3 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "look straight",
+      "right by 21 degrees"
+    ],
+    "correct_answer": "right by 21 degrees",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127544_0.jpg"
+    ],
+    "description": "The image shows a bathroom with a wooden floor. There is a sink with a faucet labeled \"3\" and a toilet labeled \"4\" to its right. A step is visible to the right side of the image, with \"1\" on it. The entrance to another room is on the left.",
+    "reasoning": "To reach the stainless steel kitchen sink near the marked \"3\", you need to turn towards the sink from your current position. Given that the sink is already seen and positioned in the image, facing it directly means no need to turn further. So, the correct answer is to look straight in the direction where the sink is visible.",
+    "answer": "look straight",
+    "full_text": "<description>The image shows a bathroom with a wooden floor. There is a sink with a faucet labeled \"3\" and a toilet labeled \"4\" to its right. A step is visible to the right side of the image, with \"1\" on it. The entrance to another room is on the left.</description>\n<reasoning>To reach the stainless steel kitchen sink near the marked \"3\", you need to turn towards the sink from your current position. Given that the sink is already seen and positioned in the image, facing it directly means no need to turn further. So, the correct answer is to look straight in the direction where the sink is visible.</reasoning>\n<answer>look straight</answer>"
+  },
+  {
+    "id": 42,
+    "row_id": 127595,
+    "sample_index": 7,
+    "question_type": "goal_aim",
+    "question": "I need to go to grey  sofa for three person (near the mark 9 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "right by 22 degrees",
+      "look straight"
+    ],
+    "correct_answer": "right by 22 degrees",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127595_0.jpg"
+    ],
+    "description": "A room contains a grey sofa with a red marker at position 9 in front of it. A white table is to the left, and a small chair is at the bottom left corner of the image.",
+    "reasoning": "To start, confirm the direction before you're at the grey sofa: currently, if you are at the camera's position, you appear to be looking in the direction of the white table. You need to face the grey sofa, marked at position 9. The direction from the current angle (facing the table) to face the sofa directly would be a turn to the right, as the sofa is to the right side of the image.",
+    "answer": "right by 22 degrees",
+    "full_text": "<description>A room contains a grey sofa with a red marker at position 9 in front of it. A white table is to the left, and a small chair is at the bottom left corner of the image.</description>\n<reasoning>To start, confirm the direction before you're at the grey sofa: currently, if you are at the camera's position, you appear to be looking in the direction of the white table. You need to face the grey sofa, marked at position 9. The direction from the current angle (facing the table) to face the sofa directly would be a turn to the right, as the sofa is to the right side of the image.</reasoning>\n<answer>right by 22 degrees</answer>"
+  },
+  {
+    "id": 43,
+    "row_id": 127619,
+    "sample_index": 6,
+    "question_type": "goal_aim",
+    "question": "I need to go to Television (near the mark 1 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "look straight",
+      "left by 30 degrees"
+    ],
+    "correct_answer": "look straight",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127619_0.jpg"
+    ],
+    "description": "In the image, there is a room with a flat-screen television placed on a white stand. The television is marked with a red circle labeled \"1.\" There is also a window marked with a red circle labeled \"6.\" The floor is light brown, and there appears to be a chair partially visible on the left side of the image.",
+    "reasoning": "To determine the direction you should turn to face the television, start by identifying your current orientation. The window, marked with \"6,\" appears to be aligned with the front of the room. To face the television, which is on the right side, you would need to take a slight turn to the right because the television is positioned off-center to the right of the window. Turning left would not align you with the television. You need to strategically move in the direction that brings you closer to the television, turning right by a small angle, roughly 30 degrees, would be the correct action.",
+    "answer": "left by 30 degrees",
+    "full_text": "<description>In the image, there is a room with a flat-screen television placed on a white stand. The television is marked with a red circle labeled \"1.\" There is also a window marked with a red circle labeled \"6.\" The floor is light brown, and there appears to be a chair partially visible on the left side of the image.</description>\n<reasoning>To determine the direction you should turn to face the television, start by identifying your current orientation. The window, marked with \"6,\" appears to be aligned with the front of the room. To face the television, which is on the right side, you would need to take a slight turn to the right because the television is positioned off-center to the right of the window. Turning left would not align you with the television. You need to strategically move in the direction that brings you closer to the television, turning right by a small angle, roughly 30 degrees, would be the correct action.</reasoning>\n<answer>left by 30 degrees</answer>"
+  },
+  {
+    "id": 44,
+    "row_id": 127646,
+    "sample_index": 2,
+    "question_type": "goal_aim",
+    "question": "I need to go to Pillow (near the mark 2 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "look straight",
+      "left by 35 degrees"
+    ],
+    "correct_answer": "left by 35 degrees",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127646_0.jpg"
+    ],
+    "description": "The image shows a small bedroom with a single bed on the left side of the image. The bed has white pillows with blue stripes and a wooden frame. A framed picture is hanging on the wall above and to the right of the bed. A circular icon with the number \"2\" and a red background is positioned near the bed, indicating the target object. The floor is covered with tiles that have a light brown color, resembling basket weave patterns.",
+    "reasoning": "Since the target object is the pillow near the bed marked with \"2\", you need to face that direction. In the image, you are looking at the bed from an angle that includes both the direction of the bed and the wall. To move to the pillow, you need to orient yourself so that the bed is directly in front of you. This means you need to turn your view to face the bed straight on, which is a 0-degree turn to the left relative to your current angle of sight.\n\nIn the given choices, \"look straight\" aligns with moving to face the bed directly, which is the correct direction to face the pillow near the mark 2.\n\nThe correct choice is to \"look straight.\" The text \"left by 35 degrees\" is not the correct action because it involves a turn to the left, which does not align with facing the bed directly.\n",
+    "answer": "look straight",
+    "full_text": "<description>The image shows a small bedroom with a single bed on the left side of the image. The bed has white pillows with blue stripes and a wooden frame. A framed picture is hanging on the wall above and to the right of the bed. A circular icon with the number \"2\" and a red background is positioned near the bed, indicating the target object. The floor is covered with tiles that have a light brown color, resembling basket weave patterns.</description>\n<reasoning>Since the target object is the pillow near the bed marked with \"2\", you need to face that direction. In the image, you are looking at the bed from an angle that includes both the direction of the bed and the wall. To move to the pillow, you need to orient yourself so that the bed is directly in front of you. This means you need to turn your view to face the bed straight on, which is a 0-degree turn to the left relative to your current angle of sight.\n\nIn the given choices, \"look straight\" aligns with moving to face the bed directly, which is the correct direction to face the pillow near the mark 2.\n\nThe correct choice is to \"look straight.\" The text \"left by 35 degrees\" is not the correct action because it involves a turn to the left, which does not align with facing the bed directly.\n</reasoning>\n<answer>look straight</answer>"
+  },
+  {
+    "id": 45,
+    "row_id": 127655,
+    "sample_index": 0,
+    "question_type": "goal_aim",
+    "question": "I need to go to sixdrawer dresser in gray (near the mark 8 in the image). Which direction should I turn to face the object?",
+    "choices": [
+      "look straight",
+      "left by 24 degrees"
+    ],
+    "correct_answer": "left by 24 degrees",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127655_0.jpg"
+    ],
+    "description": "In the image, there is a white wardrobe with a door and a golden trophy on top, positioned against a green wall. Above the wardrobe, there is a red circle with the number \"8\" inside it. Next to the wardrobe, there is a small wooden table with an object on it, and part of a bed is visible on the right side of the image.",
+    "reasoning": "To determine the direction to face the six-drawer dresser, we need to locate it in the image. The red circle with the number \"8\" and the wardrobe should be the focus. Assuming the dresser is nearby, it would be to the left of the wardrobe. To face it, you would need to turn left from your current position, as it is to the left of the object numbered \"8\". The exact degree of the turn is not specified in the options provided, but the direction is clearly to the left.",
+    "answer": "left by 24 degrees",
+    "full_text": "<description>In the image, there is a white wardrobe with a door and a golden trophy on top, positioned against a green wall. Above the wardrobe, there is a red circle with the number \"8\" inside it. Next to the wardrobe, there is a small wooden table with an object on it, and part of a bed is visible on the right side of the image.</description>\n<reasoning>To determine the direction to face the six-drawer dresser, we need to locate it in the image. The red circle with the number \"8\" and the wardrobe should be the focus. Assuming the dresser is nearby, it would be to the left of the wardrobe. To face it, you would need to turn left from your current position, as it is to the left of the object numbered \"8\". The exact degree of the turn is not specified in the options provided, but the direction is clearly to the left.</reasoning>\n<answer>left by 24 degrees</answer>"
+  },
+  {
+    "id": 46,
+    "row_id": 127405,
+    "sample_index": 3,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "green tapered square potted houseplant was moved right and towards the camera in the first frame",
+      "green tapered square potted houseplant was moved left and away from the camera in the first frame"
+    ],
+    "correct_answer": "green tapered square potted houseplant was moved right and towards the camera in the first frame",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127405_0.jpg",
+      "labeling/images/127405_1.jpg"
+    ],
+    "description": "The image shows the same room with consistent wall art and objects. The only difference is the perspective of the camera, emphasizing the green tapered square potted houseplant more in the second frame, which is closer to the camera.",
+    "reasoning": "Considering the consistent objects and wall art, the green potted houseplant's position relative to other elements in the frame has not physically changed. The second frame merely shows a closer view of the plant, suggesting that the camera has shifted focus to bring the plant closer to the viewer's perspective.",
+    "answer": "green tapered square potted houseplant was moved right and towards the camera in the first frame",
+    "full_text": "<description>The image shows the same room with consistent wall art and objects. The only difference is the perspective of the camera, emphasizing the green tapered square potted houseplant more in the second frame, which is closer to the camera.</description>\n<reasoning>Considering the consistent objects and wall art, the green potted houseplant's position relative to other elements in the frame has not physically changed. The second frame merely shows a closer view of the plant, suggesting that the camera has shifted focus to bring the plant closer to the viewer's perspective.</reasoning>\n<answer>green tapered square potted houseplant was moved right and towards the camera in the first frame</answer>"
+  },
+  {
+    "id": 47,
+    "row_id": 127461,
+    "sample_index": 0,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "Television was moved left and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "correct_answer": "no objects moved",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127461_0.jpg",
+      "labeling/images/127461_1.jpg"
+    ],
+    "description": "In the initial frame, there is a small shelf with a TV on top of it. There's also a small brown box on the floor behind the shelf and a mower-like object in the foreground. In the second frame, the TV and the mower-like object are in the same position, except the mower-like object is closer to the camera. The small brown box is also in the same position. The shelf is not in the second frame.",
+    "reasoning": "From the description, it is clear that the TV and the mower-like object have not been moved from their original positions in the second frame. However, the shelf that the TV was originally on top of has disappeared. This suggests that the shelf may have been removed from the room. Therefore, according to the given choices and the fact that we are only asked about the objects in the initial frame that can still be seen in the second frame, none of the objects have moved.\n\nThe small brown box is in the same position, ruling out the possibility of it moving. Therefore, considering the options provided, none of the objects moved.\n\nThe shed has gone. The shed is always in the first frame. The television is always in the first frame, it second.\"\n",
+    "answer": "no objects moved",
+    "full_text": "<description>In the initial frame, there is a small shelf with a TV on top of it. There's also a small brown box on the floor behind the shelf and a mower-like object in the foreground. In the second frame, the TV and the mower-like object are in the same position, except the mower-like object is closer to the camera. The small brown box is also in the same position. The shelf is not in the second frame.</description>\n\n<reasoning>From the description, it is clear that the TV and the mower-like object have not been moved from their original positions in the second frame. However, the shelf that the TV was originally on top of has disappeared. This suggests that the shelf may have been removed from the room. Therefore, according to the given choices and the fact that we are only asked about the objects in the initial frame that can still be seen in the second frame, none of the objects have moved.\n\nThe small brown box is in the same position, ruling out the possibility of it moving. Therefore, considering the options provided, none of the objects moved.\n\nThe shed has gone. The shed is always in the first frame. The television is always in the first frame, it second.\"\n</reasoning>\n<answer>no objects moved</answer>"
+  },
+  {
+    "id": 48,
+    "row_id": 127468,
+    "sample_index": 5,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "black colored wooden chair was moved right and away from the camera in the first frame",
+      "black colored wooden chair was moved left and towards the camera in the first frame"
+    ],
+    "correct_answer": "black colored wooden chair was moved left and towards the camera in the first frame",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127468_0.jpg",
+      "labeling/images/127468_1.jpg"
+    ],
+    "description": "The image shows a room with two visible doorways. In the first frame, one of the doorways has a set of chairs, a dining table, and a mirror leaning against the wall. In the second frame, the chairs and mirror are no longer present, indicating they have been moved. The table remains but without the objects that were previously set upon it.",
+    "reasoning": "Both the black metal chair and the leaning mirror from the first frame are not present in the second frame, suggesting they have been moved. The relative positions of the objects that remain (like the table and the painting) have not changed, confirming the movement of the furniture.",
+    "answer": "black colored wooden chair was moved right and away from the camera in the first frame",
+    "full_text": "<description>The image shows a room with two visible doorways. In the first frame, one of the doorways has a set of chairs, a dining table, and a mirror leaning against the wall. In the second frame, the chairs and mirror are no longer present, indicating they have been moved. The table remains but without the objects that were previously set upon it.</description>\n\n<reasoning>Both the black metal chair and the leaning mirror from the first frame are not present in the second frame, suggesting they have been moved. The relative positions of the objects that remain (like the table and the painting) have not changed, confirming the movement of the furniture.</reasoning>\n\n<answer>black colored wooden chair was moved right and away from the camera in the first frame</answer>"
+  },
+  {
+    "id": 49,
+    "row_id": 127476,
+    "sample_index": 7,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "CoffeeMachine was moved left and away from the camera in the first frame",
+      "no objects moved"
+    ],
+    "correct_answer": "no objects moved",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127476_0.jpg",
+      "labeling/images/127476_1.jpg"
+    ],
+    "description": "In the initial frame, there is a round, white, textured object on the floor near the center of the room. There is also a countertop with various items including a potted plant, a blue pitcher, a silver thermal carafe, a bowl with a red apple inside, and a few other small items. On the left side of the room, there is a table with chairs around it. In the second frame, the round, white, textured object is still present and in the same position. The countertop items appear to be in a slightly different arrangement, but the overall scene is similar. The table with chairs remains in the same position, and the wall and door are in the same location.",
+    "reasoning": "By comparing the two frames, it is clear that the round, white, textured object on the floor did not move. The countertop and its items show some changes in position, but the overall layout of the room and the items on the table remain largely the same. The door and wall are in the same position in both frames, confirming no significant changes in the room's structure.",
+    "answer": "no objects moved",
+    "full_text": "<description>In the initial frame, there is a round, white, textured object on the floor near the center of the room. There is also a countertop with various items including a potted plant, a blue pitcher, a silver thermal carafe, a bowl with a red apple inside, and a few other small items. On the left side of the room, there is a table with chairs around it. In the second frame, the round, white, textured object is still present and in the same position. The countertop items appear to be in a slightly different arrangement, but the overall scene is similar. The table with chairs remains in the same position, and the wall and door are in the same location.</description>\n<reasoning>By comparing the two frames, it is clear that the round, white, textured object on the floor did not move. The countertop and its items show some changes in position, but the overall layout of the room and the items on the table remain largely the same. The door and wall are in the same position in both frames, confirming no significant changes in the room's structure.</reasoning>\n<answer>no objects moved</answer>"
+  },
+  {
+    "id": 50,
+    "row_id": 127492,
+    "sample_index": 1,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "Toaster was moved right and towards the camera in the first frame",
+      "Toaster was moved left and away from the camera in the first frame"
+    ],
+    "correct_answer": "Toaster was moved right and towards the camera in the first frame",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127492_0.jpg",
+      "labeling/images/127492_1.jpg"
+    ],
+    "description": "In the first frame, there is a toaster positioned on the left side of the countertop. In the second frame, the toaster seems to have moved slightly further to the right and closer to the camera compared to the first frame.",
+    "reasoning": "Initially, the toaster is on the left side of the countertop. In the second frame, it is positioned more to the center and slightly closer to the camera, as its relative position to other elements (like the cabinets and artifacts on the counter) has slightly changed. This implies that the toaster was moved from its initial position.",
+    "answer": "Toaster was moved right and towards the camera in the first frame",
+    "full_text": "<description>In the first frame, there is a toaster positioned on the left side of the countertop. In the second frame, the toaster seems to have moved slightly further to the right and closer to the camera compared to the first frame.</description>\n<reasoning>Initially, the toaster is on the left side of the countertop. In the second frame, it is positioned more to the center and slightly closer to the camera, as its relative position to other elements (like the cabinets and artifacts on the counter) has slightly changed. This implies that the toaster was moved from its initial position.</reasoning>\n<answer>Toaster was moved right and towards the camera in the first frame</answer>"
+  },
+  {
+    "id": 51,
+    "row_id": 127497,
+    "sample_index": 5,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "dark brown square dresser was moved left and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "correct_answer": "no objects moved",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127497_0.jpg",
+      "labeling/images/127497_1.jpg"
+    ],
+    "description": "The image depicts a room transformation. Initially, there is a ball and a placemat on the floor with a dresser partially visible on the left. In the second image, the ball and placemat remain in the same location, but the dresser is now visible in its entirety and appears to have been slid against the left wall. Also, the bed has been added and moved into the background, covering more of the room but retaining the same components as in the initial view.",
+    "reasoning": "To analyze the movement of objects, we look at their relative positions before and after the transformation. The ball and placemat are stationary. The dresser, initially partly visible, is now fully displaced, suggesting a repositioning. The bed is a new addition and its movement or initial location isn't being considered here. The bed's full appearance corresponds to another room seen through an open doorway, indicating a room shift. The dresser also appears to have been repositioned, indicating it was moved left and towards the camera.",
+    "answer": "dark brown square dresser was moved left and towards the camera in the first frame",
+    "full_text": "<description>The image depicts a room transformation. Initially, there is a ball and a placemat on the floor with a dresser partially visible on the left. In the second image, the ball and placemat remain in the same location, but the dresser is now visible in its entirety and appears to have been slid against the left wall. Also, the bed has been added and moved into the background, covering more of the room but retaining the same components as in the initial view.</description>\n<reasoning>To analyze the movement of objects, we look at their relative positions before and after the transformation. The ball and placemat are stationary. The dresser, initially partly visible, is now fully displaced, suggesting a repositioning. The bed is a new addition and its movement or initial location isn't being considered here. The bed's full appearance corresponds to another room seen through an open doorway, indicating a room shift. The dresser also appears to have been repositioned, indicating it was moved left and towards the camera.</reasoning>\n<answer>dark brown square dresser was moved left and towards the camera in the first frame</answer>"
+  },
+  {
+    "id": 52,
+    "row_id": 127511,
+    "sample_index": 0,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "blue plastic stool with metal legs was moved left and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "correct_answer": "no objects moved",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127511_0.jpg",
+      "labeling/images/127511_1.jpg"
+    ],
+    "description": "Both frames depict a kitchen area. The first frame shows a refrigerator in the foreground and a blue plastic stool with metal legs in the background near a window. The second frame shows the same refrigerator and stool, but the stool appears closer to the camera in the second frame. There is also a framed picture on the wall in the second frame, which was not present in the first frame.",
+    "reasoning": "The refrigerator and the stool appear in the same positions relative to each other and to the background elements in both frames. However, the stool in the second frame appears closer to the camera compared to the first frame, suggesting that the stool might have been moved closer to the camera. The presence of the new framed picture in the second frame suggests that something in the scene might have been added or rearranged, but it specifically indicates only that the stool's apparent position has changed.",
+    "answer": "blue plastic stool with metal legs was moved left and towards the camera in the first frame",
+    "full_text": "<description>Both frames depict a kitchen area. The first frame shows a refrigerator in the foreground and a blue plastic stool with metal legs in the background near a window. The second frame shows the same refrigerator and stool, but the stool appears closer to the camera in the second frame. There is also a framed picture on the wall in the second frame, which was not present in the first frame.</description>\n<reasoning>The refrigerator and the stool appear in the same positions relative to each other and to the background elements in both frames. However, the stool in the second frame appears closer to the camera compared to the first frame, suggesting that the stool might have been moved closer to the camera. The presence of the new framed picture in the second frame suggests that something in the scene might have been added or rearranged, but it specifically indicates only that the stool's apparent position has changed.</reasoning>\n<answer>blue plastic stool with metal legs was moved left and towards the camera in the first frame</answer>"
+  },
+  {
+    "id": 53,
+    "row_id": 127523,
+    "sample_index": 4,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "cup was moved left and away from the camera in the first frame",
+      "no objects moved"
+    ],
+    "correct_answer": "no objects moved",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127523_0.jpg",
+      "labeling/images/127523_1.jpg"
+    ],
+    "description": "In the first image, there is a single door at the back of the room, with no other objects visible. In the second image, the door remains in the same position, but there is a second door visible in the corner of the room, and the wall appears to have an indentation or protrusion that was not present in the first image.",
+    "reasoning": "Comparing the two images, the only notable change is the appearance of a second door and a wall indentation in the second image. There are no signs of movement of objects or changes in the position of the existing objects.",
+    "answer": "no objects moved",
+    "full_text": "<description>In the first image, there is a single door at the back of the room, with no other objects visible. In the second image, the door remains in the same position, but there is a second door visible in the corner of the room, and the wall appears to have an indentation or protrusion that was not present in the first image.</description>\n<reasoning>Comparing the two images, the only notable change is the appearance of a second door and a wall indentation in the second image. There are no signs of movement of objects or changes in the position of the existing objects.</reasoning>\n<answer>no objects moved</answer>"
+  },
+  {
+    "id": 54,
+    "row_id": 127525,
+    "sample_index": 2,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "black colored wooden chair was moved left and away from the camera in the first frame",
+      "no objects moved"
+    ],
+    "correct_answer": "no objects moved",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127525_0.jpg",
+      "labeling/images/127525_1.jpg"
+    ],
+    "description": "The image shows a room viewed from an angle that focuses on a corner, with a wall and a set of doors or windows visible. In the second frame, the same angle is maintained, and the wall and the doors/windows are depicted similarly. The objects within the room, such as furniture, remain in their original positions.",
+    "reasoning": "Given that the angle and proportions of the room are consistent between the two frames, it suggests that the objects, including the black chair and other furniture, have not been moved. The first frame includes furniture such as a black chair and a table, and these are still present in the second frame without apparent movement.",
+    "answer": "no objects moved",
+    "full_text": "<description>The image shows a room viewed from an angle that focuses on a corner, with a wall and a set of doors or windows visible. In the second frame, the same angle is maintained, and the wall and the doors/windows are depicted similarly. The objects within the room, such as furniture, remain in their original positions.</description>\n\n<reasoning>Given that the angle and proportions of the room are consistent between the two frames, it suggests that the objects, including the black chair and other furniture, have not been moved. The first frame includes furniture such as a black chair and a table, and these are still present in the second frame without apparent movement.</reasoning>\n\n<answer>no objects moved</answer>"
+  },
+  {
+    "id": 55,
+    "row_id": 127542,
+    "sample_index": 6,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "light blue rectangular dresser was moved left and towards the camera in the first frame",
+      "light blue rectangular dresser was moved right and away from the camera in the first frame"
+    ],
+    "correct_answer": "light blue rectangular dresser was moved left and towards the camera in the first frame",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127542_0.jpg",
+      "labeling/images/127542_1.jpg"
+    ],
+    "description": "Both images show a room with a wooden floor, a toilet, a sink, and a light blue rectangular dresser against the wall. The room angle and the objects' relative positions change slightly between the two frames.",
+    "reasoning": "In the first image, the camera angle shows a doorway on the left, and in the second image, the camera moves slightly to the right, aligning more with the dresser and eliminating the doorway from view. This movement suggests a rotation in the camera's position rather than a change in the object positions. The light blue rectangular dresser in the first frame aligns slightly more to the right in the second frame, indicating the camera's pan-right motion rather than the dresser moving left.\n\nHowever, regarding the specific question of the light blue rectangular dresser moving left or right, the change described fits a slight pan to the right rather than a definitive left or right movement in a vertical screen space perspective.\n\nIssues in identifying a clear position shift for objects typically done by comparing consistent objects' volume and location in the room, but the room's perspective shift hints at a camera movement rather than independent object repositioning.",
+    "answer": "light blue rectangular dresser was moved right and away from the camera in the first frame",
+    "full_text": "<description>Both images show a room with a wooden floor, a toilet, a sink, and a light blue rectangular dresser against the wall. The room angle and the objects' relative positions change slightly between the two frames.</description>\n<reasoning>In the first image, the camera angle shows a doorway on the left, and in the second image, the camera moves slightly to the right, aligning more with the dresser and eliminating the doorway from view. This movement suggests a rotation in the camera's position rather than a change in the object positions. The light blue rectangular dresser in the first frame aligns slightly more to the right in the second frame, indicating the camera's pan-right motion rather than the dresser moving left.\n\nHowever, regarding the specific question of the light blue rectangular dresser moving left or right, the change described fits a slight pan to the right rather than a definitive left or right movement in a vertical screen space perspective.\n\nIssues in identifying a clear position shift for objects typically done by comparing consistent objects' volume and location in the room, but the room's perspective shift hints at a camera movement rather than independent object repositioning.</reasoning>\n<answer>light blue rectangular dresser was moved right and away from the camera in the first frame</answer>"
+  },
+  {
+    "id": 56,
+    "row_id": 127558,
+    "sample_index": 4,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "potted houseplant with lush green foliage was moved right and towards the camera in the first frame",
+      "potted houseplant with lush green foliage was moved left and away from the camera in the first frame"
+    ],
+    "correct_answer": "potted houseplant with lush green foliage was moved right and towards the camera in the first frame",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127558_0.jpg",
+      "labeling/images/127558_1.jpg"
+    ],
+    "description": "In the first frame, a potted houseplant with lush green foliage is placed on the floor to the left of the bed. In the second frame, the same potted houseplant is now positioned to the right of the bed, closer to the camera.",
+    "reasoning": "The potted houseplant moved from its original position to the right side of the bed, closer to the viewer. The shadow of the person in the foreground also changed position slightly, which could be an indication of a slight shift in camera angle or position, but the movement of the houseplant is more significant and noticeable.",
+    "answer": "potted houseplant with lush green foliage was moved left and away from the camera in the first frame",
+    "full_text": "<description>In the first frame, a potted houseplant with lush green foliage is placed on the floor to the left of the bed. In the second frame, the same potted houseplant is now positioned to the right of the bed, closer to the camera.</description>\n\n<reasoning>The potted houseplant moved from its original position to the right side of the bed, closer to the viewer. The shadow of the person in the foreground also changed position slightly, which could be an indication of a slight shift in camera angle or position, but the movement of the houseplant is more significant and noticeable.</reasoning>\n\n<answer>potted houseplant with lush green foliage was moved left and away from the camera in the first frame</answer>"
+  },
+  {
+    "id": 57,
+    "row_id": 127578,
+    "sample_index": 4,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "dark brown square dresser was moved right and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "correct_answer": "no objects moved",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127578_0.jpg",
+      "labeling/images/127578_1.jpg"
+    ],
+    "description": "In the initial frame, there is a dark brown square dresser located in the lower right area of the frame. The second frame shows the same dresser in the same placement as in the initial frame.",
+    "reasoning": "Comparing both frames, the dresser's position remains unchanged. There are no visible signs of movement or change in its placement or orientation.",
+    "answer": "dark brown square dresser was moved right and towards the camera in the first frame",
+    "full_text": "<description>In the initial frame, there is a dark brown square dresser located in the lower right area of the frame. The second frame shows the same dresser in the same placement as in the initial frame.</description>\n<reasoning>Comparing both frames, the dresser's position remains unchanged. There are no visible signs of movement or change in its placement or orientation.</reasoning>\n<answer>dark brown square dresser was moved right and towards the camera in the first frame</answer>"
+  },
+  {
+    "id": 58,
+    "row_id": 127605,
+    "sample_index": 7,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "black wooden shelving unit was moved left and towards the camera in the first frame",
+      "black wooden shelving unit was moved right and away from the camera in the first frame"
+    ],
+    "correct_answer": "black wooden shelving unit was moved left and towards the camera in the first frame",
+    "model_correct": true,
+    "image_files": [
+      "labeling/images/127605_0.jpg",
+      "labeling/images/127605_1.jpg"
+    ],
+    "description": "The image shows a room with a small wooden table in the foreground, which has a black object placed on it. In the background, there is a black shelf with decorative items like a vase and a plant. The camera's perspective has shifted slightly, showing the entire shelf more prominently in the second frame.",
+    "reasoning": "In the first frame, the black shelf is partially obscured by the wall and only part of its top surface is visible. In the second frame, the camera is positioned closer to the shelf, and it is now clearly visible, including its entire top surface. There is no significant movement of objects, as the shelf remains stationary and no items that were on it have been moved.",
+    "answer": "black wooden shelving unit was moved left and towards the camera in the first frame",
+    "full_text": "<description>The image shows a room with a small wooden table in the foreground, which has a black object placed on it. In the background, there is a black shelf with decorative items like a vase and a plant. The camera's perspective has shifted slightly, showing the entire shelf more prominently in the second frame.</description>\n<reasoning>In the first frame, the black shelf is partially obscured by the wall and only part of its top surface is visible. In the second frame, the camera is positioned closer to the shelf, and it is now clearly visible, including its entire top surface. There is no significant movement of objects, as the shelf remains stationary and no items that were on it have been moved.</reasoning>\n<answer>black wooden shelving unit was moved left and towards the camera in the first frame</answer>"
+  },
+  {
+    "id": 59,
+    "row_id": 127625,
+    "sample_index": 4,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "no objects moved",
+      "white color side table was moved left and away from the camera in the first frame"
+    ],
+    "correct_answer": "no objects moved",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127625_0.jpg",
+      "labeling/images/127625_1.jpg"
+    ],
+    "description": "In the first image, there is a small table with a bowl on it, next to a blue ottoman, and a wooden cabinet with a TV on it. In the second image, the table and bowl are no longer visible, and the camera position seems to be slightly different, placing the focus more towards the wooden cabinet and the desk in the foreground.",
+    "reasoning": "Comparing the two images, the lack of the table and bowl indicates movement or removal. The camera angle and position have also changed slightly, as indicated by the positioning and angle of the furniture.",
+    "answer": "White color side table was moved left and away from the camera in the first frame",
+    "full_text": "<description>In the first image, there is a small table with a bowl on it, next to a blue ottoman, and a wooden cabinet with a TV on it. In the second image, the table and bowl are no longer visible, and the camera position seems to be slightly different, placing the focus more towards the wooden cabinet and the desk in the foreground.</description>\n\n<reasoning>Comparing the two images, the lack of the table and bowl indicates movement or removal. The camera angle and position have also changed slightly, as indicated by the positioning and angle of the furniture.</reasoning>\n\n<answer>White color side table was moved left and away from the camera in the first frame</answer>"
+  },
+  {
+    "id": 60,
+    "row_id": 127627,
+    "sample_index": 6,
+    "question_type": "obj_movement",
+    "question": "Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?",
+    "choices": [
+      "no objects moved",
+      "potted houseplant with lush green foliage was moved right and towards the camera in the first frame"
+    ],
+    "correct_answer": "no objects moved",
+    "model_correct": false,
+    "image_files": [
+      "labeling/images/127627_0.jpg",
+      "labeling/images/127627_1.jpg"
+    ],
+    "description": "In the first frame, there is a potted houseplant on the left side of the image, near the wall. In the second frame, the potted houseplant is no longer visible.",
+    "reasoning": "The potted houseplant is the only object in the initial frame that is not present in the second frame. There are no other visible changes in the objects' positions or in the environment.",
+    "answer": "potted houseplant with lush green foliage was moved right and towards the camera in the first frame",
+    "full_text": "<description>In the first frame, there is a potted houseplant on the left side of the image, near the wall. In the second frame, the potted houseplant is no longer visible.</description>\n<reasoning>The potted houseplant is the only object in the initial frame that is not present in the second frame. There are no other visible changes in the objects' positions or in the environment.</reasoning>\n<answer>potted houseplant with lush green foliage was moved right and towards the camera in the first frame</answer>"
+  }
+]
