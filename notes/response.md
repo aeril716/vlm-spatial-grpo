@@ -1,26 +1,30 @@
-Qwen2.5-VL을 GRPO로 학습시켜 공간 추론 능력을 높이는 프로젝트(`vlm-spatial-grpo`)이고, 지금은 스모크 테스트 두 개를 끝낸 상태예요. 마지막 커밋은 9/29입니다. 이 프로젝트에 대해 저장해 둔 메모리는 없어서 git 기록과 `reports/smoke_test.md`를 보고 정리했어요.
+Part C 커밋 해시는 **`821e0d0`**이고, push까지 끝났어요. 그런데 목표였던 "긴 completion에서의 시간·메모리 측정"은 이번 실행으로는 하지 못했어요. 모델이 형식 지시를 대부분 무시하고 짧은 답만 냈기 때문이에요.
 
-## 완료한 것
+**환경:** 이 서버에는 conda가 없어요. Part A/B는 프로젝트 안의 `VLM/.venv`에서 돌렸고(torch 2.11, TRL 1.13, PEFT 0.20), 이번에도 같은 환경을 썼어요.
 
-**Part A: fp16 추론이 정상 동작하는지 확인 (SAT val 20개)**
-- Quadro RTX 8000(sm_75)에서 fp16과 SDPA로 돌렸어요.
-- fp16과 fp32 결과가 20개 모두 같았고, 비정상 logit(NaN/inf)은 0개였어요.
-- VRAM은 fp16이 7.29 GiB, fp32가 14.23 GiB였어요.
+**Step 1 (baseline 재실행):** step마다 loss, grad_norm, reward가 Part B와 완전히 같았어요. 두 실행은 같은 조건에서 비교한 거예요.
 
-**Part B: GRPO + LoRA를 5 step 돌려보기**
-- 5 step 모두 NaN/inf 없이 끝났어요. 피크 VRAM은 12.16 GiB(47.3 GiB 중)이고, step당 8.1초 걸렸어요.
-- LoRA 학습 파라미터는 약 2,990만 개(전체의 0.79%)이고, vision encoder는 완전히 고정했어요.
-- 작업 중에 알게 된 것:
-  - Qwen2.5-VL의 vision tower에도 `gate_proj`/`up_proj`/`down_proj`가 있어요. 그래서 `exclude_modules=".*visual.*"`가 없으면 LoRA가 vision encoder에도 붙어요.
-  - `SAT_train.parquet`은 datasets streaming으로 읽히지 않아요. 그래서 `smoke/fetch_train_pool.py`를 만들어서 읽고, 결과를 `data/train_spatial_pool.pkl`로 저장했어요.
-  - train split은 순서대로 정렬돼 있어서 0~127404번 행은 전부 "other" 유형이에요. 공간 관련 문제는 127405번부터 시작해요.
+**Step 2 (reasoning 형식):** 5 step 모두 끝났고 NaN/inf나 OOM은 없었어요.
 
-## 남은 문제
-5 step 중 2 step은 gradient가 0이었어요. yes/no 문제에 맞으면 1, 틀리면 0을 주는 보상을 쓰다 보니, 한 그룹의 생성 8개가 전부 같은 점수를 받으면 `reward_std`가 0이 되고 advantage가 사라지기 때문이에요.
+|                                  | baseline  | reasoning  |
+| -------------------------------- | --------- | ---------- |
+| 초/step                          | 7.9       | 11.5       |
+| └ 생성 시간                      | 2.0       | 5.3        |
+| └ 학습(forward+backward) 시간    | 5.8       | 6.0        |
+| 피크 VRAM                        | 12.16 GiB | 12.39 GiB  |
+| completion 토큰 수 (평균 / 최대) | 3.8 / 7   | 16.3 / 191 |
+| 1024 토큰에서 잘린 비율          | 0         | 0          |
+| 태그 3개가 모두 파싱된 비율      | –         | 2/40       |
+| gradient가 0인 step              | 2/5       | 3/5        |
 
-## 다음 단계 후보
-1. 위의 zero-gradient 문제 해결. 방법은 그룹 크기 늘리기, 어려운 문제 위주로 뽑기, 부분 점수를 주는 보상 중에서 고르면 돼요.
-2. 실제 학습 설정 정하고 본 학습 실행
-3. README 채우기 (지금은 placeholder예요)
+- **긴 completion이 나오지 않았어요.** 40개 중 33개가 10토큰 이하의 짧은 답("yes" 같은 것)이었어요. 모델은 보통 답을 먼저 쓰고, 가끔 그 뒤에 설명을 붙였어요. 그마저도 XML 태그 대신 `description:`처럼 쓴 경우가 많았어요.
+- **늘어난 시간은 거의 다 생성 때문이에요.** 생성은 그룹 8개 중 가장 긴 completion이 끝날 때까지 기다려서 그래요. 학습 시간은 거의 그대로였고, 피크 메모리는 생성이 아니라 학습 단계에서 나왔어요.
+- 보고서에 Step 2 completion 2개를 원문 그대로 넣었어요. reward 1을 받은 첫 completion(65토큰)과 reward 0을 받은 첫 completion(7토큰)이에요. 선택 기준은 실행 전에 코드로 정해 뒀어요.
 
-어디부터 할까요? 원하시면 이번 진행 상황을 메모리에 저장해서 다음에 바로 이어갈 수 있게 해둘게요.
+긴 rollout의 비용을 실제로 재려면 모델이 형식을 따르게 만들어야 해요. 방법은 두 가지를 생각하고 있어요.
+1. 예시 1개를 프롬프트에 넣거나, 형식 지시를 user 메시지로 옮기기
+2. 시간·메모리만 재는 게 목적이라면 `min_new_tokens`로 길이를 강제하기
+
+둘 중 어느 쪽으로 다시 돌릴지 정해 주세요.
+
+`.gitignore` 수정은 이번 커밋에서도 빼 뒀어요.
