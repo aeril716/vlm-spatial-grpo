@@ -249,3 +249,137 @@ left by 15 degrees
   unless a completion happens to use it *and* be correct.
 - The odd per-step pattern (steps 2 and 4 ≈ 11–12 s and ≈ 12.2 GiB in both runs) comes from those prompts
   having 2 images, which roughly doubles the vision tokens in the training forward pass.
+
+---
+
+# Part D: Part A + Part C with Qwen2.5-VL-7B-Instruct
+
+Only the model changes: **Qwen/Qwen2.5-VL-7B-Instruct** instead of Qwen2.5-VL-3B-Instruct. Everything else is identical to
+Part C: the project venv `.venv/` (torch 2.11.0+cu128, TRL 1.13.0), same samples, seed 0, LoRA config
+(r16, decoder only, `exclude_modules='.*visual.*'`), GRPO settings, prompts, system prompt, reward and
+measurements. The scripts are the Part A / Part C scripts, run unchanged with `SMOKE_MODEL_ID` set to the 7B
+model. GPU: Quadro RTX 8000 (sm_75), 47.3 GiB.
+
+## Step 0: fp16 sanity check (as Part A)
+
+Same 20 SAT `val` samples (streaming, shuffle seed 0), greedy, max_new_tokens=24, SDPA.
+
+| metric | fp16 | fp32 (reference) |
+|---|---|---|
+| peak VRAM (GiB) | 15.80 | 31.43 |
+| total time (s) | 8.4 | 24.4 |
+| seconds / sample | 0.42 | 1.22 |
+| parse success | 20/20 | 20/20 |
+| matches correct_answer | 11/20 | 11/20 |
+
+- **fp16 vs fp32 agreement: 20/20**
+- **fp16 non-finite (NaN/inf) logits: 0/20 sample(s)**
+
+| # | question_type | imgs | fp16 answer | fp32 answer | correct_answer | fp16 NaN/inf | agree |
+|---|---|---|---|---|---|---|---|
+| 0 | goal_aim | 1 | right by 49 degrees | right by 49 degrees | right by 49 degrees | no | = |
+| 1 | action_sequence | 2 | rotated right | rotated right | rotated left | no | = |
+| 2 | action_consequence | 1 | yes | yes | no | no | = |
+| 3 | action_sequence | 2 | rotated left and moved forward | rotated left and moved forward | rotated left and moved forward | no | = |
+| 4 | action_consequence | 1 | yes | yes | no | no | = |
+| 5 | goal_aim | 1 | left by 58 degrees | left by 58 degrees | left by 58 degrees | no | = |
+| 6 | goal_aim | 1 | left by 29 degrees | left by 29 degrees | left by 29 degrees | no | = |
+| 7 | obj_movement | 2 | no objects moved | no objects moved | no objects moved | no | = |
+| 8 | goal_aim | 1 | right by 30 degrees | right by 30 degrees | left by 30 degrees | no | = |
+| 9 | action_consequence | 1 | no | no | no | no | = |
+| 10 | goal_aim | 1 | left by 41 degrees | left by 41 degrees | left by 41 degrees | no | = |
+| 11 | action_sequence | 2 | rotated right and moved forward | rotated right and moved forward | did not move | no | = |
+| 12 | action_consequence | 1 | no | no | yes | no | = |
+| 13 | action_consequence | 1 | yes | yes | no | no | = |
+| 14 | obj_movement | 2 | no objects moved | no objects moved | no objects moved | no | = |
+| 15 | action_sequence | 2 | rotated right | rotated right | rotated right | no | = |
+| 16 | goal_aim | 1 | left by 54 degrees | left by 54 degrees | left by 54 degrees | no | = |
+| 17 | obj_movement | 2 | Bed was moved right and towards the camera in the first frame | Bed was moved right and towards the camera in the first frame | no objects moved | no | = |
+| 18 | action_sequence | 2 | rotated right and moved forward | rotated right and moved forward | rotated right and moved forward | no | = |
+| 19 | action_consequence | 1 | yes | yes | no | no | = |
+
+## Steps 1 and 2: GRPO, 5 steps each
+
+| | Step 1: baseline (short answer, max 24) | Step 2: reasoning format (max 1024) |
+|---|---|---|
+| status | completed 5/5 steps, no NaN/inf, no OOM | completed 5/5 steps, no NaN/inf, no OOM |
+
+Each step's prompt was the same as in the 3B Part C runs: **yes**
+(checked by comparing each step's `correct_answer`).
+
+### Summary (mean over steps), 3B vs 7B
+
+| | baseline 3B (Part C) | baseline 7B | reasoning 3B (Part C) | reasoning 7B |
+|---|---|---|---|---|
+| seconds / step | 7.9 | 10.6 | 11.5 | 11.1 |
+| generation s / step | 2.0 | 2.9 | 5.3 | 2.9 |
+| train fwd+bwd s / step | 5.8 | 7.6 | 6.0 | 8.1 |
+| peak VRAM (GiB, max over steps) | 12.16 | 22.44 | 12.39 | 22.84 |
+| completion tokens: mean | 3.8 | 4.9 | 16.3 | 3.8 |
+| completion tokens: max | 7 | 15 | 191 | 7 |
+| fraction cut off at max length | 0.000 | 0.000 | 0.000 | 0.000 |
+| zero-gradient steps (reward std = 0) | 2/5 | 1/5 | 3/5 | 5/5 |
+
+### Per step — Step 1: baseline, 7B
+
+| step | s/step | gen s | score s | train (fwd+bwd) s | peak VRAM GiB | gen peak GiB | len mean | len max | cut off @max | all tags | reward mean | reward std | loss | grad_norm |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 8.5 | 2.6 | 0.06 | 5.7 | 19.08 | 16.75 | 7.0 | 7 | 0.000 | n/a | 0.750 | 0.463 | 2.980e-08 | 0.6994 |
+| 2 | 14.6 | 4.4 | 0.09 | 10.0 | 21.96 | 18.00 | 9.5 | 15 | 0.000 | n/a | 0.500 | 0.535 | 0.5415 | 1.0916 |
+| 3 | 7.6 | 1.9 | 0.05 | 5.7 | 19.29 | 17.12 | 2.0 | 2 | 0.000 | n/a | 0.375 | 0.518 | 1.490e-08 | 3.0418 |
+| 4 | 14.5 | 3.7 | 0.09 | 10.8 | 22.44 | 18.01 | 4.0 | 4 | 0.000 | n/a | 1.000 | 0.000 | 0.0000 | 0.0000 |
+| 5 | 7.7 | 1.9 | 0.06 | 5.7 | 19.30 | 17.13 | 2.0 | 2 | 0.000 | n/a | 0.375 | 0.518 | 1.490e-08 | 3.0397 |
+
+### Per step — Step 2: reasoning format, 7B
+
+| step | s/step | gen s | score s | train (fwd+bwd) s | peak VRAM GiB | gen peak GiB | len mean | len max | cut off @max | all tags | reward mean | reward std | loss | grad_norm |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 8.8 | 2.7 | 0.06 | 5.9 | 19.45 | 16.89 | 7.0 | 7 | 0.000 | 0.000 | 0.000 | 0.000 | 0.0000 | 0.0000 |
+| 2 | 15.3 | 3.8 | 0.09 | 11.4 | 22.82 | 18.23 | 4.0 | 4 | 0.000 | 0.000 | 0.000 | 0.000 | 0.0000 | 0.0000 |
+| 3 | 8.0 | 2.0 | 0.06 | 5.9 | 19.65 | 17.26 | 2.0 | 2 | 0.000 | 0.000 | 0.000 | 0.000 | 0.0000 | 0.0000 |
+| 4 | 15.4 | 3.9 | 0.09 | 11.4 | 22.84 | 18.24 | 4.0 | 4 | 0.000 | 0.000 | 0.000 | 0.000 | 0.0000 | 0.0000 |
+| 5 | 8.1 | 2.0 | 0.06 | 6.0 | 19.67 | 17.27 | 2.0 | 2 | 0.000 | 0.000 | 0.000 | 0.000 | 0.0000 | 0.0000 |
+
+Columns are measured exactly as in Part C (see the note under Part C's per-step tables).
+
+### Step 2 format use (7B)
+
+- Completions with all three tags parsed: **0/40**
+- Completions that start with `<description>` (ignoring leading whitespace): **0/40**
+
+### Two full Step 2 completions, 7B (unedited)
+
+Same selection rule as Part C: the first completion with reward 1 and the first with reward 0,
+scanning steps and generations in order (falls back to the next completions if one kind doesn't exist).
+
+**Step 1, generation 0** — reward 0, 7 tokens, cut off: no, all three tags parsed: no, correct_answer: `right by 15 degrees`
+
+```text
+left by 15 degrees
+```
+
+**Step 1, generation 1** — reward 0, 7 tokens, cut off: no, all three tags parsed: no, correct_answer: `right by 15 degrees`
+
+```text
+left by 15 degrees
+```
+
+Both completions shown are reward 0. No Step 2 completion got reward 1, so the selection rule fell back to
+the next completion in order. They are representative: every 7B Step 2 completion was a bare answer like these.
+
+### Notes
+
+- **The 7B model ignored the reasoning format completely: 0/40 completions used the tags, 0/40 started with
+  `<description>`, and none added any explanation at all.** For comparison, 3B used all three tags in 2/40 and
+  also never started with `<description>`. Every 7B completion was a bare 2–7-token answer, the same as its
+  baseline. 24/40 of these bare answers were actually correct but received reward 0, because the reward only
+  reads `<answer>`. So all 5 Step 2 steps had reward std 0 and grad_norm 0, and **no learning happened**.
+  This also means Step 2 does not measure long-completion cost for 7B either. Its timing and memory are
+  effectively a second baseline run, with the system prompt adding a few prompt tokens.
+- **7B cost vs 3B, short completions (baseline):** 10.6 vs 7.9 s/step (1.3×). Generation time is 2.9 vs 2.0 s
+  and train fwd+bwd is 7.6 vs 5.8 s. Peak VRAM is 22.44 vs 12.16 GiB, which leaves about 25 GiB of headroom on
+  this 47.3 GiB GPU. Peak is again set by the training pass (gen peak ≤ 18.2 GiB).
+- **Step 0:** fp16 is safe for 7B on sm_75: 20/20 agreement with fp32 and no NaN/inf. fp32 fit (31.43 GiB peak),
+  so it was not skipped. On these 20 samples 7B matched `correct_answer` 11/20 vs 3B's 14/20. With n=20 this
+  is noise-level and not a capability comparison.
+- The baseline 7B run trained normally: 4/5 steps had non-zero gradient, and no NaN/inf or OOM.

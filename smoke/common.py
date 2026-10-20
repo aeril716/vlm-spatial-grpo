@@ -6,7 +6,9 @@ import random
 import numpy as np
 import torch
 
-MODEL_ID = "Qwen/Qwen2.5-VL-3B-Instruct"
+# Overridable so the same scripts can run other model sizes (Part D: 7B).
+MODEL_ID = os.environ.get("SMOKE_MODEL_ID", "Qwen/Qwen2.5-VL-3B-Instruct")
+RAW_DIR = os.environ.get("SMOKE_RAW_DIR", "reports/raw")
 DATASET_ID = "array/SAT"
 # NOTE: array/SAT has splits: train / static / val / test. There is NO "validation".
 # "val" (4001 examples) is the validation split.

@@ -29,7 +29,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common as C
 import part_b_grpo as B
 
-RAW = "reports/raw"
+RAW = C.RAW_DIR
 MAX_COMPLETION = {"baseline": B.MAX_COMPLETION, "reasoning": 1024}
 
 SYSTEM_PROMPT = (

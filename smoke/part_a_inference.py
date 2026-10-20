@@ -166,8 +166,8 @@ GPU **{C.gpu_name()}** ({C.capability()}) · torch {torch.__version__} · attn `
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w") as f:
         f.write(body)
-    os.makedirs("reports/raw", exist_ok=True)
-    with open("reports/raw/part_a.json", "w") as f:
+    os.makedirs(C.RAW_DIR, exist_ok=True)
+    with open(f"{C.RAW_DIR}/part_a.json", "w") as f:
         json.dump({"fp16": r16, "fp32": r32,
                    "peak_gib": {"fp16": peak16, "fp32": peak32},
                    "seconds": {"fp16": t16, "fp32": t32}}, f, indent=2)
