@@ -1,0 +1,1610 @@
+{
+  "description": "Part G choice order: shuffled[i] = original answers[order[i]] for each row_id",
+  "seed": 0,
+  "n": 200,
+  "correct_first": 96,
+  "order": {
+    "127405": [
+      0,
+      1
+    ],
+    "127406": [
+      0,
+      1
+    ],
+    "127407": [
+      1,
+      0
+    ],
+    "127408": [
+      0,
+      1
+    ],
+    "127409": [
+      0,
+      1
+    ],
+    "127410": [
+      0,
+      1
+    ],
+    "127411": [
+      0,
+      1
+    ],
+    "127412": [
+      0,
+      1
+    ],
+    "127415": [
+      0,
+      1
+    ],
+    "127417": [
+      1,
+      0
+    ],
+    "127418": [
+      1,
+      0
+    ],
+    "127419": [
+      0,
+      1
+    ],
+    "127420": [
+      1,
+      0
+    ],
+    "127422": [
+      1,
+      0
+    ],
+    "127423": [
+      0,
+      1
+    ],
+    "127425": [
+      1,
+      0
+    ],
+    "127426": [
+      0,
+      1
+    ],
+    "127427": [
+      1,
+      0
+    ],
+    "127429": [
+      1,
+      0
+    ],
+    "127430": [
+      0,
+      1
+    ],
+    "127432": [
+      0,
+      1
+    ],
+    "127434": [
+      1,
+      0
+    ],
+    "127435": [
+      0,
+      1
+    ],
+    "127437": [
+      0,
+      1
+    ],
+    "127438": [
+      0,
+      1
+    ],
+    "127439": [
+      1,
+      0
+    ],
+    "127441": [
+      0,
+      1
+    ],
+    "127442": [
+      0,
+      1
+    ],
+    "127443": [
+      0,
+      1
+    ],
+    "127444": [
+      1,
+      0
+    ],
+    "127445": [
+      1,
+      0
+    ],
+    "127446": [
+      1,
+      0
+    ],
+    "127447": [
+      0,
+      1
+    ],
+    "127450": [
+      1,
+      0
+    ],
+    "127453": [
+      0,
+      1
+    ],
+    "127454": [
+      0,
+      1
+    ],
+    "127455": [
+      1,
+      0
+    ],
+    "127456": [
+      0,
+      1
+    ],
+    "127457": [
+      1,
+      0
+    ],
+    "127458": [
+      1,
+      0
+    ],
+    "127461": [
+      1,
+      0
+    ],
+    "127462": [
+      1,
+      0
+    ],
+    "127463": [
+      1,
+      0
+    ],
+    "127464": [
+      0,
+      1
+    ],
+    "127465": [
+      1,
+      0
+    ],
+    "127468": [
+      1,
+      0
+    ],
+    "127469": [
+      0,
+      1
+    ],
+    "127470": [
+      0,
+      1
+    ],
+    "127471": [
+      1,
+      0
+    ],
+    "127472": [
+      0,
+      1
+    ],
+    "127473": [
+      0,
+      1
+    ],
+    "127474": [
+      1,
+      0
+    ],
+    "127475": [
+      0,
+      1
+    ],
+    "127476": [
+      1,
+      0
+    ],
+    "127477": [
+      0,
+      1
+    ],
+    "127478": [
+      0,
+      1
+    ],
+    "127479": [
+      1,
+      0
+    ],
+    "127480": [
+      0,
+      1
+    ],
+    "127482": [
+      0,
+      1
+    ],
+    "127484": [
+      1,
+      0
+    ],
+    "127485": [
+      0,
+      1
+    ],
+    "127486": [
+      1,
+      0
+    ],
+    "127487": [
+      1,
+      0
+    ],
+    "127488": [
+      1,
+      0
+    ],
+    "127489": [
+      1,
+      0
+    ],
+    "127491": [
+      0,
+      1
+    ],
+    "127492": [
+      0,
+      1
+    ],
+    "127493": [
+      1,
+      0
+    ],
+    "127494": [
+      1,
+      0
+    ],
+    "127495": [
+      1,
+      0
+    ],
+    "127496": [
+      1,
+      0
+    ],
+    "127497": [
+      1,
+      0
+    ],
+    "127498": [
+      1,
+      0
+    ],
+    "127499": [
+      0,
+      1
+    ],
+    "127500": [
+      0,
+      1
+    ],
+    "127501": [
+      1,
+      0
+    ],
+    "127502": [
+      1,
+      0
+    ],
+    "127503": [
+      0,
+      1
+    ],
+    "127504": [
+      0,
+      1
+    ],
+    "127505": [
+      0,
+      1
+    ],
+    "127507": [
+      0,
+      1
+    ],
+    "127508": [
+      0,
+      1
+    ],
+    "127511": [
+      1,
+      0
+    ],
+    "127512": [
+      0,
+      1
+    ],
+    "127513": [
+      1,
+      0
+    ],
+    "127514": [
+      0,
+      1
+    ],
+    "127515": [
+      0,
+      1
+    ],
+    "127516": [
+      1,
+      0
+    ],
+    "127517": [
+      1,
+      0
+    ],
+    "127518": [
+      1,
+      0
+    ],
+    "127521": [
+      0,
+      1
+    ],
+    "127522": [
+      1,
+      0
+    ],
+    "127523": [
+      1,
+      0
+    ],
+    "127524": [
+      0,
+      1
+    ],
+    "127525": [
+      1,
+      0
+    ],
+    "127526": [
+      0,
+      1
+    ],
+    "127527": [
+      0,
+      1
+    ],
+    "127529": [
+      1,
+      0
+    ],
+    "127530": [
+      1,
+      0
+    ],
+    "127531": [
+      1,
+      0
+    ],
+    "127532": [
+      1,
+      0
+    ],
+    "127533": [
+      1,
+      0
+    ],
+    "127535": [
+      1,
+      0
+    ],
+    "127536": [
+      1,
+      0
+    ],
+    "127537": [
+      1,
+      0
+    ],
+    "127538": [
+      1,
+      0
+    ],
+    "127539": [
+      1,
+      0
+    ],
+    "127540": [
+      0,
+      1
+    ],
+    "127541": [
+      1,
+      0
+    ],
+    "127542": [
+      0,
+      1
+    ],
+    "127543": [
+      1,
+      0
+    ],
+    "127544": [
+      1,
+      0
+    ],
+    "127547": [
+      1,
+      0
+    ],
+    "127549": [
+      1,
+      0
+    ],
+    "127550": [
+      1,
+      0
+    ],
+    "127551": [
+      1,
+      0
+    ],
+    "127552": [
+      0,
+      1
+    ],
+    "127553": [
+      1,
+      0
+    ],
+    "127554": [
+      1,
+      0
+    ],
+    "127555": [
+      1,
+      0
+    ],
+    "127556": [
+      0,
+      1
+    ],
+    "127557": [
+      1,
+      0
+    ],
+    "127558": [
+      0,
+      1
+    ],
+    "127559": [
+      1,
+      0
+    ],
+    "127560": [
+      1,
+      0
+    ],
+    "127561": [
+      1,
+      0
+    ],
+    "127562": [
+      0,
+      1
+    ],
+    "127563": [
+      0,
+      1
+    ],
+    "127564": [
+      0,
+      1
+    ],
+    "127565": [
+      1,
+      0
+    ],
+    "127566": [
+      1,
+      0
+    ],
+    "127567": [
+      0,
+      1
+    ],
+    "127569": [
+      1,
+      0
+    ],
+    "127570": [
+      1,
+      0
+    ],
+    "127572": [
+      0,
+      1
+    ],
+    "127573": [
+      1,
+      0
+    ],
+    "127574": [
+      0,
+      1
+    ],
+    "127575": [
+      0,
+      1
+    ],
+    "127576": [
+      0,
+      1
+    ],
+    "127578": [
+      1,
+      0
+    ],
+    "127579": [
+      1,
+      0
+    ],
+    "127580": [
+      1,
+      0
+    ],
+    "127582": [
+      1,
+      0
+    ],
+    "127583": [
+      1,
+      0
+    ],
+    "127585": [
+      0,
+      1
+    ],
+    "127586": [
+      0,
+      1
+    ],
+    "127587": [
+      1,
+      0
+    ],
+    "127588": [
+      0,
+      1
+    ],
+    "127589": [
+      1,
+      0
+    ],
+    "127591": [
+      1,
+      0
+    ],
+    "127592": [
+      0,
+      1
+    ],
+    "127595": [
+      0,
+      1
+    ],
+    "127597": [
+      0,
+      1
+    ],
+    "127598": [
+      0,
+      1
+    ],
+    "127599": [
+      0,
+      1
+    ],
+    "127600": [
+      0,
+      1
+    ],
+    "127601": [
+      1,
+      0
+    ],
+    "127602": [
+      1,
+      0
+    ],
+    "127605": [
+      0,
+      1
+    ],
+    "127606": [
+      1,
+      0
+    ],
+    "127607": [
+      0,
+      1
+    ],
+    "127608": [
+      1,
+      0
+    ],
+    "127610": [
+      0,
+      1
+    ],
+    "127613": [
+      1,
+      0
+    ],
+    "127614": [
+      1,
+      0
+    ],
+    "127615": [
+      0,
+      1
+    ],
+    "127616": [
+      0,
+      1
+    ],
+    "127619": [
+      0,
+      1
+    ],
+    "127620": [
+      0,
+      1
+    ],
+    "127622": [
+      1,
+      0
+    ],
+    "127625": [
+      0,
+      1
+    ],
+    "127626": [
+      0,
+      1
+    ],
+    "127627": [
+      0,
+      1
+    ],
+    "127628": [
+      1,
+      0
+    ],
+    "127629": [
+      1,
+      0
+    ],
+    "127630": [
+      1,
+      0
+    ],
+    "127631": [
+      0,
+      1
+    ],
+    "127633": [
+      1,
+      0
+    ],
+    "127634": [
+      1,
+      0
+    ],
+    "127635": [
+      1,
+      0
+    ],
+    "127636": [
+      0,
+      1
+    ],
+    "127639": [
+      0,
+      1
+    ],
+    "127640": [
+      0,
+      1
+    ],
+    "127641": [
+      1,
+      0
+    ],
+    "127642": [
+      0,
+      1
+    ],
+    "127644": [
+      0,
+      1
+    ],
+    "127645": [
+      1,
+      0
+    ],
+    "127646": [
+      1,
+      0
+    ],
+    "127648": [
+      0,
+      1
+    ],
+    "127649": [
+      1,
+      0
+    ],
+    "127650": [
+      0,
+      1
+    ],
+    "127651": [
+      1,
+      0
+    ],
+    "127652": [
+      0,
+      1
+    ],
+    "127653": [
+      0,
+      1
+    ],
+    "127654": [
+      1,
+      0
+    ],
+    "127655": [
+      1,
+      0
+    ],
+    "127656": [
+      0,
+      1
+    ],
+    "127658": [
+      0,
+      1
+    ],
+    "127659": [
+      0,
+      1
+    ],
+    "127660": [
+      0,
+      1
+    ]
+  },
+  "shuffled_choices": {
+    "127405": [
+      "green tapered square potted houseplant was moved right and towards the camera in the first frame",
+      "green tapered square potted houseplant was moved left and away from the camera in the first frame"
+    ],
+    "127406": [
+      "rotated left",
+      "rotated right"
+    ],
+    "127407": [
+      "look straight",
+      "right by 18 degrees"
+    ],
+    "127408": [
+      "yes",
+      "no"
+    ],
+    "127409": [
+      "no",
+      "yes"
+    ],
+    "127410": [
+      "TeddyBear was moved left and towards the camera in the first frame",
+      "TeddyBear was moved right and away from the camera in the first frame"
+    ],
+    "127411": [
+      "rotated right and moved forward",
+      "rotated left and rotated left"
+    ],
+    "127412": [
+      "right by 49 degrees",
+      "left by 49 degrees"
+    ],
+    "127415": [
+      "right by 53 degrees",
+      "left by 53 degrees"
+    ],
+    "127417": [
+      "yes",
+      "no"
+    ],
+    "127418": [
+      "lowprofile bed with blue bedding was moved right and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "127419": [
+      "rotated left and moved forward",
+      "rotated right and moved forward"
+    ],
+    "127420": [
+      "look straight",
+      "left by 40 degrees"
+    ],
+    "127422": [
+      "yes",
+      "no"
+    ],
+    "127423": [
+      "look straight",
+      "right by 40 degrees"
+    ],
+    "127425": [
+      "yes",
+      "no"
+    ],
+    "127426": [
+      "no objects moved",
+      "black wooden oblique shelving unit was moved right and away from the camera in the first frame"
+    ],
+    "127427": [
+      "rotated left and rotated left",
+      "rotated right and moved forward"
+    ],
+    "127429": [
+      "blue colour sofa(near the mark 6 in the image)",
+      "modern stainless steel refrigerator(marked 0 in the image)"
+    ],
+    "127430": [
+      "yes",
+      "no"
+    ],
+    "127432": [
+      "left by 87 degrees",
+      "look straight"
+    ],
+    "127434": [
+      "yes",
+      "no"
+    ],
+    "127435": [
+      "right by 56 degrees",
+      "look straight"
+    ],
+    "127437": [
+      "no",
+      "yes"
+    ],
+    "127438": [
+      "right by 35 degrees",
+      "look straight"
+    ],
+    "127439": [
+      "no",
+      "yes"
+    ],
+    "127441": [
+      "no objects moved",
+      "Bowl was moved right and towards the camera in the first frame"
+    ],
+    "127442": [
+      "rotated right",
+      "did not move"
+    ],
+    "127443": [
+      "no objects moved",
+      "brown wooden chair was moved left and towards the camera in the first frame"
+    ],
+    "127444": [
+      "rotated right and rotated right",
+      "rotated left and moved forward"
+    ],
+    "127445": [
+      "yes",
+      "no"
+    ],
+    "127446": [
+      "no",
+      "yes"
+    ],
+    "127447": [
+      "left by 15 degrees",
+      "look straight"
+    ],
+    "127450": [
+      "left by 28 degrees",
+      "right by 28 degrees"
+    ],
+    "127453": [
+      "right by 15 degrees",
+      "left by 15 degrees"
+    ],
+    "127454": [
+      "yes",
+      "no"
+    ],
+    "127455": [
+      "yes",
+      "no"
+    ],
+    "127456": [
+      "no objects moved",
+      "single person sleeping white bed was moved left and towards the camera in the first frame"
+    ],
+    "127457": [
+      "rotated right and rotated right",
+      "rotated left and moved forward"
+    ],
+    "127458": [
+      "look straight",
+      "left by 40 degrees"
+    ],
+    "127461": [
+      "Television was moved left and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "127462": [
+      "rotated left",
+      "rotated right"
+    ],
+    "127463": [
+      "simple brown wooden chair was moved right and towards the camera in the first frame",
+      "simple brown wooden chair was moved left and away from the camera in the first frame"
+    ],
+    "127464": [
+      "did not move",
+      "rotated left and moved forward"
+    ],
+    "127465": [
+      "look straight",
+      "left by 47 degrees"
+    ],
+    "127468": [
+      "black colored wooden chair was moved right and away from the camera in the first frame",
+      "black colored wooden chair was moved left and towards the camera in the first frame"
+    ],
+    "127469": [
+      "rotated left",
+      "rotated right"
+    ],
+    "127470": [
+      "no objects moved",
+      "black chair was moved left and towards the camera in the first frame"
+    ],
+    "127471": [
+      "rotated left and moved forward",
+      "rotated right and moved forward"
+    ],
+    "127472": [
+      "no objects moved",
+      "black color shelving unit was moved left and towards the camera in the first frame"
+    ],
+    "127473": [
+      "rotated left",
+      "did not move"
+    ],
+    "127474": [
+      "table was moved right and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "127475": [
+      "rotated left",
+      "rotated right"
+    ],
+    "127476": [
+      "CoffeeMachine was moved left and away from the camera in the first frame",
+      "no objects moved"
+    ],
+    "127477": [
+      "rotated left and moved forward",
+      "did not move"
+    ],
+    "127478": [
+      "no",
+      "yes"
+    ],
+    "127479": [
+      "look straight",
+      "left by 46 degrees"
+    ],
+    "127480": [
+      "yes",
+      "no"
+    ],
+    "127482": [
+      "left by 44 degrees",
+      "look straight"
+    ],
+    "127484": [
+      "yes",
+      "no"
+    ],
+    "127485": [
+      "no objects moved",
+      "silver rectangle trash bin with black top was moved left and away from the camera in the first frame"
+    ],
+    "127486": [
+      "rotated right",
+      "rotated left"
+    ],
+    "127487": [
+      "HousePlant was moved right and away from the camera in the first frame",
+      "HousePlant was moved left and towards the camera in the first frame"
+    ],
+    "127488": [
+      "did not move",
+      "rotated left and moved forward"
+    ],
+    "127489": [
+      "right by 29 degrees",
+      "left by 29 degrees"
+    ],
+    "127491": [
+      "no",
+      "yes"
+    ],
+    "127492": [
+      "Toaster was moved right and towards the camera in the first frame",
+      "Toaster was moved left and away from the camera in the first frame"
+    ],
+    "127493": [
+      "rotated right and moved forward",
+      "did not move"
+    ],
+    "127494": [
+      "look straight",
+      "left by 38 degrees"
+    ],
+    "127495": [
+      "no",
+      "yes"
+    ],
+    "127496": [
+      "yes",
+      "no"
+    ],
+    "127497": [
+      "dark brown square dresser was moved left and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "127498": [
+      "rotated right",
+      "rotated left"
+    ],
+    "127499": [
+      "no objects moved",
+      "Laptop was moved right and away from the camera in the first frame"
+    ],
+    "127500": [
+      "rotated left",
+      "rotated right"
+    ],
+    "127501": [
+      "cup was moved right and away from the camera in the first frame",
+      "no objects moved"
+    ],
+    "127502": [
+      "rotated left",
+      "rotated right"
+    ],
+    "127503": [
+      "no objects moved",
+      "sofa was moved left and away from the camera in the first frame"
+    ],
+    "127504": [
+      "rotated right and moved forward",
+      "rotated left and rotated left"
+    ],
+    "127505": [
+      "right by 20 degrees",
+      "look straight"
+    ],
+    "127507": [
+      "no",
+      "yes"
+    ],
+    "127508": [
+      "right by 39 degrees",
+      "look straight"
+    ],
+    "127511": [
+      "blue plastic stool with metal legs was moved left and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "127512": [
+      "rotated left",
+      "rotated right"
+    ],
+    "127513": [
+      "orange basketball on a court was moved left and towards the camera in the first frame",
+      "orange basketball on a court was moved right and away from the camera in the first frame"
+    ],
+    "127514": [
+      "rotated right and moved forward",
+      "rotated left and moved forward"
+    ],
+    "127515": [
+      "right by 48 degrees",
+      "left by 48 degrees"
+    ],
+    "127516": [
+      "no",
+      "yes"
+    ],
+    "127517": [
+      "yes",
+      "no"
+    ],
+    "127518": [
+      "look straight",
+      "right by 35 degrees"
+    ],
+    "127521": [
+      "no objects moved",
+      "brown wooden dining table was moved right and away from the camera in the first frame"
+    ],
+    "127522": [
+      "did not move",
+      "rotated right and moved forward"
+    ],
+    "127523": [
+      "cup was moved left and away from the camera in the first frame",
+      "no objects moved"
+    ],
+    "127524": [
+      "rotated right and moved forward",
+      "did not move"
+    ],
+    "127525": [
+      "black colored wooden chair was moved left and away from the camera in the first frame",
+      "no objects moved"
+    ],
+    "127526": [
+      "rotated left and moved forward",
+      "rotated right and moved forward"
+    ],
+    "127527": [
+      "no",
+      "yes"
+    ],
+    "127529": [
+      "left by 13 degrees",
+      "right by 13 degrees"
+    ],
+    "127530": [
+      "no",
+      "yes"
+    ],
+    "127531": [
+      "yes",
+      "no"
+    ],
+    "127532": [
+      "right by 14 degrees",
+      "left by 14 degrees"
+    ],
+    "127533": [
+      "no",
+      "yes"
+    ],
+    "127535": [
+      "blue tartanpatterned dog bed was moved right and away from the camera in the first frame",
+      "blue tartanpatterned dog bed was moved left and towards the camera in the first frame"
+    ],
+    "127536": [
+      "rotated left",
+      "did not move"
+    ],
+    "127537": [
+      "Statue was moved right and away from the camera in the first frame",
+      "Statue was moved left and towards the camera in the first frame"
+    ],
+    "127538": [
+      "rotated left and moved forward",
+      "did not move"
+    ],
+    "127539": [
+      "look straight",
+      "right by 36 degrees"
+    ],
+    "127540": [
+      "yes",
+      "no"
+    ],
+    "127541": [
+      "yes",
+      "no"
+    ],
+    "127542": [
+      "light blue rectangular dresser was moved left and towards the camera in the first frame",
+      "light blue rectangular dresser was moved right and away from the camera in the first frame"
+    ],
+    "127543": [
+      "rotated left and rotated left",
+      "rotated right and moved forward"
+    ],
+    "127544": [
+      "look straight",
+      "right by 21 degrees"
+    ],
+    "127547": [
+      "look straight",
+      "right by 41 degrees"
+    ],
+    "127549": [
+      "yes",
+      "no"
+    ],
+    "127550": [
+      "left by 31 degrees",
+      "right by 31 degrees"
+    ],
+    "127551": [
+      "no",
+      "yes"
+    ],
+    "127552": [
+      "no",
+      "yes"
+    ],
+    "127553": [
+      "blue and grey cylinder bin was moved left and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "127554": [
+      "rotated left and rotated left",
+      "rotated right and moved forward"
+    ],
+    "127555": [
+      "right by 27 degrees",
+      "left by 27 degrees"
+    ],
+    "127556": [
+      "yes",
+      "no"
+    ],
+    "127557": [
+      "yes",
+      "no"
+    ],
+    "127558": [
+      "potted houseplant with lush green foliage was moved right and towards the camera in the first frame",
+      "potted houseplant with lush green foliage was moved left and away from the camera in the first frame"
+    ],
+    "127559": [
+      "rotated right",
+      "rotated left"
+    ],
+    "127560": [
+      "brown wooden dresser with drawers was moved left and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "127561": [
+      "rotated right",
+      "rotated left"
+    ],
+    "127562": [
+      "no objects moved",
+      "jules office chair was moved right and towards the camera in the first frame"
+    ],
+    "127563": [
+      "rotated right and moved forward",
+      "rotated left and rotated left"
+    ],
+    "127564": [
+      "right by 31 degrees",
+      "look straight"
+    ],
+    "127565": [
+      "no",
+      "yes"
+    ],
+    "127566": [
+      "yes",
+      "no"
+    ],
+    "127567": [
+      "right by 31 degrees",
+      "look straight"
+    ],
+    "127569": [
+      "yes",
+      "no"
+    ],
+    "127570": [
+      "look straight",
+      "right by 50 degrees"
+    ],
+    "127572": [
+      "no",
+      "yes"
+    ],
+    "127573": [
+      "blue colour recycling bin was moved left and away from the camera in the first frame",
+      "blue colour recycling bin was moved right and towards the camera in the first frame"
+    ],
+    "127574": [
+      "did not move",
+      "rotated right and moved forward"
+    ],
+    "127575": [
+      "look straight",
+      "left by 50 degrees"
+    ],
+    "127576": [
+      "yes",
+      "no"
+    ],
+    "127578": [
+      "dark brown square dresser was moved right and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "127579": [
+      "rotated right and moved forward",
+      "rotated left and moved forward"
+    ],
+    "127580": [
+      "look straight",
+      "right by 19 degrees"
+    ],
+    "127582": [
+      "yes",
+      "no"
+    ],
+    "127583": [
+      "right by 40 degrees",
+      "look straight"
+    ],
+    "127585": [
+      "no",
+      "yes"
+    ],
+    "127586": [
+      "no objects moved",
+      "box was moved right and towards the camera in the first frame"
+    ],
+    "127587": [
+      "rotated left and moved forward",
+      "rotated right and moved forward"
+    ],
+    "127588": [
+      "no",
+      "yes"
+    ],
+    "127589": [
+      "left by 37 degrees",
+      "right by 37 degrees"
+    ],
+    "127591": [
+      "yes",
+      "no"
+    ],
+    "127592": [
+      "right by 16 degrees",
+      "left by 16 degrees"
+    ],
+    "127595": [
+      "right by 22 degrees",
+      "look straight"
+    ],
+    "127597": [
+      "no",
+      "yes"
+    ],
+    "127598": [
+      "no objects moved",
+      "HousePlant was moved right and towards the camera in the first frame"
+    ],
+    "127599": [
+      "rotated right",
+      "rotated left"
+    ],
+    "127600": [
+      "blue colour armchair was moved right and towards the camera in the first frame",
+      "blue colour armchair was moved left and away from the camera in the first frame"
+    ],
+    "127601": [
+      "rotated right",
+      "rotated left"
+    ],
+    "127602": [
+      "right by 62 degrees",
+      "left by 62 degrees"
+    ],
+    "127605": [
+      "black wooden shelving unit was moved left and towards the camera in the first frame",
+      "black wooden shelving unit was moved right and away from the camera in the first frame"
+    ],
+    "127606": [
+      "did not move",
+      "rotated right and moved forward"
+    ],
+    "127607": [
+      "look straight",
+      "left by 40 degrees"
+    ],
+    "127608": [
+      "no",
+      "yes"
+    ],
+    "127610": [
+      "right by 31 degrees",
+      "look straight"
+    ],
+    "127613": [
+      "Television was moved left and towards the camera in the first frame",
+      "no objects moved"
+    ],
+    "127614": [
+      "rotated left and rotated left",
+      "rotated right and moved forward"
+    ],
+    "127615": [
+      "yes",
+      "no"
+    ],
+    "127616": [
+      "left by 37 degrees",
+      "look straight"
+    ],
+    "127619": [
+      "look straight",
+      "left by 30 degrees"
+    ],
+    "127620": [
+      "yes",
+      "no"
+    ],
+    "127622": [
+      "right by 40 degrees",
+      "look straight"
+    ],
+    "127625": [
+      "no objects moved",
+      "white color side table was moved left and away from the camera in the first frame"
+    ],
+    "127626": [
+      "rotated right",
+      "rotated left"
+    ],
+    "127627": [
+      "no objects moved",
+      "potted houseplant with lush green foliage was moved right and towards the camera in the first frame"
+    ],
+    "127628": [
+      "rotated left and rotated left",
+      "rotated right and moved forward"
+    ],
+    "127629": [
+      "no",
+      "yes"
+    ],
+    "127630": [
+      "look straight",
+      "right by 24 degrees"
+    ],
+    "127631": [
+      "yes",
+      "no"
+    ],
+    "127633": [
+      "look straight",
+      "left by 26 degrees"
+    ],
+    "127634": [
+      "no",
+      "yes"
+    ],
+    "127635": [
+      "yes",
+      "no"
+    ],
+    "127636": [
+      "left by 49 degrees",
+      "right by 49 degrees"
+    ],
+    "127639": [
+      "black colour armchair was moved right and towards the camera in the first frame",
+      "black colour armchair was moved left and away from the camera in the first frame"
+    ],
+    "127640": [
+      "rotated left",
+      "rotated right"
+    ],
+    "127641": [
+      "left by 50 degrees",
+      "look straight"
+    ],
+    "127642": [
+      "yes",
+      "no"
+    ],
+    "127644": [
+      "Pillow was moved right and towards the camera in the first frame",
+      "Pillow was moved left and away from the camera in the first frame"
+    ],
+    "127645": [
+      "rotated left and moved forward",
+      "did not move"
+    ],
+    "127646": [
+      "look straight",
+      "left by 35 degrees"
+    ],
+    "127648": [
+      "no",
+      "yes"
+    ],
+    "127649": [
+      "CoffeeMachine was moved right and away from the camera in the first frame",
+      "CoffeeMachine was moved left and towards the camera in the first frame"
+    ],
+    "127650": [
+      "did not move",
+      "rotated right and moved forward"
+    ],
+    "127651": [
+      "table was moved right and away from the camera in the first frame",
+      "no objects moved"
+    ],
+    "127652": [
+      "rotated left and moved forward",
+      "rotated right and moved forward"
+    ],
+    "127653": [
+      "sixdrawer dresser in gray was moved right and towards the camera in the first frame",
+      "sixdrawer dresser in gray was moved left and away from the camera in the first frame"
+    ],
+    "127654": [
+      "rotated right and moved forward",
+      "did not move"
+    ],
+    "127655": [
+      "look straight",
+      "left by 24 degrees"
+    ],
+    "127656": [
+      "yes",
+      "no"
+    ],
+    "127658": [
+      "no objects moved",
+      "dark blue colour sofa was moved left and away from the camera in the first frame"
+    ],
+    "127659": [
+      "rotated right and moved forward",
+      "did not move"
+    ],
+    "127660": [
+      "right by 26 degrees",
+      "left by 26 degrees"
+    ]
+  }
+}

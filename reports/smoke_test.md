@@ -1043,3 +1043,454 @@ are in `reports/raw/part_f/<model>.jsonl`, with run metadata in `reports/raw/par
 - **Pool coverage.** The pool is only the first 256 spatial rows of SAT train (row IDs 127405–127660). Two types
   are taken whole (48 each), so the per-type results describe this slice, not the full split. The pool contains no
   question types other than these four, and every question has exactly 2 choices.
+
+---
+
+# Part G: Part F pass@k diagnosis with shuffled choices and a new worked example (no training)
+
+Everything is as in Part F (same 2 base models, same 200 row IDs from `data/passk_f_ids.json`, fp16, SDPA, on
+Quadro RTX 8000 (sm_75), 1 greedy + k = 8 samples at temperature 1.0 / top_p 1.0 / top_k 0 / repetition_penalty 1.0,
+`max_new_tokens=1024`, same scoring, same batching of 8 questions per `generate()` call, seed 0), with two changes:
+
+1. **Shuffled choices.** For each question, the choices are permuted with one `random.Random(0)` stream, drawn in
+   row_id order. Each question gets one order, used for its greedy answer, all 8 samples and both models. The
+   order is saved per row_id in `data/passk_g_choice_order.json` (`order[row_id]` gives indices into the original `answers` list, and
+   `shuffled_choices[row_id]` gives the resulting choice texts). Every question has 2 choices, so each permutation is either
+   kept or swapped: 96/200 kept the original order.
+2. **New worked example** whose answer is not yes/no (`<answer>the lamp</answer>` instead of `<answer>no</answer>`).
+
+Generation stops on NaN/inf logits (checked at every decode step) or OOM. Status for each model is below.
+
+## Where the correct answer ended up
+
+| question_type | n | correct answer listed first |
+|---|---|---|
+| action_consequence | 54 | 24/54 (44%) |
+| action_sequence | 48 | 23/48 (48%) |
+| goal_aim | 50 | 23/50 (46%) |
+| obj_movement | 48 | 26/48 (54%) |
+| **all** | 200 | **96/200 (48%)** |
+
+(In Part F the correct answer was listed first in 200/200 questions.)
+
+## Prompt
+
+Same as Part F except for the example. The full user text for the first question (row 127405; its order
+is unchanged):
+
+```text
+Were any of the objects in the initial frame that you can still see in the second frame moved from their original positions?
+
+Choices:
+- green tapered square potted houseplant was moved right and towards the camera in the first frame
+- green tapered square potted houseplant was moved left and away from the camera in the first frame
+
+First describe what in the image is relevant, then reason step by step, then give the final answer. Use exactly this format:
+<description>...</description>
+<reasoning>...</reasoning>
+<answer>...</answer>
+
+Example of the format, for a different question ("Which is closer to the camera, the lamp or the sofa?" with choices the lamp / the sofa):
+<description>A grey sofa stands against the back wall. A floor lamp stands in front of it, near the bottom of the image.</description>
+<reasoning>The lamp is lower in the image and overlaps the sofa, so it is in front of the sofa. That means the lamp is closer to the camera.</reasoning>
+<answer>the lamp</answer>
+```
+
+## Part F vs Part G
+
+| | 3B-Instruct F | 3B-Instruct G | 7B-Instruct F | 7B-Instruct G |
+|---|---|---|---|---|
+| greedy accuracy | 121/200 (60%) | 115/200 (58%) | 119/200 (60%) | 120/200 (60%) |
+| mean correct / 8 | 3.45 | 3.15 | 4.18 | 4.64 |
+| variance of correct / 8 (binomial 2.00) | 3.63 | 3.55 | 5.04 | 5.16 |
+| 0/8 | 19/200 (10%) | 21/200 (10%) | 9/200 (4%) | 9/200 (4%) |
+| mixed 1–7/8 | 180/200 (90%) | 178/200 (89%) | 179/200 (90%) | 171/200 (86%) |
+| 8/8 | 1/200 (0%) | 1/200 (0%) | 12/200 (6%) | 20/200 (10%) |
+| format rate, sampled (all three tags) | 89.2% | 85.8% | 96.8% | 96.9% |
+| format rate, greedy (all three tags) | 99.0% | 96.0% | 100.0% | 99.5% |
+
+Variance is the population variance of the per-question correct count (n = 200). Under pure guessing
+it would be Binomial(8, 0.5), with variance 2.00.
+
+## Position bias
+
+How often each model answers with the first-listed choice, next to how often the first-listed choice is correct.
+With an unbiased model the "picks first" columns would match "first-listed is correct". With a model
+that ignores the content they would sit near a constant regardless of it.
+
+| model | question_type | n | first-listed is correct | greedy picks first | sampled picks first (of all 8×n) | sampled picks first (of answers that are a choice) |
+|---|---|---|---|---|---|---|
+| 3B-Instruct | action_consequence | 54 | 24/54 (44%) | 30/54 (56%) | 227/432 (53%) | 227/377 (60%) |
+| 3B-Instruct | action_sequence | 48 | 23/48 (48%) | 23/48 (48%) | 137/384 (36%) | 137/226 (61%) |
+| 3B-Instruct | goal_aim | 50 | 23/50 (46%) | 18/50 (36%) | 126/400 (32%) | 126/300 (42%) |
+| 3B-Instruct | obj_movement | 48 | 26/48 (54%) | 12/48 (25%) | 54/384 (14%) | 54/129 (42%) |
+| 3B-Instruct | **all** | 200 | 96/200 (48%) | 83/200 (42%) | 544/1600 (34%) | 544/1032 (53%) |
+| 7B-Instruct | action_consequence | 54 | 24/54 (44%) | 29/54 (54%) | 198/432 (46%) | 198/416 (48%) |
+| 7B-Instruct | action_sequence | 48 | 23/48 (48%) | 17/48 (35%) | 157/384 (41%) | 157/359 (44%) |
+| 7B-Instruct | goal_aim | 50 | 23/50 (46%) | 24/50 (48%) | 152/400 (38%) | 152/371 (41%) |
+| 7B-Instruct | obj_movement | 48 | 26/48 (54%) | 10/48 (21%) | 98/384 (26%) | 98/290 (34%) |
+| 7B-Instruct | **all** | 200 | 96/200 (48%) | 80/200 (40%) | 605/1600 (38%) | 605/1436 (42%) |
+
+## yes / no answers where yes / no is not a choice
+
+Answers whose `<answer>` text is exactly `yes` or `no` (after the usual normalisation) on questions whose choices
+contain neither. These always score 0. Only action_consequence offers yes / no as choices, so it is mostly excluded here
+(its one non-yes/no question is included).
+
+| model | question_type | questions | Part F sampled yes / no (of 8×n) | Part G sampled yes / no | Part F greedy yes+no | Part G greedy yes+no |
+|---|---|---|---|---|---|---|
+| 3B-Instruct | action_consequence | 1 | 0 / 0 (0.0%) | 0 / 0 (0.0%) | 0/1 | 0/1 |
+| 3B-Instruct | action_sequence | 48 | 1 / 25 (6.8%) | 0 / 0 (0.0%) | 0/48 | 0/48 |
+| 3B-Instruct | goal_aim | 50 | 0 / 6 (1.5%) | 0 / 0 (0.0%) | 0/50 | 0/50 |
+| 3B-Instruct | obj_movement | 48 | 57 / 36 (24.2%) | 8 / 3 (2.9%) | 19/48 | 1/48 |
+| 3B-Instruct | **all** | 147 | 58 / 67 (10.6%) | 8 / 3 (0.9%) | 19/147 | 1/147 |
+| 7B-Instruct | action_consequence | 1 | 0 / 0 (0.0%) | 0 / 0 (0.0%) | 0/1 | 0/1 |
+| 7B-Instruct | action_sequence | 48 | 0 / 0 (0.0%) | 0 / 0 (0.0%) | 0/48 | 0/48 |
+| 7B-Instruct | goal_aim | 50 | 0 / 0 (0.0%) | 0 / 0 (0.0%) | 0/50 | 0/50 |
+| 7B-Instruct | obj_movement | 48 | 0 / 1 (0.3%) | 0 / 0 (0.0%) | 0/48 | 0/48 |
+| 7B-Instruct | **all** | 147 | 0 / 1 (0.1%) | 0 / 0 (0.0%) | 0/147 | 0/147 |
+
+Answers in Part G that copy the new example's choices (greedy + sampled): 3B-Instruct: `the lamp` ×4, `the sofa` ×1; 7B-Instruct: `the lamp` ×1, `the sofa` ×0.
+
+## Summary (Part G)
+
+| | 3B-Instruct | 7B-Instruct |
+|---|---|---|
+| questions answered | 200 (ok) | 200 (ok) |
+| greedy accuracy | 115/200 (58%) | 120/200 (60%) |
+| 0/8 | 21/200 (10%) | 9/200 (4%) |
+| mixed 1–7/8 | 178/200 (89%) | 171/200 (86%) |
+| 8/8 | 1/200 (0%) | 20/200 (10%) |
+| sampled answers correct | 39.3% | 58.0% |
+| sampled: all three tags | 85.8% | 96.9% |
+| sampled: cut off at 1024 | 0/1600 | 0/1600 |
+| time per question | 8.7 s | 12.4 s |
+| peak VRAM | 14.84 GiB | 27.14 GiB |
+
+## Qwen2.5-VL-3B-Instruct (Part G)
+
+Status: **ok** · 200 questions answered
+
+### 1. Greedy accuracy
+
+| question_type | n | greedy correct |
+|---|---|---|
+| action_consequence | 54 | 27/54 (50%) |
+| action_sequence | 48 | 24/48 (50%) |
+| goal_aim | 50 | 38/50 (76%) |
+| obj_movement | 48 | 26/48 (54%) |
+| **all** | 200 | **115/200 (58%)** |
+
+### 2. pass@8 buckets (8 samples per question)
+
+| question_type | n | 0/8 | mixed 1–7/8 | 8/8 | mean correct / 8 |
+|---|---|---|---|---|---|
+| action_consequence | 54 | 3/54 (6%) | 51/54 (94%) | 0/54 (0%) | 3.50 |
+| action_sequence | 48 | 6/48 (12%) | 42/48 (88%) | 0/48 (0%) | 2.85 |
+| goal_aim | 50 | 1/50 (2%) | 48/50 (96%) | 1/50 (2%) | 3.74 |
+| obj_movement | 48 | 11/48 (23%) | 37/48 (77%) | 0/48 (0%) | 2.42 |
+| **all** | 200 | 21/200 (10%) | 178/200 (89%) | 1/200 (0%) | 3.15 |
+
+### 3. Correct-count distribution vs. pure guessing
+
+Expected = sum over questions of Binomial(8, p = 1 / number of choices). Every question in this sample has 2 choices, so p = 0.5 throughout.
+
+| correct / 8 | observed questions | expected if guessing |
+|---|---|---|
+| 0 | 21 | 0.8 |
+| 1 | 23 | 6.2 |
+| 2 | 31 | 21.9 |
+| 3 | 36 | 43.8 |
+| 4 | 38 | 54.7 |
+| 5 | 29 | 43.8 |
+| 6 | 16 | 21.9 |
+| 7 | 5 | 6.2 |
+| 8 | 1 | 0.8 |
+
+- Mean correct per question: observed **3.15**, guessing 4.00
+- Variance of correct counts: observed **3.55**, binomial (guessing) **2.00** → ratio 1.78× (population variance, n = 200)
+
+### 4. Answer bias
+
+`picked` is over all 8 sampled answers per question. `correct` is the share of questions whose correct_answer has that label. The last two columns count, among questions whose correct label is this one, how many scored 0/8 and 8/8. Labels: goal_aim → left / right / straight; obj_movement → direction + towards/away, or no objects moved; the other types use the choice text.
+
+**action_consequence** (54 questions, 432 sampled answers)
+
+| label | picked | correct | correct-label questions: 0/8 | 8/8 |
+|---|---|---|---|---|
+| no | 51% (221) | 56% (30) | 0/30 | 0/30 |
+| yes | 36% (154) | 43% (23) | 2/23 | 0/23 |
+| modern stainless steel refrigerator(marked 0 in the image) | 0% (0) | 2% (1) | 1/1 | 0/1 |
+| blue colour sofa(near the mark 6 in the image) | 0% (2) | 0% (0) | — | — |
+| (no `<answer>`) | 4% (17) | 0% (0) | — | — |
+| (not one of the choices) | 9% (38) | 0% (0) | — | — |
+
+Position: picks the first-listed choice in 53% of samples; the first-listed choice is correct in 44% of questions.
+Most common answers that are not one of the choices: `the blue colour sofa(near the mark 6 in the image)` ×2, `the lamp` ×2, `unsure` ×1.
+
+**action_sequence** (48 questions, 384 sampled answers)
+
+| label | picked | correct | correct-label questions: 0/8 | 8/8 |
+|---|---|---|---|---|
+| rotated right and moved forward | 17% (64) | 31% (15) | 1/15 | 0/15 |
+| rotated left | 11% (43) | 25% (12) | 0/12 | 0/12 |
+| did not move | 4% (17) | 17% (8) | 2/8 | 0/8 |
+| rotated left and moved forward | 10% (39) | 17% (8) | 3/8 | 0/8 |
+| rotated right | 15% (57) | 10% (5) | 0/5 | 0/5 |
+| rotated left and rotated left | 1% (4) | 0% (0) | — | — |
+| rotated right and rotated right | 1% (2) | 0% (0) | — | — |
+| (no `<answer>`) | 15% (57) | 0% (0) | — | — |
+| (not one of the choices) | 26% (101) | 0% (0) | — | — |
+
+Position: picks the first-listed choice in 36% of samples; the first-listed choice is correct in 48% of questions.
+Most common answers that are not one of the choices: `rotated left and moved forward` ×11, `rotated right and moved forward` ×4, `the camera rotated left and moved forward` ×3.
+
+**goal_aim** (50 questions, 400 sampled answers)
+
+| label | picked | correct | correct-label questions: 0/8 | 8/8 |
+|---|---|---|---|---|
+| right | 29% (115) | 52% (26) | 1/26 | 1/26 |
+| left | 32% (127) | 34% (17) | 0/17 | 0/17 |
+| straight | 14% (58) | 14% (7) | 0/7 | 0/7 |
+| (no `<answer>`) | 2% (10) | 0% (0) | — | — |
+| (not one of the choices) | 22% (90) | 0% (0) | — | — |
+
+Position: picks the first-listed choice in 32% of samples; the first-listed choice is correct in 46% of questions.
+Most common answers that are not one of the choices: `left by 90 degrees` ×9, `right by 90 degrees` ×7, `left by 45 degrees` ×5.
+
+**obj_movement** (48 questions, 384 sampled answers)
+
+| label | picked | correct | correct-label questions: 0/8 | 8/8 |
+|---|---|---|---|---|
+| no objects moved | 28% (108) | 62% (30) | 0/30 | 0/30 |
+| moved left + towards | 2% (6) | 17% (8) | 5/8 | 0/8 |
+| moved right + towards | 1% (3) | 17% (8) | 6/8 | 0/8 |
+| moved left + away | 1% (5) | 2% (1) | 0/1 | 0/1 |
+| moved right + away | 2% (7) | 2% (1) | 0/1 | 0/1 |
+| (no `<answer>`) | 29% (113) | 0% (0) | — | — |
+| (not one of the choices) | 37% (142) | 0% (0) | — | — |
+
+Position: picks the first-listed choice in 14% of samples; the first-listed choice is correct in 54% of questions.
+Most common answers that are not one of the choices: `yes` ×8, `yes objects moved` ×3, `no` ×3.
+
+### 5. Format
+
+| | greedy | sampled |
+|---|---|---|
+| all three tags | 192/200 (96%) | 1373/1600 (86%) |
+| contains `<answer>` | 192/200 (96%) | 1403/1600 (88%) |
+| cut off at 1024 | 8/200 (4%) | 0/1600 (0%) |
+| completion tokens mean / max | 170 / 1024 | 160 / 576 |
+
+### 6. Time and memory
+
+| | |
+|---|---|
+| total wall time | 29.1 min |
+| time per question (greedy + 8 samples) | 8.7 s |
+| of which greedy / sampling | 1.8 s / 6.9 s |
+| peak VRAM | 14.84 GiB |
+
+Questions are generated 8 at a time, i.e. 8 greedy sequences and then 8×8 sampled sequences per `generate()` call. Per-question times are wall time divided by the number of questions, not the latency of one question alone.
+
+### Two sampled answers (unedited)
+
+Same selection rule as Part C: the first sampled answer that scored 1 and the first that scored 0, scanning questions in file order and samples in order.
+
+**row_id 127406 (action_sequence), sample 7**: score 1, 120 tokens, all three tags: yes, correct_answer: `rotated left`, choices: ['rotated left', 'rotated right']
+
+```text
+<description>A room with a yellow floor, a yellow chair, a table with a glass bottle on it, a television on the wall, and a picture hanging on the wall.</description>
+<reasoning>The second image shows the same room with minor differences in the position of objects. The chair is rotated to its side, and the bottle on the table has been replaced with a glass continent. There is a new addition to the table that has not been present in the first image. These are the only changes between the two images.</reasoning>
+<answer>rotated left</answer>
+```
+
+**row_id 127405 (obj_movement), sample 0**: score 0, 158 tokens, all three tags: no, correct_answer: `green tapered square potted houseplant was moved right and towards the camera in the first frame`, choices: ['green tapered square potted houseplant was moved right and towards the camera in the first frame', 'green tapered square potted houseplant was moved left and away from the camera in the first frame']
+
+```text
+description:The image shows a living room with features including a potted plant, a TV mounted on a purple wall, and a yellow table. The TV is positioned on the wall, the plant is placed on the table, and the table is slightly lowered, revealing the tablecloth underneath.
+
+reasoning:There was already a bounding box drawn around the plant in the initial frame, and after analyzing the image, it was clear that the plant remained in the same general area but slightly moved. Since there is no evidence of other objects significantly moving in relation to the potted plant, it is reasonable to conclude that the plant was moved in a small range without staying in the same fixed position.
+
+answer:green tapered square potted houseplant was moved left and away from the camera in the first frame
+```
+
+## Qwen2.5-VL-7B-Instruct (Part G)
+
+Status: **ok** · 200 questions answered
+
+### 1. Greedy accuracy
+
+| question_type | n | greedy correct |
+|---|---|---|
+| action_consequence | 54 | 25/54 (46%) |
+| action_sequence | 48 | 36/48 (75%) |
+| goal_aim | 50 | 40/50 (80%) |
+| obj_movement | 48 | 19/48 (40%) |
+| **all** | 200 | **120/200 (60%)** |
+
+### 2. pass@8 buckets (8 samples per question)
+
+| question_type | n | 0/8 | mixed 1–7/8 | 8/8 | mean correct / 8 |
+|---|---|---|---|---|---|
+| action_consequence | 54 | 2/54 (4%) | 49/54 (91%) | 3/54 (6%) | 4.13 |
+| action_sequence | 48 | 2/48 (4%) | 36/48 (75%) | 10/48 (21%) | 5.25 |
+| goal_aim | 50 | 2/50 (4%) | 43/50 (86%) | 5/50 (10%) | 5.16 |
+| obj_movement | 48 | 3/48 (6%) | 43/48 (90%) | 2/48 (4%) | 4.06 |
+| **all** | 200 | 9/200 (4%) | 171/200 (86%) | 20/200 (10%) | 4.64 |
+
+### 3. Correct-count distribution vs. pure guessing
+
+Expected = sum over questions of Binomial(8, p = 1 / number of choices). Every question in this sample has 2 choices, so p = 0.5 throughout.
+
+| correct / 8 | observed questions | expected if guessing |
+|---|---|---|
+| 0 | 9 | 0.8 |
+| 1 | 12 | 6.2 |
+| 2 | 22 | 21.9 |
+| 3 | 19 | 43.8 |
+| 4 | 29 | 54.7 |
+| 5 | 27 | 43.8 |
+| 6 | 30 | 21.9 |
+| 7 | 32 | 6.2 |
+| 8 | 20 | 0.8 |
+
+- Mean correct per question: observed **4.64**, guessing 4.00
+- Variance of correct counts: observed **5.16**, binomial (guessing) **2.00** → ratio 2.58× (population variance, n = 200)
+
+### 4. Answer bias
+
+`picked` is over all 8 sampled answers per question. `correct` is the share of questions whose correct_answer has that label. The last two columns count, among questions whose correct label is this one, how many scored 0/8 and 8/8. Labels: goal_aim → left / right / straight; obj_movement → direction + towards/away, or no objects moved; the other types use the choice text.
+
+**action_consequence** (54 questions, 432 sampled answers)
+
+| label | picked | correct | correct-label questions: 0/8 | 8/8 |
+|---|---|---|---|---|
+| no | 70% (302) | 56% (30) | 0/30 | 3/30 |
+| yes | 26% (112) | 43% (23) | 1/23 | 0/23 |
+| modern stainless steel refrigerator(marked 0 in the image) | 0% (0) | 2% (1) | 1/1 | 0/1 |
+| blue colour sofa(near the mark 6 in the image) | 0% (2) | 0% (0) | — | — |
+| (no `<answer>`) | 1% (5) | 0% (0) | — | — |
+| (not one of the choices) | 3% (11) | 0% (0) | — | — |
+
+Position: picks the first-listed choice in 46% of samples; the first-listed choice is correct in 44% of questions.
+Most common answers that are not one of the choices: `the blue colour sofa(near the mark 6 in the image)` ×2, `the blue colour sofa` ×1, `blue colour sofa` ×1.
+
+**action_sequence** (48 questions, 384 sampled answers)
+
+| label | picked | correct | correct-label questions: 0/8 | 8/8 |
+|---|---|---|---|---|
+| rotated right and moved forward | 30% (116) | 31% (15) | 0/15 | 3/15 |
+| rotated left | 17% (67) | 25% (12) | 0/12 | 2/12 |
+| did not move | 6% (22) | 17% (8) | 2/8 | 0/8 |
+| rotated left and moved forward | 20% (78) | 17% (8) | 0/8 | 4/8 |
+| rotated right | 17% (67) | 10% (5) | 0/5 | 1/5 |
+| rotated left and rotated left | 2% (9) | 0% (0) | — | — |
+| (no `<answer>`) | 2% (6) | 0% (0) | — | — |
+| (not one of the choices) | 5% (19) | 0% (0) | — | — |
+
+Position: picks the first-listed choice in 41% of samples; the first-listed choice is correct in 48% of questions.
+Most common answers that are not one of the choices: `rotated left and moved forward` ×6, `rotated right` ×3, `rotated left` ×3.
+
+**goal_aim** (50 questions, 400 sampled answers)
+
+| label | picked | correct | correct-label questions: 0/8 | 8/8 |
+|---|---|---|---|---|
+| right | 42% (170) | 52% (26) | 0/26 | 2/26 |
+| left | 33% (132) | 34% (17) | 0/17 | 3/17 |
+| straight | 17% (69) | 14% (7) | 2/7 | 0/7 |
+| (no `<answer>`) | 2% (8) | 0% (0) | — | — |
+| (not one of the choices) | 5% (21) | 0% (0) | — | — |
+
+Position: picks the first-listed choice in 38% of samples; the first-listed choice is correct in 46% of questions.
+Most common answers that are not one of the choices: `left by 90 degrees` ×6, `right by 90 degrees` ×5, `left` ×3.
+
+**obj_movement** (48 questions, 384 sampled answers)
+
+| label | picked | correct | correct-label questions: 0/8 | 8/8 |
+|---|---|---|---|---|
+| no objects moved | 41% (157) | 62% (30) | 0/30 | 2/30 |
+| moved left + towards | 8% (31) | 17% (8) | 0/8 | 0/8 |
+| moved right + towards | 10% (37) | 17% (8) | 2/8 | 0/8 |
+| moved left + away | 11% (41) | 2% (1) | 0/1 | 0/1 |
+| moved right + away | 6% (24) | 2% (1) | 1/1 | 0/1 |
+| (no `<answer>`) | 2% (7) | 0% (0) | — | — |
+| (not one of the choices) | 23% (87) | 0% (0) | — | — |
+
+Position: picks the first-listed choice in 26% of samples; the first-listed choice is correct in 54% of questions.
+Most common answers that are not one of the choices: `- no objects moved` ×2, `the statue was moved right and away from the camera in the first frame` ×2, `the houseplant was moved right and towards the camera in the first frame` ×2.
+
+### 5. Format
+
+| | greedy | sampled |
+|---|---|---|
+| all three tags | 199/200 (100%) | 1550/1600 (97%) |
+| contains `<answer>` | 199/200 (100%) | 1574/1600 (98%) |
+| cut off at 1024 | 1/200 (0%) | 0/1600 (0%) |
+| completion tokens mean / max | 169 / 1024 | 194 / 592 |
+
+### 6. Time and memory
+
+| | |
+|---|---|
+| total wall time | 41.5 min |
+| time per question (greedy + 8 samples) | 12.4 s |
+| of which greedy / sampling | 1.7 s / 10.7 s |
+| peak VRAM | 27.14 GiB |
+
+Questions are generated 8 at a time, i.e. 8 greedy sequences and then 8×8 sampled sequences per `generate()` call. Per-question times are wall time divided by the number of questions, not the latency of one question alone.
+
+### Two sampled answers (unedited)
+
+Same selection rule as Part C: the first sampled answer that scored 1 and the first that scored 0, scanning questions in file order and samples in order.
+
+**row_id 127405 (obj_movement), sample 2**: score 1, 114 tokens, all three tags: yes, correct_answer: `green tapered square potted houseplant was moved right and towards the camera in the first frame`, choices: ['green tapered square potted houseplant was moved right and towards the camera in the first frame', 'green tapered square potted houseplant was moved left and away from the camera in the first frame']
+
+```text
+<description>In the first frame, a green tapered square potted houseplant is on a yellow surface. In the second frame, the plant appears to be on the same surface but slightly closer to the camera.</description>
+<reasoning>The plant is more prominent and closer to the camera in the second frame, implying that it has either been moved forward or the camera has moved backward. The change in appearance suggests a closer perspective.</reasoning>
+<answer>green tapered square potted houseplant was moved right and towards the camera in the first frame</answer>
+```
+
+**row_id 127405 (obj_movement), sample 0**: score 0, 139 tokens, all three tags: yes, correct_answer: `green tapered square potted houseplant was moved right and towards the camera in the first frame`, choices: ['green tapered square potted houseplant was moved right and towards the camera in the first frame', 'green tapered square potted houseplant was moved left and away from the camera in the first frame']
+
+```text
+<description>In the first frame, a green tapered square potted houseplant is visible near the corner of a room, slightly to the right of the beige carpet. In the second frame, the houseplant is no longer in the scene.</description>
+
+<reasoning>The green potted houseplant is absent in the second frame, indicating that it has been moved or removed from the scene. The description of the second frame does not provide any indication of the plant's former location, so we can infer it has moved out of the frame's view.</reasoning>
+
+<answer>green tapered square potted houseplant was moved left and away from the camera in the first frame</answer>
+```
+
+
+Raw answers for every question (greedy + 8 samples, full text, with scores, token counts, cut-off flags and the
+shuffled `choices` as shown in the prompt) are in `reports/raw/part_g/<model>.jsonl`, with run metadata in
+`reports/raw/part_g/<model>_meta.json`.
+
+## Notes
+
+- **Shuffle worked as intended.** The correct answer is listed first in 96/200 questions (48%). By type: 44% / 48% / 46% / 54%.
+  In Part F it was 200/200. Each order is fixed per row_id and shared by greedy, all 8 samples and both models
+  (`data/passk_g_choice_order.json`).
+- **Neither model was relying on "pick the first choice".** Once the correct answer moved, overall accuracy barely
+  changed: greedy 3B 121 → 115, 7B 119 → 120. Of the answers that are one of the choices, the first-listed choice was
+  picked in 53% (3B) and 42% (7B) of samples, against 48% of questions where it is correct. So 3B shows almost no
+  position preference and 7B leans slightly towards the *second* choice. The Part F accuracies were therefore not inflated by
+  position. Split by where the correct answer sits, 7B does better when it is second (greedy 69/104 vs 51/96;
+  mean correct/8 5.16 vs 4.07). This matches the slight second-choice lean.
+- **obj_movement is driven by content, not position.** Whenever `no objects moved` is one of the choices, it is the
+  correct answer (30/30 such questions in this sample), and both models strongly prefer it wherever it is listed.
+  Among sampled answers that are one of the choices, 3B picks it 48/52 when it is listed first and 60/62 when
+  second; 7B 66/110 and 91/99. The low "picks first" rate for obj_movement in the position-bias table comes
+  from this, not from a position effect. It is a second shortcut in the data (answer "no objects moved"
+  whenever offered) that shuffling does not remove.
+- **The yes/no leak is gone.** yes/no answers on questions where neither is a choice drop from 125/1176 sampled answers (10.6%)
+  to 11/1176 (0.9%) for 3B, and from 19/147 to 1/147 greedy. 7B goes from 1 to 0. The new example's own
+  choices leak only slightly: 3B `the lamp` ×4 and `the sofa` ×1, 7B `the lamp` ×1, out of 1800 answers per model.
+- **7B improved, 3B got slightly worse.** 7B mean correct/8 went from 4.18 to 4.64, 8/8 from 12 to 20, and mixed from 179 to 171. 3B
+  mean went from 3.45 to 3.15, mostly through format. 3B sampled answers with all three tags fell from 89.2% to 85.8%, and 3B
+  obj_movement answers with no `<answer>` rose from 20% to 29% of samples. 3B now has 8 greedy answers cut off at 1024 (Part F: 2),
+  7 of them obj_movement, all repetition loops at `repetition_penalty=1.0`. 7B's format is unchanged (96.9%). One G run
+  per model with seed 0, so differences of a few questions are within run-to-run noise.
+- **Variance and GRPO signal** are essentially unchanged: variance 3.55 (3B) and 5.16 (7B) against 2.00 for guessing,
+  and 89% / 86% of questions have mixed rewards at k = 8.

@@ -1,6 +1,7 @@
 # datasets / images — never commit
 data/*
 !data/passk_f_ids.json
+!data/passk_g_choice_order.json
 datasets/
 images/
 *.jpg
@@ -37,6 +38,7 @@ __pycache__/
 # raw per-run json (reports/*.md IS committed)
 reports/raw/*
 !reports/raw/part_f/
+!reports/raw/part_g/
 
 # Claude Code local settings
 .claude/settings.local.json

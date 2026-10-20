@@ -1,0 +1,173 @@
+{
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "n_questions": 200,
+  "k": 8,
+  "max_new_tokens": 1024,
+  "batch_questions": 8,
+  "dtype": "float16",
+  "attn": "sdpa",
+  "sampling": {
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "repetition_penalty": 1.0
+  },
+  "instruction": "First describe what in the image is relevant, then reason step by step, then give the final answer. Use exactly this format:\n<description>...</description>\n<reasoning>...</reasoning>\n<answer>...</answer>\n\nExample of the format, for a different question (\"Which is closer to the camera, the lamp or the sofa?\" with choices the lamp / the sofa):\n<description>A grey sofa stands against the back wall. A floor lamp stands in front of it, near the bottom of the image.</description>\n<reasoning>The lamp is lower in the image and overlaps the sofa, so it is in front of the sofa. That means the lamp is closer to the camera.</reasoning>\n<answer>the lamp</answer>",
+  "status": "ok",
+  "error": null,
+  "batches": [
+    {
+      "first": 0,
+      "n": 8,
+      "greedy_s": 14.943444496020675,
+      "sample_s": 82.95732155092992
+    },
+    {
+      "first": 8,
+      "n": 8,
+      "greedy_s": 12.004167756065726,
+      "sample_s": 109.60582646890543
+    },
+    {
+      "first": 16,
+      "n": 8,
+      "greedy_s": 12.558769079856575,
+      "sample_s": 92.10490383720025
+    },
+    {
+      "first": 24,
+      "n": 8,
+      "greedy_s": 12.660227879881859,
+      "sample_s": 72.77546696807258
+    },
+    {
+      "first": 32,
+      "n": 8,
+      "greedy_s": 11.661129052983597,
+      "sample_s": 84.71387038100511
+    },
+    {
+      "first": 40,
+      "n": 8,
+      "greedy_s": 11.550663912901655,
+      "sample_s": 72.84698226791807
+    },
+    {
+      "first": 48,
+      "n": 8,
+      "greedy_s": 11.239522080868483,
+      "sample_s": 87.39756742096506
+    },
+    {
+      "first": 56,
+      "n": 8,
+      "greedy_s": 13.607594086090103,
+      "sample_s": 78.05421351199038
+    },
+    {
+      "first": 64,
+      "n": 8,
+      "greedy_s": 11.61660930304788,
+      "sample_s": 88.73797095799819
+    },
+    {
+      "first": 72,
+      "n": 8,
+      "greedy_s": 10.940636449959129,
+      "sample_s": 68.18519167113118
+    },
+    {
+      "first": 80,
+      "n": 8,
+      "greedy_s": 12.15020396397449,
+      "sample_s": 81.31240965612233
+    },
+    {
+      "first": 88,
+      "n": 8,
+      "greedy_s": 11.246924770995975,
+      "sample_s": 91.85095584695227
+    },
+    {
+      "first": 96,
+      "n": 8,
+      "greedy_s": 55.928646862041205,
+      "sample_s": 76.05568048683926
+    },
+    {
+      "first": 104,
+      "n": 8,
+      "greedy_s": 11.243872900027782,
+      "sample_s": 136.41299890493974
+    },
+    {
+      "first": 112,
+      "n": 8,
+      "greedy_s": 11.19949625292793,
+      "sample_s": 94.58307043509558
+    },
+    {
+      "first": 120,
+      "n": 8,
+      "greedy_s": 10.601580107118934,
+      "sample_s": 80.64753965381533
+    },
+    {
+      "first": 128,
+      "n": 8,
+      "greedy_s": 11.9878359278664,
+      "sample_s": 69.64529920509085
+    },
+    {
+      "first": 136,
+      "n": 8,
+      "greedy_s": 11.72726716613397,
+      "sample_s": 76.20639467402361
+    },
+    {
+      "first": 144,
+      "n": 8,
+      "greedy_s": 11.149556141812354,
+      "sample_s": 99.45986575610004
+    },
+    {
+      "first": 152,
+      "n": 8,
+      "greedy_s": 12.324973738985136,
+      "sample_s": 91.46143543999642
+    },
+    {
+      "first": 160,
+      "n": 8,
+      "greedy_s": 12.855466108070686,
+      "sample_s": 90.41854826896451
+    },
+    {
+      "first": 168,
+      "n": 8,
+      "greedy_s": 11.386811507167295,
+      "sample_s": 76.86791809089482
+    },
+    {
+      "first": 176,
+      "n": 8,
+      "greedy_s": 10.154882299015298,
+      "sample_s": 87.9318208170589
+    },
+    {
+      "first": 184,
+      "n": 8,
+      "greedy_s": 10.585033977869898,
+      "sample_s": 72.95280022895895
+    },
+    {
+      "first": 192,
+      "n": 8,
+      "greedy_s": 13.156482305144891,
+      "sample_s": 82.75038127787411
+    }
+  ],
+  "wall_s": 2488.342286898056,
+  "peak_vram_gib": 27.144160270690918,
+  "gpu": "Quadro RTX 8000 (sm_75)"
+}
